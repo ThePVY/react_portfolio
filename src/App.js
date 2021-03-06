@@ -106,6 +106,7 @@ function App() {
                     <div>Messages</div>
                     <div>News</div>
                     <div>Music</div>
+                    <div>Video</div>
                 </nav>
             </aside>
             <div className="content">
