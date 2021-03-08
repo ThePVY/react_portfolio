@@ -1,7 +1,6 @@
 .content {
     background-color: rgb(94, 123, 170);
     grid-area       : content;
-    grid-column     : 3 / 4;
 
     padding: 1em;
     color  : black;
