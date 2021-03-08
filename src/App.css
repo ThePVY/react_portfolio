@@ -11,6 +11,10 @@ body,
     height: 100vh;
 }
 
+a {
+    color:rgb(122, 134, 134);
+}
+
 .app-wrapper {
     background-color     : rgb(46, 62, 87);
     min-height           : 100%;

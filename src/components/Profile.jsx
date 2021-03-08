@@ -1,7 +1,7 @@
 import LeftContent from "./Left-Content"
 import RightContent from "./Right-Content"
 
-const Content = () => {
+const Profile = () => {
     return (
         <div className="content">
             <LeftContent />
@@ -10,4 +10,4 @@ const Content = () => {
     );
 };
 
-export default Content;
+export default Profile;

@@ -2,11 +2,21 @@ const Sidebar = () => {
     return (
         <aside className="sidebar">
             <nav>
-                <div>Profile</div>
-                <div>Messages</div>
-                <div>News</div>
-                <div>Music</div>
-                <div>Video</div>
+                <div>
+                    <a href="">Profile</a>
+                </div>
+                <div>
+                    <a href="">Messages</a>
+                </div>
+                <div>
+                    <a href="">News</a>
+                </div>
+                <div>
+                    <a href="">Music</a>
+                </div>
+                <div>
+                    <a href="">Video</a>
+                </div>
             </nav>
         </aside>
     );

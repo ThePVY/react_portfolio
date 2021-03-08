@@ -2,7 +2,15 @@ const LeftContent = () => {
     return (
         <div className="left-content">
             <div>
-                <button id="add-to-left-content">Add Image</button>
+                <div>
+                    Ava
+                </div>
+                <div>
+                    Music
+                </div>
+                <div>
+                    Video
+                </div>
             </div>
         </div>
     );
