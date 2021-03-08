@@ -1,3 +1,5 @@
+import './styles/Profile.css'
+
 import LeftContent from "./Left-Content"
 import RightContent from "./Right-Content"
 

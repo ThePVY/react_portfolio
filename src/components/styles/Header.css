@@ -1,0 +1,14 @@
+.header {
+    background-color: rgb(60, 76, 102);
+    grid-area       : header;
+    grid-column     : 1 / 5;
+
+    display              : grid;
+    grid-template-columns: 1fr 150px minmax(200px, 5fr) 1fr;
+}
+
+.header img {
+    width      : 50px;
+    grid-column: 2 / 3;
+    align-self : center;
+}

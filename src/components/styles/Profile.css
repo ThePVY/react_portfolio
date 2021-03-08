@@ -1,0 +1,23 @@
+.content {
+    background-color: rgb(94, 123, 170);
+    grid-area       : content;
+    grid-column     : 3 / 4;
+
+    padding: 1em;
+    color  : black;
+
+    display              : grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.left-content div, .right-content {
+    text-align: center;
+}
+
+.left-content img {
+    width: 300px;
+}
+
+.right-content img {
+    width: 400px;
+}

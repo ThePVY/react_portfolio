@@ -1,19 +1,9 @@
 const onloadListener = () => {
     const leftContent = document.querySelector('.left-content div');
     const leftContainer = document.querySelector('.left-content');
-    const addLeftImageButton = document.getElementById('add-to-left-content');
     const rightContent = document.querySelector('.right-content');
-    const addRightImageButton = document.getElementById('add-to-right-content');
+    const addRightImageButton = document.querySelector('.right-content_add-image-button');
 
-
-    addLeftImageButton.addEventListener('click', () => {
-        const image = document.createElement('img');
-        image.setAttribute('src', `
-            https://img4.goodfon.ru/wallpaper/nbig/1/17/art-devushka-vzgliad-rassvet-nebo-gorod-krasivo.jpg`
-        );
-        image.setAttribute('alt', 'alt');
-        leftContent.insertBefore(image, addLeftImageButton);
-    });
 
     addRightImageButton.addEventListener('click', () => {
         const image = document.createElement('img');
