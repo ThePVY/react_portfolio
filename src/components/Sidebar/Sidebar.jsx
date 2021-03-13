@@ -1,22 +1,22 @@
-import './styles/Sidebar.css'
+import classes from './Sidebar.module.css'
 
 const Sidebar = () => {
     return (
-        <aside className="sidebar">
+        <aside className={classes.sidebar}>
             <nav>
-                <div>
+                <div className={classes.item}>
                     <a href="">Profile</a>
                 </div>
-                <div>
+                <div className={classes.item}>
                     <a href="">Messages</a>
                 </div>
-                <div>
+                <div className={classes.item}>
                     <a href="">News</a>
                 </div>
-                <div>
+                <div className={classes.item}>
                     <a href="">Music</a>
                 </div>
-                <div>
+                <div className={classes.item}>
                     <a href="">Video</a>
                 </div>
             </nav>

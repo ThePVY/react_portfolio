@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import logoBird from "./images/logo.png";
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Profile from './components/Profile';
-import Footer from './components/Footer';
-import onloadListener from './scripts/WindowOnload';
+import Header from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
+import Profile from './components/Profile/Profile';
+import Footer from './components/Footer/Footer';
+
+import LC from "./components/Profile/Left-Content/Left-Content.module.css";
+import makeSlideContent from './scripts/makeSlideContent';
 
 function App() {
     return (
@@ -21,4 +22,8 @@ function App() {
 export default App;
 
 
-window.onload = onloadListener;
+window.onload = () => {
+    const leftContent = document.querySelector(`.${LC.leftContent} div`);
+    const leftContainer = document.querySelector(`.${LC.leftContent}`);
+    makeSlideContent(leftContent, leftContainer);
+};

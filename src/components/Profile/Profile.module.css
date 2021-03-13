@@ -9,14 +9,15 @@
     grid-template-columns: 2fr 3fr;
 }
 
-.left-content div, .right-content {
+
+.leftContent div, .rightContent {
     text-align: center;
 }
 
-.left-content img {
+.leftContent img {
     width: 300px;
 }
 
-.right-content img {
+.rightContent img {
     width: 400px;
 }

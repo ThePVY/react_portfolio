@@ -1,0 +1,10 @@
+.posts {
+    padding-left: 3em;
+    text-align: left;
+    color:rgb(186, 194, 194);
+}
+
+textarea {
+    min-width: fit-content;
+    width: 70%;
+}

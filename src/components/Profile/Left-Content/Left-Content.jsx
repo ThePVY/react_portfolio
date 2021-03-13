@@ -1,9 +1,14 @@
+import styles from './Left-Content.module.css'
+
 const LeftContent = () => {
     return (
-        <div className="left-content">
+        <div className={styles.leftContent}>
             <div>
                 <div>
                     Ava
+                </div>
+                <div>
+                    Images
                 </div>
                 <div>
                     Music
