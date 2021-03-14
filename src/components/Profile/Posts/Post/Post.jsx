@@ -3,8 +3,12 @@ import styles from './Post.module.css'
 const Post = (props) => {
     return (
         <div className={styles.post}>
-            <img src="https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg" alt="q"/>
-            { props.message }
+            <div>
+                <img src="https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg" alt="q"/>
+            </div>
+            <div className={styles.message}>
+                <span>{ props.message }</span>
+            </div>
             <div>
                 <span>Like</span> { props.likesCount }
             </div>

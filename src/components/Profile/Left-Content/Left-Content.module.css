@@ -1,23 +1,7 @@
-.content {
-    background-color: rgb(94, 123, 170);
-    grid-area       : content;
-
-    padding: 1em;
-    color  : black;
-
-    display              : grid;
-    grid-template-columns: 2fr 3fr;
-}
-
-
-.leftContent div, .rightContent {
+.leftContent div {
     text-align: center;
 }
 
 .leftContent img {
     width: 300px;
-}
-
-.rightContent img {
-    width: 400px;
 }

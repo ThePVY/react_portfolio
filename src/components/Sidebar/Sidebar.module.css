@@ -16,4 +16,9 @@
 
 .sidebar a {
     color:rgb(122, 134, 134);
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    color:rgb(148, 160, 160);
 }
