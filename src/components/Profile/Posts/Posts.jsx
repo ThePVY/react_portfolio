@@ -1,18 +1,41 @@
 import styles from './Posts.module.css'
 import Post from './Post/Post'
+import { createRef } from 'react';
 
-const Posts = () => {
+import headerStyles from './../../Header/Header.module.css'
+
+const Posts = (props) => {
+
+    const textAreaRef = createRef();
+
+    const spinLogo = () => {
+        const logo = document.querySelector(`.${headerStyles.header} img`);
+        logo.classList.add(headerStyles.spin);
+        setTimeout(() => {
+            logo.classList.remove(headerStyles.spin);
+        }, 1500);
+    };
+
+    const onClickHandler = () => {
+        props.data.callbacks.addPost();
+        spinLogo();
+    };
+
+    const onChange = () => {
+        props.data.callbacks.updatePost(textAreaRef.current.value);
+    };
+    
     return (
         <div className={styles.posts}>
             <div>
-                <textarea></textarea>
+                <textarea ref={ textAreaRef } value={props.data.newPost} onChange={ onChange }></textarea>
             </div>
-            <div>
-                <button className='postButton'>Add Post</button>
+            <div className={styles.buttonContainer}>
+                <button className='postButton' onClick={ onClickHandler }>Add Post</button>
             </div>
-            <Post message="It's my first post!" likesCount='1'/>
-            <Post message="Hi!" likesCount='21'/>
-            <Post />
+            {
+                props.data.posts.map((obj) => <Post message={obj.message} likesCount={obj.likesCount}/>)
+            }
         </div>
     );
 };

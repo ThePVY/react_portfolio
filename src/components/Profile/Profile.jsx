@@ -1,13 +1,13 @@
-import profile from './Profile.module.css'
+import styles from './Profile.module.css'
 
-import LeftContent from "./Left-Content/Left-Content"
+import ProfileInfo from "./ProfileInfo/ProfileInfo"
 import Posts from "./Posts/Posts"
 
-const Profile = () => {
+const Profile = (props) => {
     return (
-        <div className={profile.content}>
-            <LeftContent />
-            <Posts />
+        <div className={styles.content}>
+            <ProfileInfo />
+            <Posts data={ props.data } />
         </div>
     );
 };

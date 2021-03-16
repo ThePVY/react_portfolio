@@ -1,4 +1,9 @@
-textarea {
-    min-width: fit-content;
-    width: 70%;
+.dialog {
+    padding: 0px 6em;
+    text-align: left;
+    color:rgb(186, 194, 194);
+}
+
+.dialog div textarea {
+    width: 100%;
 }

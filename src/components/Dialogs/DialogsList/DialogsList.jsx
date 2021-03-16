@@ -1,12 +1,13 @@
 import styles from './DialogsList.module.css'
 import Dialog from './Dialog/Dialog'
 
-const DialogsList = () => {
+const DialogsList = (props) => {
+
     return (
         <div className={styles.dialogList}>
-            <Dialog preview="Hi"/>
-            <Dialog preview="Hi!"/>
-            <Dialog />
+            {
+                props.dialogs.map((obj) => <Dialog name={obj.name} id={obj.id} preview={obj.preview}/>)
+            }
         </div>
     );
 };

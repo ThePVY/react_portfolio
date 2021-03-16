@@ -4,11 +4,11 @@ import CurrentDialog from './CurrentDialog/CurrentDialog';
 
 
 
-const Dialogs = () => {
+const Dialogs = (props) => {
     return (
         <div className={dialogs.content}>
-            <DialogsList />
-            <CurrentDialog />
+            <DialogsList dialogs={ props.state.dialogsList }/>
+            <CurrentDialog messages={ props.state.messages }/>
         </div>
     );
 };

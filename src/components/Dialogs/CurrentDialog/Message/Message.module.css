@@ -1,0 +1,9 @@
+.message {
+    text-align: left;
+    padding: 10px 10px;
+    color     : rgb(72, 78, 78);
+}
+
+.message.my {
+    text-align: right;
+}

@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import LC from "./components/Profile/Left-Content/Left-Content.module.css";
+import styles from "./components/Profile/ProfileInfo/ProfileInfo.module.css";
 import makeSlideContent from './scripts/makeSlideContent';
 
 
@@ -11,14 +11,14 @@ import Footer from './components/Footer/Footer';
 import Dialogs from './components/Dialogs/Dialogs';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-function App() {
+function App(props) {
     return (
         <div className="app-wrapper">
             <BrowserRouter>
                 <Header />
                 <Sidebar />
-                <Route path='/profile' component={Profile} />
-                <Route path='/dialogs' component={Dialogs} />
+                <Route path='/profile' render={ () => <Profile data={ props.store.getState().profile } /> } />
+                <Route path='/dialogs' render={ () => <Dialogs data={ props.store.getState().dialogs }  /> } />
                 <Footer />
             </BrowserRouter>
         </div>
@@ -29,7 +29,7 @@ export default App;
 
 
 window.onload = () => {
-    const leftContent = document.querySelector(`.${LC.leftContent} div`);
-    const leftContainer = document.querySelector(`.${LC.leftContent}`);
+    const leftContent = document.querySelector(`.${styles.ProfileInfo} div`);
+    const leftContainer = document.querySelector(`.${styles.ProfileInfo}`);
     //makeSlideContent(leftContent, leftContainer);
 };

@@ -1,6 +1,6 @@
-import styles from './Left-Content.module.css'
+import styles from './ProfileInfo.module.css'
 
-const LeftContent = () => {
+const ProfileInfo = () => {
     return (
         <div className={styles.leftContent}>
             <div>
@@ -21,4 +21,4 @@ const LeftContent = () => {
     );
 };
 
-export default LeftContent;
+export default ProfileInfo;

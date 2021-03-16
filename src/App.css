@@ -23,4 +23,22 @@ body,
         "footer footer  footer  footer";
 }
 
+button {
+    background-color: rgb(77, 95, 122);
+    color: rgb(148, 160, 160);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+textarea {
+    min-width: fit-content;
+    width: 70%;
+    background-color: rgb(109, 141, 192);
+    color: rgb(72, 80, 80);
+    font-size: 14px;
+    padding: 0.5em 0em;
+    line-height: 1.5em;
+    outline: none;
+}
+
 

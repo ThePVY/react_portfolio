@@ -4,10 +4,33 @@
 
     display              : grid;
     grid-template-columns: 1fr 150px minmax(200px, 5fr) 1fr;
+
+    transition: all 0.4s ease 0s;
 }
 
 .header img {
     width      : 50px;
     grid-column: 2 / 3;
     align-self : center;
+}
+
+.spin {
+    display: inline-block;
+    position: relative;
+    animation-name: spinning-logo;
+    animation-duration: 1500ms;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+}
+
+@keyframes spinning-logo {
+    0% {
+        transform: scale(1, 1) rotate(0deg);
+    }
+    50% {
+        transform: scale(-1, 1) rotate(180deg);
+    }
+    100% {
+        transform: scale(1, 1) rotate(360deg);
+    }
 }
