@@ -17,8 +17,18 @@ function App(props) {
             <BrowserRouter>
                 <Header />
                 <Sidebar />
-                <Route path='/profile' render={ () => <Profile data={ props.store.getState().profile } /> } />
-                <Route path='/dialogs' render={ () => <Dialogs data={ props.store.getState().dialogs }  /> } />
+                <Route path='/profile' render={ 
+                    () => <Profile 
+                        data={ props.store.getState().profile }
+                        callbacks={ props.store.getCallbacks().profile } 
+                    />
+                } />
+                <Route path='/dialogs' render={ 
+                    () => <Dialogs
+                        data={ props.store.getState().dialogs }
+                        callbacks={ props.store.getCallbacks().dialogs } 
+                    /> 
+                } />
                 <Footer />
             </BrowserRouter>
         </div>

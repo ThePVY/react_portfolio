@@ -2,27 +2,18 @@ import styles from './Posts.module.css'
 import Post from './Post/Post'
 import { createRef } from 'react';
 
-import headerStyles from './../../Header/Header.module.css'
+
 
 const Posts = (props) => {
 
     const textAreaRef = createRef();
 
-    const spinLogo = () => {
-        const logo = document.querySelector(`.${headerStyles.header} img`);
-        logo.classList.add(headerStyles.spin);
-        setTimeout(() => {
-            logo.classList.remove(headerStyles.spin);
-        }, 1500);
-    };
-
     const onClickHandler = () => {
-        props.data.callbacks.addPost();
-        spinLogo();
+        props.callbacks.addPost();
     };
 
     const onChange = () => {
-        props.data.callbacks.updatePost(textAreaRef.current.value);
+        props.callbacks.updatePost(textAreaRef.current.value);
     };
     
     return (

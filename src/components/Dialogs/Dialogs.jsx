@@ -7,8 +7,8 @@ import CurrentDialog from './CurrentDialog/CurrentDialog';
 const Dialogs = (props) => {
     return (
         <div className={dialogs.content}>
-            <DialogsList dialogs={ props.state.dialogsList }/>
-            <CurrentDialog messages={ props.state.messages }/>
+            <DialogsList dialogs={ props.data.dialogsList }/>
+            <CurrentDialog messages={ props.data.messages }/>
         </div>
     );
 };

@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
         <div className={styles.content}>
             <ProfileInfo />
-            <Posts data={ props.data } />
+            <Posts data={ props.data } callbacks={ props.callbacks } />
         </div>
     );
 };
