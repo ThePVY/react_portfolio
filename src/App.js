@@ -7,15 +7,15 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/Footer';
 import Dialogs from './components/Dialogs/Dialogs';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 function App(props) {
     return (
         <div className="app-wrapper">
                 <Header />
                 <Sidebar />
-                <Route path='/profile' render={ () => <Profile state={ props.state } dispatch={ props.dispatch } /> } />
-                <Route path='/dialogs' render={ () => <Dialogs state={ props.state } dispatch={ props.dispatch } /> } />
+                <Route path='/profile' render={ () => <Profile /> } />
+                <Route path='/dialogs' render={ () => <Dialogs /> } />
                 <Footer />
         </div>
     );

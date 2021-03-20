@@ -9,16 +9,17 @@ export const action = {
     updateMessage(text) { return { type: UPDATE_MESSAGE, message: text } }
 }
 
+const avaSrc = 'https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg'
 //initial value of state
 const initialState = {
     dialogsList: [
-        { name: 'Ksysha', id: 1, preview: 'Hi' },
-        { name: 'Grisha', id: 2, preview: 'Hi' },
-        { name: 'Porosyonok', id: 3, preview: 'Hi' },
-        { name: 'Dimych', id: 4, preview: 'Hi' },
-        { name: 'Sveta', id: 5, preview: 'Hi' },
-        { name: 'Ksysha', id: 6, preview: 'Hi' },
-        { name: 'Kotleta', id: 7, preview: 'Hi' },
+        { id: 1, name: 'Ksysha',        src: avaSrc,    preview: 'Hi' },
+        { id: 2, name: 'Grisha',        src: avaSrc,    preview: 'Hi' },
+        { id: 3, name: 'Porosyonok',    src: avaSrc,    preview: 'Hi' },
+        { id: 4, name: 'Dimych',        src: avaSrc,    preview: 'Hi' },
+        { id: 5, name: 'Sveta',         src: avaSrc,    preview: 'Hi' },
+        { id: 6, name: 'Ksysha',        src: avaSrc,    preview: 'Hi' },
+        { id: 7, name: 'Kotleta',       src: avaSrc,    preview: 'Hi' },
     ],
     messages: [],
     newMessage: ''

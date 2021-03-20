@@ -6,11 +6,13 @@ const Post = (props) => {
             <div>
                 <img src="https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg" alt="q"/>
             </div>
-            <div className={styles.message}>
-                <span>{ props.message }</span>
+            <div className={styles.messageContainer}>
+                <span className={styles.message}>
+                    { props.state.message }
+                </span>
             </div>
             <div>
-                <span>Like</span> { props.likesCount }
+                <span>Like</span> { props.state.likesCount }
             </div>
         </div>
     );

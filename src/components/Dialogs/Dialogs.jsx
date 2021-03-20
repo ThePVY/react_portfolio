@@ -1,14 +1,15 @@
 import dialogs from './Dialogs.module.css'
 import DialogsList from './DialogsList/DialogsList';
-import CurrentDialog from './CurrentDialog/CurrentDialog';
+import CurrentDialogContainer from './CurrentDialog/CurrentDialogContainer';
+import { Consumer } from '../Provider';
 
 
 
 const Dialogs = (props) => {
     return (
         <div className={dialogs.content}>
-            <DialogsList state={ props.state.dialogs.dialogsList } dispatch={ props.dispatch } />
-            <CurrentDialog state={ props.state.dialogs } dispatch={ props.dispatch } />
+            <DialogsList />
+            <CurrentDialogContainer />
         </div>
     );
 };

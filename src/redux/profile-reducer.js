@@ -32,11 +32,14 @@ export const profileReducer = (state = initialState, action) => {
 
 /*---------------------------------------------------------------------------------*/
 
+let postId = 1
+
 const addPost = (state) => {
     if (!validate(state.newPost))
         return
 
     const newPost = {
+        id: postId,
         message: state.newPost,
         likesCount: 0
     };

@@ -1,14 +1,24 @@
 import styles from './DialogsList.module.css'
 import Dialog from './Dialog/Dialog'
+import { Consumer } from '../../Provider';
 
 const DialogsList = (props) => {
 
     return (
-        <div className={styles.dialogList}>
+        <Consumer>
             {
-                props.state.map((obj) => <Dialog name={obj.name} id={obj.id} preview={obj.preview}/>)
+                (store) => {
+                    return (
+                        <div className={styles.dialogList}>
+                            {
+                                store.getState().dialogs.dialogsList.map((obj) => <Dialog state={obj} />)
+                            }
+                        </div>
+                    )
+                }
             }
-        </div>
+        </Consumer>
+
     );
 };
 

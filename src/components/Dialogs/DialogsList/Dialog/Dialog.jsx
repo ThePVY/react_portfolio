@@ -8,9 +8,9 @@ const Dialog = (props) => {
 
     return (
         <div className={styles.dialog}>
-            <Ava id={props.id} src='https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg' />
-            <Name id={props.id} name={props.name} />
-            <Preview preview={props.preview} />
+            <Ava state={ props.state } />
+            <Name state={ props.state } />
+            <Preview state={ props.state.preview } />
         </div>
     );
 };
