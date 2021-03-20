@@ -1,6 +1,4 @@
-import logo from './logo.svg';
 import styles from "./components/Profile/ProfileInfo/ProfileInfo.module.css";
-import makeSlideContent from './scripts/makeSlideContent';
 
 
 import './App.css';
@@ -17,18 +15,8 @@ function App(props) {
             <BrowserRouter>
                 <Header />
                 <Sidebar />
-                <Route path='/profile' render={ 
-                    () => <Profile 
-                        data={ props.store.getState().profile }
-                        callbacks={ props.store.getCallbacks().profile } 
-                    />
-                } />
-                <Route path='/dialogs' render={ 
-                    () => <Dialogs
-                        data={ props.store.getState().dialogs }
-                        callbacks={ props.store.getCallbacks().dialogs } 
-                    /> 
-                } />
+                <Route path='/profile' render={ () => <Profile state={ props.state } dispatch={ props.dispatch } /> } />
+                <Route path='/dialogs' render={ () => <Dialogs state={ props.state } dispatch={ props.dispatch } /> } />
                 <Footer />
             </BrowserRouter>
         </div>

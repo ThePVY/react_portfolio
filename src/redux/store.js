@@ -1,12 +1,6 @@
-import headerStyles from './../components/Header/Header.module.css'
+import { profileReducer } from './profile-reducer';
+import { dialogsReducer } from './dialogs-reducer';
 
-const spinLogo = () => {
-    const logo = document.querySelector(`.${headerStyles.header} img`);
-    logo.classList.add(headerStyles.spin);
-    setTimeout(() => {
-        logo.classList.remove(headerStyles.spin);
-    }, 1500);
-};
 
 const state = {
     profile: {
@@ -25,65 +19,46 @@ const state = {
             { name: 'Ksysha', id: 6, preview: 'Hi' },
             { name: 'Kotleta', id: 7, preview: 'Hi' },
         ],
-        messages: [
-            { id: 1, message: `Hi from 1!`, my: true },
-            { id: 2, message: `Hi from 2!` },
-            { id: 3, message: `Hi from 3!`, my: true },
-            { id: 4, message: `Hi from 4!` },
-            { id: 1, message: `Hi from 1!` },
-            { id: 3, message: `Hi from 3!` },
-        ]
+        messages: [],
+        newMessage: ''
     }
-};
+}
 
-const callbacks = function(state) {
-    return {
-        profile: {
-            addPost() {
-                const newPost = {
-                    message: state.profile.newPost,
-                    likesCount: 0
-                };
-                state.profile.posts.unshift(newPost);
-                state.profile.newPost = '';
-                spinLogo();
-                Store.prototype.render();
-            },
-            updatePost(message) {
-                state.profile.newPost = message;
-                Store.prototype.render();
-            }
+
+function Store(state) {
+    //private properties
+    let _observer = null
+    const _state = state
+
+    //private methods/functions
+    const render = () => _observer()
+
+    //get and set objects
+    this.get = {
+        get state() {
+            return _state
         }
-    };
-};
-
-
-
-function Store(store, callbacks) {
-    let _renderEntireTree = null;
-    const _state = store;
-    const _callbacks = callbacks(_state);
-    
-
-    Store.prototype.subscribe = function (observer) {
-        _renderEntireTree = observer;
-    };
-
-    Store.prototype.render = function () {
-        _renderEntireTree();
+    }
+    this.set = {
+        set state(val) {
+            alert('You can not override state!')
+        }
     }
 
-    this.getState = function () {
-        return _state;
+    //public methods
+    this.subscribe = function (observer) {
+        _observer = observer
     }
 
-    this.getCallbacks = function () {
-        return _callbacks;
+    this.dispatch = function (action) {
+        profileReducer(_state.profile, action)
+        dialogsReducer(_state.dialogs, action)
+        render()
     }
 }
 
 
 
-const store = new Store(state, callbacks);
+const store = new Store(state)
 
 export default store;

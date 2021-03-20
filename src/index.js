@@ -3,12 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store'
+import store from './redux/store-redux'
 
 const renderAllTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={ store } />
+            <App state={ store.getState() } dispatch={ store.dispatch.bind(store) } />
         </React.StrictMode>,
         document.getElementById('root')
     );
