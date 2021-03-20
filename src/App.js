@@ -12,13 +12,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 function App(props) {
     return (
         <div className="app-wrapper">
-            <BrowserRouter>
                 <Header />
                 <Sidebar />
                 <Route path='/profile' render={ () => <Profile state={ props.state } dispatch={ props.dispatch } /> } />
                 <Route path='/dialogs' render={ () => <Dialogs state={ props.state } dispatch={ props.dispatch } /> } />
                 <Footer />
-            </BrowserRouter>
         </div>
     );
 }
