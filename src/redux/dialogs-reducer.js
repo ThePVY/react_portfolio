@@ -26,14 +26,12 @@ const initialState = {
 }
 
 //for changing state in store
-export const dialogsReducer = (state = initialState, action) => {
+export const dialogsReducer = (state = initialState, action) => { 
     switch (action.type) {
         case ADD_MESSAGE:
-            addMessage(state)
-            return state
+            return addMessage(state)
         case UPDATE_MESSAGE:
-            updateMessage(state, action.message);
-            return state
+            return updateMessage(state, action.message);
         default:
             return state
     }
@@ -44,19 +42,26 @@ export const dialogsReducer = (state = initialState, action) => {
 let messageId = 1
 
 const addMessage = (state) => {
-    if (!validate(state.newMessage))
-        return
+    if (!validate(state.newMessage)) return state
+
+    spinLogo();
 
     const newMessage = {
         id: messageId++,
         message: state.newMessage,
         my: true
     }
-    state.messages.push(newMessage);
-    state.newMessage = '';
-    spinLogo();
+
+    return {
+        ...state,
+        messages: [...state.messages, newMessage ],
+        newMessage: ''
+    }
 }
 
 const updateMessage = (state, message) => {
-    state.newMessage = message;
+    return {
+        ...state,
+        newMessage: message
+    }
 }

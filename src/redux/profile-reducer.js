@@ -19,11 +19,9 @@ const initialState = {
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            addPost(state)
-            return state
+            return addPost(state)
         case UPDATE_POST:
-            updatePost(state, action.message)
-            return state
+            return updatePost(state, action.message)
         default:
             return state
     }
@@ -35,19 +33,26 @@ export const profileReducer = (state = initialState, action) => {
 let postId = 1
 
 const addPost = (state) => {
-    if (!validate(state.newPost))
-        return
+    if (!validate(state.newPost)) return state
 
+    spinLogo()
+    
     const newPost = {
         id: postId,
         message: state.newPost,
         likesCount: 0
-    };
-    state.posts.unshift(newPost)
-    state.newPost = ''
-    spinLogo()
+    }
+
+    return {
+        ...state,
+        posts: [ newPost, ...state.posts ],
+        newPost: ''
+    }
 }
 
 const updatePost = (state, message) => {
-    state.newPost = message;
+    return {
+        ...state,
+        newPost: message
+    }
 }

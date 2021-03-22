@@ -8,14 +8,16 @@ import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/Footer';
 import Dialogs from './components/Dialogs/Dialogs';
 import { Route } from 'react-router-dom';
+import Users from "./components/Users/Users";
 
 function App(props) {
     return (
         <div className="app-wrapper">
                 <Header />
                 <Sidebar />
-                <Route path='/profile' render={ () => <Profile /> } />
-                <Route path='/dialogs' render={ () => <Dialogs /> } />
+                <Route path='/profile'  render={ () => <Profile /> } />
+                <Route path='/dialogs'  render={ () => <Dialogs /> } />
+                <Route path='/users'    render={ () => <Users /> } />
                 <Footer />
         </div>
     );

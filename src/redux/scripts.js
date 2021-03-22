@@ -9,6 +9,6 @@ export const spinLogo = () => {
 };
 
 export const validate = (text) => {
-    return ~text.search(/\S/);
+    return ~text.search(/\S/)
 }
 

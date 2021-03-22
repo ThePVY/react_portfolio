@@ -1,0 +1,26 @@
+.user {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* .infoLeft {
+    
+}
+
+.infoRight {
+    
+} */
+
+.location {
+    display: inline-block;
+}
+
+.image {
+    width: 100px;
+    border-radius: 100px;
+}
