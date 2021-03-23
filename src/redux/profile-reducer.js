@@ -48,7 +48,7 @@ const addPost = (state) => {
         posts: [ newPost, ...state.posts ],
         newPost: ''
     }
-}
+} 
 
 const updatePost = (state, message) => {
     return {

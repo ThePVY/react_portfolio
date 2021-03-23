@@ -28,6 +28,8 @@ const User = (props) => {
                 <div className={styles.infoRight}>
                     <div>
                         <span className={styles.location}>{props.user.location.country}</span>,
+                    </div>    
+                    <div>
                         <span className={styles.location}>{props.user.location.city}</span>
                     </div>
                 </div>

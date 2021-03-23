@@ -3,7 +3,7 @@
     grid-area       : content;
 
     padding: 1em;
-    color  : black;
+    color     : rgb(72, 78, 78);
 
     display              : grid;
     grid-template-columns: 2fr 3fr;

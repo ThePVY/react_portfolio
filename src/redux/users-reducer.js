@@ -28,7 +28,7 @@ const initialState = {
     showMore: false
 }
 
-export const usersReducer = (state = initialState, action) => {
+export const usersReducer = ({state = initialState} = {}, action) => {
     switch(action.type) {
         case FOLLOW_CLICK:
             return followClick(state, action.userId)
@@ -58,6 +58,7 @@ const followClick = (state, userId) => {
         })
     }
 }
+
 
 const setUsers = (state, users) => {
     return {
