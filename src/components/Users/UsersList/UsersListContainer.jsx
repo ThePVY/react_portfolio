@@ -13,10 +13,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onClick(userId) {
             dispatch(action.followClick(userId))
+        },
+        setUsers(users) {
+            dispatch(action.setUsers(users));
         }
     }
 }
 
-const UsersListContainer = connect(mapStateToProps, mapDispatchToProps)(UsersList)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersList)
 
-export default UsersListContainer

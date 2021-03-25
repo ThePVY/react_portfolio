@@ -13,22 +13,11 @@ let avaSrc = 'https://prikolist.club/wp-content/uploads/2019/06/avatar_kartinki_
 
 //initial state of users page
 const initialState = {
-    usersList: [
-        {
-            id: 1, name: 'Dmitriy K', ava: avaSrc,
-            location: { country: 'Belarus', city: 'Minsk' },
-            status: `I'm looking for a job right now`, followed: false,
-        },
-        {
-            id: 1, name: 'Dmitriy K', ava: avaSrc,
-            location: { country: 'Belarus', city: 'Minsk' },
-            status: `I'm looking for a job right now`, followed: false,
-        }
-    ],
+    usersList: [],
     showMore: false
 }
 
-export const usersReducer = ({state = initialState} = {}, action) => {
+export const usersReducer = (state = initialState, action) => {
     switch(action.type) {
         case FOLLOW_CLICK:
             return followClick(state, action.userId)

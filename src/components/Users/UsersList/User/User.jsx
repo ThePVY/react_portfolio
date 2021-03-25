@@ -1,7 +1,8 @@
 import styles from './User.module.css'
+import defaultUserImage from './../../../../images/user-image.png'
 
 const User = (props) => {
-    
+
     const onClick = () => {
         props.onClick(props.user.id)
     }
@@ -10,10 +11,13 @@ const User = (props) => {
         <div className={styles.user} >
             <div className={styles.avatar}>
                 <div>
-                    <img className={styles.image} src={props.user.ava} alt="avatar"/>
+                    <img className={styles.image} 
+                    src={props.user.photos.small ? props.user.photos.small : defaultUserImage} alt="avatar" />
                 </div>
                 <div className={styles.follow}>
-                    <button onClick={onClick} >FOLLOW</button>
+                    <button onClick={onClick} >
+                        {(props.user.followed) ? 'UNFOLLOW' : 'FOLLOW'}
+                    </button>
                 </div>
             </div>
             <div className={styles.info}>
@@ -27,10 +31,10 @@ const User = (props) => {
                 </div>
                 <div className={styles.infoRight}>
                     <div>
-                        <span className={styles.location}>{props.user.location.country}</span>,
-                    </div>    
+                        <span className={styles.location}>{'props.user.location.country'}</span>,
+                    </div>
                     <div>
-                        <span className={styles.location}>{props.user.location.city}</span>
+                        <span className={styles.location}>{'props.user.location.city'}</span>
                     </div>
                 </div>
             </div>

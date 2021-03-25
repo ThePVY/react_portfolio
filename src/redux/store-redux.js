@@ -4,6 +4,7 @@ import { profileReducer } from "./profile-reducer";
 import { usersReducer } from "./users-reducer";
 
 
+
 const reducers = combineReducers({
     profile: profileReducer,
     dialogs: dialogsReducer,
@@ -13,5 +14,7 @@ const reducers = combineReducers({
 const store = createStore(reducers)
 
 window.store = store
+
+
 
 export default store
