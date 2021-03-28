@@ -1,9 +1,17 @@
-import classes from './Header.module.css'
+import styles from './Header.module.css'
+import logo from '../../images/logo.png'
+import { NavLink } from 'react-router-dom';
 
-const Header = () => {
+const Header = props => {
+    const { isAuthorized = false } = props
     return (
-        <header className={classes.header}>
-            <img src="https://images.vexels.com/media/users/3/127637/isolated/preview/0237c45fb5571dfb63b75d1103ed745d-fire-icon-svg-by-vexels.png" alt="Logo" />
+        <header className={styles.header}>
+            <img src={logo} alt="Logo" />
+            <div className={styles.authBlock}>
+                {
+                    isAuthorized ? <button>Exit</button> : <button><NavLink to='/login'>Sign in</NavLink></button>
+                }
+            </div>
         </header>
     );
 };

@@ -14,6 +14,19 @@
     align-self : center;
 }
 
+.authBlock {
+    width: 150px;
+    justify-self: flex-end;
+}
+
+.authBlock button {
+    width: 100px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .spin {
     display: inline-block;
     position: relative;

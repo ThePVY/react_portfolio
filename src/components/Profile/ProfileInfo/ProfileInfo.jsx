@@ -8,7 +8,7 @@ const ProfileInfo = ({ data }) => {
         <div className={styles.ProfileInfo}>
             <div>
                 <Ava photos={data.photos} />
-                <AboutMe aboutMe={data.aboutMe}/>
+                <AboutMe aboutMe={data.aboutMe} name={data.fullName}/>
                 <Contacts contacts={data.contacts} />
                 <div>
                     Images
