@@ -4,21 +4,8 @@ import Posts from "./Posts"
 
 const mapStateToProps = (state) => {
     return {
-        state: state.profile
+        state: state.profile.posts
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onClick() {
-            dispatch(action.addPost())
-        },
-        onChange(event) {
-            dispatch(action.updatePost(event.target.value))
-        }
-    }
-}
-
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
-
-export default PostsContainer;
+export default connect(mapStateToProps, action.posts)(Posts);

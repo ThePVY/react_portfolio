@@ -3,5 +3,5 @@
 }
 
 .ProfileInfo img {
-    width: 300px;
+    max-width: 150px;
 }

@@ -1,12 +1,15 @@
 import styles from './ProfileInfo.module.css'
+import Ava from './Ava/Ava'
+import AboutMe from './AboutMe/AboutMe'
+import Contacts from './Contacts/Contacts'
 
-const ProfileInfo = () => {
+const ProfileInfo = ({ data }) => {
     return (
-        <div className={styles.leftContent}>
+        <div className={styles.ProfileInfo}>
             <div>
-                <div>
-                    Ava
-                </div>
+                <Ava photos={data.photos} />
+                <AboutMe aboutMe={data.aboutMe}/>
+                <Contacts contacts={data.contacts} />
                 <div>
                     Images
                 </div>

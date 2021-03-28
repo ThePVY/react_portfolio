@@ -1,32 +1,40 @@
 import styles from './User.module.css'
 import defaultUserImage from './../../../../images/user-image.png'
+import { NavLink } from 'react-router-dom'
 
 const User = (props) => {
 
-    const onClick = () => {
-        props.onClick(props.user.id)
+    const { user, onClick, onAvaClick } = props
+
+    const onClickHandler = () => {
+        onClick(user.id)
+    }
+
+    const onAvaClickHandler = () => {
+        onAvaClick(user.id)
     }
 
     return (
         <div className={styles.user} >
             <div className={styles.avatar}>
                 <div>
-                    <img className={styles.image} 
-                    src={props.user.photos.small ? props.user.photos.small : defaultUserImage} alt="avatar" />
+                    <NavLink  to={'/profile/' + user.id} activeClassName={styles.active} >
+                        <img className={styles.image} src={user.photos.small ? user.photos.small : defaultUserImage} alt="avatar" onClick={onAvaClickHandler} />
+                    </NavLink>
                 </div>
                 <div className={styles.follow}>
-                    <button onClick={onClick} >
-                        {(props.user.followed) ? 'UNFOLLOW' : 'FOLLOW'}
+                    <button onClick={onClickHandler} >
+                        {(user.followed) ? 'UNFOLLOW' : 'FOLLOW'}
                     </button>
                 </div>
             </div>
             <div className={styles.info}>
                 <div className={styles.infoLeft}>
                     <div>
-                        <span className={styles.name}>{props.user.name}</span>
+                        <span className={styles.name}>{user.name}</span>
                     </div>
                     <div>
-                        <span className={styles.status}>{props.user.status}</span>
+                        <span className={styles.status}>{user.status}</span>
                     </div>
                 </div>
                 <div className={styles.infoRight}>

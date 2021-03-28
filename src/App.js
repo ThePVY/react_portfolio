@@ -15,7 +15,7 @@ function App(props) {
         <div className="app-wrapper">
                 <Header />
                 <Sidebar />
-                <Route path='/profile'  render={ () => <Profile /> } />
+                <Route path='/profile/:userId?'  render={ () => <Profile /> } />
                 <Route path='/dialogs'  render={ () => <Dialogs /> } />
                 <Route path='/users'    render={ () => <Users /> } />
                 <Footer />

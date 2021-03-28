@@ -1,6 +1,7 @@
 .content {
     background-color: rgb(94, 123, 170);
     grid-area       : content;
+    min-width: 900px;
 
     padding: 1em;
     color     : rgb(72, 78, 78);

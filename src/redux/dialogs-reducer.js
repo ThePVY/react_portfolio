@@ -1,4 +1,4 @@
-import { spinLogo, validate } from './scripts';
+import { spinLogo, validate } from '../scripts/scripts';
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_MESSAGE = 'UPDATE-MESSAGE'

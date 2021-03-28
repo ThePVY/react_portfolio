@@ -1,18 +1,11 @@
-.usersList {
-    width: 800px;
-    transform: translate(-50%, 0px);
-    position: relative;
-    left: 50%;
-}
-
-.pagesNumbers {
+.pagesList {
     width: fit-content;
     transform: translate(-50%, 0px);
     position: relative;
     left: 50%;
 }
 
-.pagesNumbers span{
+.pagesList span{
     margin-right: 5px;
     cursor: pointer;
 }

@@ -1,26 +1,23 @@
 import User from './User/User'
 import styles from './UsersList.module.css'
-import * as axios from 'axios'
 import React from 'react';
+import PagesList from './PagesList/PagesList';
 
-class UsersList extends React.Component {
-    constructor(props) {
-        super(props)
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-        .then((response) => {
-            this.props.setUsers(response.data.items)
-        })
-    }   
+const UsersList = props => {
+    const { usersList, pagesCount, selectedPage, isFetching } = props
+    const { onFollowClick, onPageClick, onAvaClick } = props
 
-    render() {
-        return (
-            <div className={styles.usersList}>
-                {
-                    this.props.usersList.map((user) => <User key={user.id} user={user} onClick={this.props.onClick} />)
-                }
-            </div>
-        )
-    }
+    const pageListProps = { usersList, pagesCount, selectedPage, isFetching };
+    
+    return (
+        <div className={styles.usersList}>
+            <PagesList pagesCount={pagesCount} selectedPage={selectedPage} isFetching={isFetching} onPageClick={onPageClick}  />
+            {
+                usersList.map((user) => <User key={user.id} user={user} onClick={onFollowClick} onAvaClick={onAvaClick} />)
+            }
+            <PagesList pagesCount={pagesCount} selectedPage={selectedPage} isFetching={isFetching} onPageClick={onPageClick}  />
+        </div>
+    )
 }
 
 
