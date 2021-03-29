@@ -7,7 +7,9 @@ const PagesList = props => {
     const { pagesCount, selectedPage, isFetching } = props
     const { onPageClick } = props
 
-    const pagesArr = [selectedPage - 1 > 0 ? selectedPage - 1 : null, selectedPage, selectedPage + 1 <= pagesCount ? selectedPage + 1 : null]
+    let pagesArr = [selectedPage - 1 > 0 ? selectedPage - 1 : null, selectedPage, selectedPage + 1 <= pagesCount ? selectedPage + 1 : null]
+    pagesArr = pagesArr.reduceRight((acc, item) => (item)? [item, ...acc] : acc, [])
+
     return (
         <div className={styles.pagesList}>
             {

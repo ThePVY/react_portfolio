@@ -1,44 +1,49 @@
 import { connect } from "react-redux"
 import { action } from "../../../redux/users-reducer"
-import * as axios from 'axios'
+import axios from "axios"
 import React from 'react';
 import UsersList from './UsersList';
+import { usersAPI } from "../../../api/users-api";
 
 
 class UsersListAPI extends React.Component {
     render = () => {
         return (
-            <UsersList {...this.props } onPageClick={this.onPageClick} onAvaClick={this.onAvaClick} />
+            <UsersList {...this.props} onPageClick={this.onPageClick} onFollowClick={this.onFollowClick} />
         )
+    }
+
+    componentDidMount = () => {
+        const { selectedPage } = this.props
+        const { setUsers, setUsersCount } = this.props
+        usersAPI.getUsers(selectedPage)
+            .then((data) => {
+                setUsers(data.items)
+                setUsersCount(data.totalCount)
+            })
     }
 
     onPageClick = p => {
         const { setUsers, setUsersCount, setSelectedPage, toggleIsFetching } = this.props
         setSelectedPage(p)
         toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}`)
-            .then((response) => {
-                setUsers(response.data.items)
-                setUsersCount(response.data.totalCount)
+        usersAPI.getUsers(p)
+            .then((data) => {
+                setUsers(data.items)
+                setUsersCount(data.totalCount)
                 toggleIsFetching(false)
             })
     }
 
-    onAvaClick = id => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
-        .then((response) => {
+    onFollowClick = (userId, followed) => {
+        const { toggleFollow, toggleIsFetching } = this.props
+        toggleIsFetching(true)
+        usersAPI.followRequest(userId, followed).then((data) => {
+            toggleIsFetching(false)
+            if (!data.resultCode) toggleFollow(userId)
         })
     }
 
-    componentDidMount = () => {
-        const { selectedPage } = this.props
-        const { setUsers, setUsersCount } = this.props
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${selectedPage}`)
-            .then((response) => {
-                setUsers(response.data.items)
-                setUsersCount(response.data.totalCount)
-            })
-    }
 }
 
 /*-------------------------------------------------------------------------------------------------------*/

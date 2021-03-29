@@ -13,11 +13,11 @@ class ProfileInfoAPI extends React.Component {
     }
 
     componentDidMount = () => {
-        const { setUserData, myId } = this.props
+        const { setUserProfileData, myId } = this.props
         const { userId = myId ? myId : 2 } = this.props.match.params
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`, { withCredentials: true })
         .then((response) => {
-            setUserData(response.data)
+            setUserProfileData(response.data)
         })
     }
 }

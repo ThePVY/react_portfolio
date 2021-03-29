@@ -4,14 +4,10 @@ import { NavLink } from 'react-router-dom'
 
 const User = (props) => {
 
-    const { user, onClick, onAvaClick } = props
+    const { user, onFollowClick } = props
 
     const onClickHandler = () => {
-        onClick(user.id)
-    }
-
-    const onAvaClickHandler = () => {
-        onAvaClick(user.id)
+        onFollowClick(user.id, user.followed)
     }
 
     return (
@@ -19,7 +15,7 @@ const User = (props) => {
             <div className={styles.avatar}>
                 <div>
                     <NavLink  to={'/profile/' + user.id} activeClassName={styles.active} >
-                        <img className={styles.image} src={user.photos.small ? user.photos.small : defaultUserImage} alt="avatar" onClick={onAvaClickHandler} />
+                        <img className={styles.image} src={user.photos.small ? user.photos.small : defaultUserImage} alt="avatar" />
                     </NavLink>
                 </div>
                 <div className={styles.follow}>

@@ -5,17 +5,16 @@ import PagesList from './PagesList/PagesList';
 
 const UsersList = props => {
     const { usersList, pagesCount, selectedPage, isFetching } = props
-    const { onFollowClick, onPageClick, onAvaClick } = props
-
-    const pageListProps = { usersList, pagesCount, selectedPage, isFetching };
+    const { onFollowClick, onPageClick } = props
+    const pageListProps = { onPageClick, pagesCount, selectedPage, isFetching };
     
     return (
         <div className={styles.usersList}>
-            <PagesList pagesCount={pagesCount} selectedPage={selectedPage} isFetching={isFetching} onPageClick={onPageClick}  />
+            <PagesList {...pageListProps}  />
             {
-                usersList.map((user) => <User key={user.id} user={user} onClick={onFollowClick} onAvaClick={onAvaClick} />)
+                usersList.map((user) => <User key={user.id} user={user} onFollowClick={onFollowClick} />)
             }
-            <PagesList pagesCount={pagesCount} selectedPage={selectedPage} isFetching={isFetching} onPageClick={onPageClick}  />
+            <PagesList {...pageListProps}  />
         </div>
     )
 }

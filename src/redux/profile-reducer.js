@@ -12,7 +12,7 @@ export const action = {
         updatePost(message) { return { type: UPDATE_POST, message } }
     },
     info: {
-        setUserData(data) { return { type: SET_USER_DATA, data } }
+        setUserProfileData(data) { return { type: SET_USER_DATA, data } }
     }
 }
 

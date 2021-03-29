@@ -9,7 +9,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 export const action = {
     usersList: {
-        onFollowClick(userId) { return { type: FOLLOW_CLICK, userId } },
+        toggleFollow(userId) { return { type: FOLLOW_CLICK, userId } },
         showMoreClick() { return { type: SHOW_MORE_CLICK } },
         setUsers(users) { return { type: SET_USERS, users } },
         setUsersCount(count) { return { type: SET_USERS_TOTAL_COUNT, count } },
@@ -35,7 +35,7 @@ export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW_CLICK:
             spinLogo()
-            return followClick(state, action.userId)
+            return toggleFollow(state, action.userId)
 
         case SET_USERS:
             return setUsers(state, action.users)
@@ -61,12 +61,11 @@ export const usersReducer = (state = initialState, action) => {
 
 /*-----------------------------------------------------------------------------------------------*/
 
-const followClick = (state, userId) => ({
+const toggleFollow = (state, userId) => ({
     ...state,
     usersList: state.usersList.map((user) => {
         if (user.id === userId) {
-            //user.followed = !user.followed;
-            return { ...user, followed: !user.followed }  //чтобы не изменять user.followed напрямую (не грязнить функцию)
+            return { ...user, followed: !user.followed }
         }
         return user
     })
