@@ -6,6 +6,7 @@ const SET_USERS = 'SET_USERS'
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT'
 const SET_SELECTED_PAGE = 'SET_SELECTED_PAGE'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+const SET_LOADINGS = 'SET_LOADINGS'
 
 export const action = {
     usersList: {
@@ -15,6 +16,7 @@ export const action = {
         setUsersCount(count) { return { type: SET_USERS_TOTAL_COUNT, count } },
         setSelectedPage(number) { return { type: SET_SELECTED_PAGE, number } },
         toggleIsFetching(isFetching) { return { type: TOGGLE_IS_FETCHING, isFetching } },
+        setLoadings(userId, isLoading) { return { type: SET_LOADINGS, userId, isLoading } },
     }
 }
 
@@ -28,7 +30,8 @@ const initialState = {
     usersTotalCount: 0,
     pagesTotalCount: 1,
     selectedPage: 1,
-    isFetching: false
+    isFetching: false,
+    loadings: []
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -53,6 +56,9 @@ export const usersReducer = (state = initialState, action) => {
         case TOGGLE_IS_FETCHING:
             spinLogo()
             return toggleIsFetching(state, action.isFetching)
+
+        case SET_LOADINGS:
+            return setLoadings(state, action.userId, action.isLoading)
 
         default:
             return state
@@ -87,3 +93,6 @@ const setSelectedPage = (state, selectedPage) => ({ ...state, selectedPage })
 
 const toggleIsFetching = (state, isFetching) => ({ ...state, isFetching })
 
+const setLoadings = (state, userId, isLoading) => ({
+    ...state, loadings: isLoading ? [...state.loadings, userId] : state.loadings.filter(item => item !== userId)
+})

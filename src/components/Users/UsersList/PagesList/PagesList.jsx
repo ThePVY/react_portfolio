@@ -8,7 +8,7 @@ const PagesList = props => {
     const { onPageClick } = props
 
     let pagesArr = [selectedPage - 1 > 0 ? selectedPage - 1 : null, selectedPage, selectedPage + 1 <= pagesCount ? selectedPage + 1 : null]
-    pagesArr = pagesArr.reduceRight((acc, item) => (item)? [item, ...acc] : acc, [])
+    pagesArr = pagesArr.filter(page => page ? true : false)
 
     return (
         <div className={styles.pagesList}>

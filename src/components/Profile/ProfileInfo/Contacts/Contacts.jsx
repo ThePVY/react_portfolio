@@ -14,8 +14,8 @@ const Contacts = ({ contacts }) => {
             <div>
                 <ul>
                     {
-                        Object.keys(contacts).reduce((acc, key) => 
-                            contacts[key] ? [acc, <li>{key} - <a href={validateURL(contacts[key])}>{contacts[key]}</a></li>] : acc
+                        Object.keys(contacts).reduce((acc, key, i) => 
+                            contacts[key] ? [acc, <li key={i}>{key} - <a href={validateURL(contacts[key])}>{contacts[key]}</a></li>] : acc
                         , [])
                     }
                 </ul>

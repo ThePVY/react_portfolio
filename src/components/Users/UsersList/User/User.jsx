@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const User = (props) => {
 
-    const { user, onFollowClick } = props
+    const { user, loadings, onFollowClick } = props
 
     const onClickHandler = () => {
         onFollowClick(user.id, user.followed)
@@ -19,7 +19,7 @@ const User = (props) => {
                     </NavLink>
                 </div>
                 <div className={styles.follow}>
-                    <button onClick={onClickHandler} >
+                    <button onClick={onClickHandler} disabled={loadings.some(id => id === user.id)} >
                         {(user.followed) ? 'UNFOLLOW' : 'FOLLOW'}
                     </button>
                 </div>

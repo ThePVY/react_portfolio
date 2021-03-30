@@ -5,7 +5,7 @@ const DialogsList = (props) => {
     return (
         <div className={styles.dialogList}>
             {
-                props.dialogsList.map((obj) => <Dialog state={obj} />)
+                props.dialogsList.map((obj, i) => <Dialog key={i} state={obj} />)
             }
         </div>
     )
