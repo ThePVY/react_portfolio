@@ -1,3 +1,4 @@
+import { profileAPI } from '../api/profile-api';
 import { spinLogo, validate } from '../scripts/scripts';
 
 const ADD_POST = 'ADD-POST'
@@ -6,15 +7,30 @@ const UPDATE_POST = 'UPDATE-POST'
 const SET_USER_DATA = 'SET_USER_DATA'
 
 //for construct action in components
-export const action = {
+export const actionCreator = {
     posts: {
         addPost() { return { type: ADD_POST } },
         updatePost(message) { return { type: UPDATE_POST, message } }
     },
     info: {
-        setUserProfileData(data) { return { type: SET_USER_DATA, data } }
+        setUserProfileData(data) { return { type: SET_USER_DATA, data } },
     }
 }
+
+export const getProfileAC = () => actionCreator
+
+
+export const thunkCreator = {
+    getProfileData(userId) {
+        return dispatch => {
+            profileAPI.getProfileData(userId)
+                .then((data) => {
+                    dispatch(actionCreator.info.setUserProfileData(data))
+                })
+        }
+    }
+}
+
 
 //initial value of state
 const initialState = {
@@ -23,7 +39,7 @@ const initialState = {
         newPost: ''
     },
     info: {
-        data: {}
+        data: {},
     }
 }
 

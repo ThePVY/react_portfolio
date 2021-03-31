@@ -1,8 +1,7 @@
 import { connect } from "react-redux"
-import { action } from "../../../redux/users-reducer"
+import { actionCreator, thunkCreator } from "../../../redux/users-reducer"
 import React from 'react';
 import UsersList from './UsersList';
-import { usersAPI } from "../../../api/users-api";
 
 
 class UsersListAPI extends React.Component {
@@ -13,43 +12,18 @@ class UsersListAPI extends React.Component {
     }
 
     componentDidMount = () => {
-        const { selectedPage } = this.props
-        const { setUsers, setUsersCount } = this.props
-        usersAPI.getUsers(selectedPage)
-            .then((data) => {
-                setUsers(data.items)
-                setUsersCount(data.totalCount)
-            })
+        const { selectedPage, getUsers } = this.props
+        getUsers(selectedPage)
     }
 
     onPageClick = p => {
-        const { setUsers, setUsersCount, setSelectedPage, toggleIsFetching } = this.props
+        const { setSelectedPage, getUsers } = this.props
         setSelectedPage(p)
-        toggleIsFetching(true)
-        usersAPI.getUsers(p)
-            .then((data) => {
-                setUsers(data.items)
-                setUsersCount(data.totalCount)
-                toggleIsFetching(false)
-            })
-            .catch(() => {
-                toggleIsFetching(false)
-            })
+        getUsers(p)
     }
 
     onFollowClick = (userId, followed) => {
-        const { toggleFollow, toggleIsFetching, setLoadings } = this.props
-        toggleIsFetching(true)
-        setLoadings(userId, true)
-        usersAPI.followRequest(userId, followed).then((data) => {
-            toggleIsFetching(false)
-            setLoadings(userId, false)
-            if (!data.resultCode) toggleFollow(userId)
-        })
-        .catch(() => {
-            toggleIsFetching(false)
-            setLoadings(userId, false)
-        })
+        this.props.setFollow(userId, followed)
     }
 
 }
@@ -66,5 +40,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, action.usersList)(UsersListAPI)
+export default connect(mapStateToProps, {...thunkCreator, ...actionCreator.usersList})(UsersListAPI)
 

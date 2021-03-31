@@ -1,8 +1,28 @@
+import { authAPI } from "../api/auth-api"
+import { profileAPI } from "../api/profile-api"
+import { getProfileAC } from "./profile-reducer"
+
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
 //for construct action in components
-export const action = {
+export const actionCreator = {
     setAuthData(data) { return { type: SET_AUTH_DATA, data } }
+}
+
+export const thunkCreator = {
+    getAuthData() {
+        return dispatch => {
+            authAPI.getAuthData()
+            .then((data) => {
+                dispatch(actionCreator.setAuthData(data))
+                profileAPI.getProfileData(data.data.id)
+                    .then((data) => {
+                        dispatch(getProfileAC().info.setUserProfileData(data))
+                    }) 
+            })
+            
+        }
+    }
 }
 
 //initial value of state

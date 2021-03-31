@@ -7,13 +7,19 @@ const PagesList = props => {
     const { pagesCount, selectedPage, isFetching } = props
     const { onPageClick } = props
 
-    let pagesArr = [selectedPage - 1 > 0 ? selectedPage - 1 : null, selectedPage, selectedPage + 1 <= pagesCount ? selectedPage + 1 : null]
+    let pagesArr = [
+        selectedPage === 3 ? 1 : null,
+        selectedPage - 1 > 0 ? selectedPage - 1 : null,
+        selectedPage,
+        selectedPage + 1 <= pagesCount ? selectedPage + 1 : null,
+        selectedPage === pagesCount - 2 ? pagesCount : null,
+    ]
     pagesArr = pagesArr.filter(page => page ? true : false)
 
     return (
         <div className={styles.pagesList}>
             {
-                selectedPage >= 3 ?
+                selectedPage >= 4 ?
                     <span><span onClick={() => onPageClick(1)} >1</span> <span>...</span></span> : ''
             }
             {
@@ -22,7 +28,7 @@ const PagesList = props => {
                 })
             }
             {
-                selectedPage <= pagesCount - 2 ?
+                selectedPage <= pagesCount - 3 ?
                     <span><span>...</span> <span onClick={() => onPageClick(pagesCount)} >{pagesCount}</span></span> : ''
             }
             <span className={styles.preloader}>

@@ -6,10 +6,6 @@ const User = (props) => {
 
     const { user, loadings, onFollowClick } = props
 
-    const onClickHandler = () => {
-        onFollowClick(user.id, user.followed)
-    }
-
     return (
         <div className={styles.user} >
             <div className={styles.avatar}>
@@ -19,7 +15,7 @@ const User = (props) => {
                     </NavLink>
                 </div>
                 <div className={styles.follow}>
-                    <button onClick={onClickHandler} disabled={loadings.some(id => id === user.id)} >
+                    <button onClick={() => onFollowClick(user.id, user.followed) } disabled={loadings.some(id => id === user.id)} >
                         {(user.followed) ? 'UNFOLLOW' : 'FOLLOW'}
                     </button>
                 </div>

@@ -1,3 +1,4 @@
+import { usersAPI } from "../api/users-api"
 import { spinLogo } from "../scripts/scripts"
 
 const FOLLOW_CLICK = 'FOLLOW_CLICK'
@@ -8,7 +9,7 @@ const SET_SELECTED_PAGE = 'SET_SELECTED_PAGE'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const SET_LOADINGS = 'SET_LOADINGS'
 
-export const action = {
+export const actionCreator = {
     usersList: {
         toggleFollow(userId) { return { type: FOLLOW_CLICK, userId } },
         showMoreClick() { return { type: SHOW_MORE_CLICK } },
@@ -20,7 +21,40 @@ export const action = {
     }
 }
 
-let avaSrc = 'https://prikolist.club/wp-content/uploads/2019/06/avatar_kartinki_1_19175708.jpg'
+export const getUsersAC = () => actionCreator
+
+export const thunkCreator = {
+    getUsers(p) {
+        return dispatch => {
+            dispatch(actionCreator.usersList.toggleIsFetching(true))
+            usersAPI.getUsers(p)
+                .then((data) => {
+                    dispatch(actionCreator.usersList.setUsers(data.items))
+                    dispatch(actionCreator.usersList.setUsersCount(data.totalCount))
+                    dispatch(actionCreator.usersList.toggleIsFetching(false))
+                })
+                .catch(() => {
+                    dispatch(actionCreator.usersList.toggleIsFetching(false))
+                })
+        }
+    },
+    setFollow(userId, followed) {
+        return dispatch => {
+            dispatch(actionCreator.usersList.toggleIsFetching(true))
+            dispatch(actionCreator.usersList.setLoadings(userId, true))
+            usersAPI.followRequest(userId, followed)
+                .then((data) => {
+                    dispatch(actionCreator.usersList.toggleIsFetching(false))
+                    dispatch(actionCreator.usersList.setLoadings(userId, false))
+                    if (!data.resultCode) dispatch(actionCreator.usersList.toggleFollow(userId))
+                })
+                .catch(() => {
+                    dispatch(actionCreator.usersList.toggleIsFetching(false))
+                    dispatch(actionCreator.usersList.setLoadings(userId, false))
+                })
+        }
+    }
+}
 
 //initial state of users page
 const initialState = {
