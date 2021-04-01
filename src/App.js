@@ -1,6 +1,3 @@
-import styles from "./components/Profile/ProfileInfo/ProfileInfo.module.css";
-
-
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
@@ -9,8 +6,9 @@ import Dialogs from './components/Dialogs/Dialogs';
 import { Route } from 'react-router-dom';
 import Users from "./components/Users/Users";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from './components/Login/Login';
 
-function App(props) {
+function App() {
     return (
         <div className="app-wrapper">
                 <HeaderContainer />
@@ -18,6 +16,7 @@ function App(props) {
                 <Route path='/profile/:userId?'  render={ () => <Profile /> } />
                 <Route path='/dialogs'  render={ () => <Dialogs /> } />
                 <Route path='/users'    render={ () => <Users /> } />
+                <Route path='/login'    render={ () => <Login /> } />
                 <Footer />
         </div>
     );
@@ -25,9 +24,6 @@ function App(props) {
 
 export default App;
 
-
-window.onload = () => {
-    const leftContent = document.querySelector(`.${styles.ProfileInfo} div`);
-    const leftContainer = document.querySelector(`.${styles.ProfileInfo}`);
-    //makeSlideContent(leftContent, leftContainer);
-};
+ window.onload = () => {
+    
+}; 

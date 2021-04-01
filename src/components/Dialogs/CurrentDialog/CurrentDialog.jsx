@@ -1,20 +1,19 @@
-import { createRef } from 'react';
 import styles from './CurrentDialog.module.css'
 import Message from './Message/Message';
 
-const CurrentDialog = (props) => {
+const CurrentDialog = ({ dialog, addMessage, updateMessage }) => {
     return (
         <div className={styles.dialog}>
             <div className={styles.messages}>
                 {
-                    props.state.messages.map((obj) => <Message message={obj.message} my={obj.my} />)
+                    dialog.messages.map((obj) => <Message message={obj.message} my={obj.my} />)
                 }
             </div>
             <div>
-                <textarea value={ props.state.newMessage } onChange={ props.onChange } ></textarea>
+                <textarea value={ dialog.newMessage } onChange={ (e) => updateMessage(e.target.value) } ></textarea>
             </div>
             <div>
-                <button className='sendMessageButton' onClick={ props.onClick }>Send Message</button>
+                <button className='sendMessageButton' onClick={ addMessage }>Send Message</button>
             </div>
         </div>
     );

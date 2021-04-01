@@ -7,9 +7,12 @@
     height: 70px;
 }
 
-
 .buttonContainer {
     padding: 10px 0px;
+}
+
+.headerContainer {
+    text-align: center;
 }
 
 

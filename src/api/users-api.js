@@ -4,7 +4,7 @@ function UsersAPI() {
     
 }
 
-UsersAPI.prototype = new BaseAPI
+UsersAPI.prototype = new BaseAPI()
 
 UsersAPI.prototype.getUsers = function(p) {
     return this.get(`users?page=${p}`)
@@ -17,4 +17,4 @@ UsersAPI.prototype.followRequest = function(userId, followed) {
         this.post(`follow/${userId}`)
 }
 
-export const usersAPI = new UsersAPI
+export const usersAPI = new UsersAPI()

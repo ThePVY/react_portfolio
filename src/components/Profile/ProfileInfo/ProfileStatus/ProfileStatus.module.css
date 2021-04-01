@@ -1,0 +1,11 @@
+.profileStatus {
+    padding: 5px 20px;
+}
+
+.statusContainer span {
+    word-break: break-all;
+}
+
+.textareaContainer textarea {
+    width: 90%;
+}

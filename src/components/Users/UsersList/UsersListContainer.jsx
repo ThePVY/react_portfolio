@@ -2,6 +2,7 @@ import { connect } from "react-redux"
 import { actionCreator, thunkCreator } from "../../../redux/users-reducer"
 import React from 'react';
 import UsersList from './UsersList';
+import { compose } from "redux";
 
 
 class UsersListAPI extends React.Component {
@@ -40,5 +41,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {...thunkCreator, ...actionCreator.usersList})(UsersListAPI)
-
+export default compose(
+    connect(mapStateToProps, {...thunkCreator, ...actionCreator.usersList}),
+)(UsersListAPI)

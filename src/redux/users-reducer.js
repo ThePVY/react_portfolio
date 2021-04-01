@@ -11,13 +11,13 @@ const SET_LOADINGS = 'SET_LOADINGS'
 
 export const actionCreator = {
     usersList: {
-        toggleFollow(userId) { return { type: FOLLOW_CLICK, userId } },
-        showMoreClick() { return { type: SHOW_MORE_CLICK } },
-        setUsers(users) { return { type: SET_USERS, users } },
-        setUsersCount(count) { return { type: SET_USERS_TOTAL_COUNT, count } },
-        setSelectedPage(number) { return { type: SET_SELECTED_PAGE, number } },
-        toggleIsFetching(isFetching) { return { type: TOGGLE_IS_FETCHING, isFetching } },
-        setLoadings(userId, isLoading) { return { type: SET_LOADINGS, userId, isLoading } },
+        toggleFollow: userId => ({ type: FOLLOW_CLICK, userId }),
+        showMoreClick: () => ({ type: SHOW_MORE_CLICK }),
+        setUsers: users => ({ type: SET_USERS, users }),
+        setUsersCount: count => ({ type: SET_USERS_TOTAL_COUNT, count }),
+        setSelectedPage: number => ({ type: SET_SELECTED_PAGE, number }),
+        toggleIsFetching: isFetching => ({ type: TOGGLE_IS_FETCHING, isFetching }),
+        setLoadings: (userId, isLoading) => ({ type: SET_LOADINGS, userId, isLoading })
     }
 }
 

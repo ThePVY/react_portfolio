@@ -4,9 +4,9 @@ const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_MESSAGE = 'UPDATE-MESSAGE'
 
 //for construct action in components
-export const action = {
-    addMessage() { return { type: ADD_MESSAGE } },
-    updateMessage(text) { return { type: UPDATE_MESSAGE, message: text } }
+export const actionCreator = {
+    addMessage: () => ({ type: ADD_MESSAGE }),
+    updateMessage: text => ({ type: UPDATE_MESSAGE, message: text })
 }
 
 const avaSrc = 'https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg'

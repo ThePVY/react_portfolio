@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { actionCreator, thunkCreator } from '../../redux/auth-reducer';
+import { compose } from 'redux';
 
 class HeaderAPI extends React.Component {
     render = () => (
@@ -17,4 +18,6 @@ const mapStateToProps = state => ({
     isAuthorized: state.auth.isAuthorized
 })
 
-export default connect(mapStateToProps, {...actionCreator, ...thunkCreator})(HeaderAPI)
+export default compose(
+    connect(mapStateToProps, {...actionCreator, ...thunkCreator})
+)(HeaderAPI)

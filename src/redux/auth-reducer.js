@@ -6,21 +6,23 @@ const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
 //for construct action in components
 export const actionCreator = {
-    setAuthData(data) { return { type: SET_AUTH_DATA, data } }
+    setAuthData: data => ({ type: SET_AUTH_DATA, data })
 }
 
 export const thunkCreator = {
     getAuthData() {
+        let userId
         return dispatch => {
             authAPI.getAuthData()
             .then((data) => {
+                userId = data.data.id
                 dispatch(actionCreator.setAuthData(data))
-                profileAPI.getProfileData(data.data.id)
-                    .then((data) => {
-                        dispatch(getProfileAC().info.setUserProfileData(data))
-                    }) 
+                return profileAPI.getProfileData(userId)
             })
-            
+            .then((data) => {
+                dispatch(getProfileAC().info.setUserProfileData(data))  //set user data to render ProfileInfo
+                dispatch(getProfileAC().common.setUserId(userId))       //set current user id, which rendered in ProfileInfo
+            })
         }
     }
 }
@@ -29,9 +31,9 @@ export const thunkCreator = {
 const initialState = {
     isAuthorized: false,
     data: {
-        id: null,
-        login: null,
-        email: null
+        id: undefined,
+        login: undefined,
+        email: undefined
     }
 }
 

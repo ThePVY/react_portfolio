@@ -4,11 +4,11 @@ function AuthAPI() {
     
 }
 
-AuthAPI.prototype = new BaseAPI
+AuthAPI.prototype = new BaseAPI()
 
 AuthAPI.prototype.getAuthData = function() {
     return this.get(`auth/me`)
 }
 
 
-export const authAPI = new AuthAPI
+export const authAPI = new AuthAPI()

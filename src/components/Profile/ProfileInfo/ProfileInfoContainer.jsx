@@ -3,6 +3,7 @@ import { actionCreator, thunkCreator } from "../../../redux/profile-reducer";
 import ProfileInfo from "./ProfileInfo";
 import React from 'react'
 import { withRouter } from "react-router";
+import { compose } from "redux";
 
 class ProfileInfoAPI extends React.Component {
     render = () => {
@@ -12,8 +13,8 @@ class ProfileInfoAPI extends React.Component {
     }
 
     componentDidMount = () => {
-        const { myId, getProfileData } = this.props
-        const { userId = myId } = this.props.match.params
+        const { authId, getProfileData } = this.props
+        const { userId = authId } = this.props.match.params
         getProfileData(userId)
     }
 }
@@ -21,9 +22,13 @@ class ProfileInfoAPI extends React.Component {
 const mapStateToProps = (state) => {
     return {
         data: state.profile.info.data,
-        myId: state.auth.data.id
+        authId: state.auth.data.id,
+        newStatus: state.profile.info.newStatus,
+        status: state.profile.info.status
     }
 }
 
-
-export default connect(mapStateToProps, {...actionCreator.info, ...thunkCreator})(withRouter(ProfileInfoAPI));
+export default compose(
+    connect(mapStateToProps, {...actionCreator.info, ...thunkCreator}),
+    withRouter
+)(ProfileInfoAPI)

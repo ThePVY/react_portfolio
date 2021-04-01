@@ -1,17 +1,26 @@
 import styles from './Posts.module.css'
 import Post from './Post/Post'
 
-const Posts = ({ updatePost, addPost, state: { newPost, posts } }) => {
+const Posts = ({ iam, updatePost, addPost, posts: { newPost, posts } }) => {
     return (
         <div className={styles.posts}>
-            <div>
-                <textarea value={newPost} onChange={ (e) => updatePost(e.target.value) }></textarea>
-            </div>
-            <div className={styles.buttonContainer}>
-                <button className='postButton' onClick={ addPost }>Add Post</button>
-            </div>
             {
-                posts.map((obj) => <Post state={obj} />)
+                iam ?
+                    <>
+                        <div>
+                            <textarea value={newPost} onChange={(e) => updatePost(e.target.value)}></textarea>
+                        </div>
+                        <div className={styles.buttonContainer}>
+                            <button className='postButton' onClick={addPost}>Add Post</button>
+                        </div>
+                    </>
+                    :
+                    <div className={styles.headerContainer}>
+                        <span className={styles.header}>Posts of ...</span>
+                    </div>
+            }
+            {
+                posts.map((obj, i) => <Post key={i} state={obj} />)
             }
         </div>
     );
