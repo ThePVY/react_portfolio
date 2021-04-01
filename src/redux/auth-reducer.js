@@ -1,6 +1,4 @@
 import { authAPI } from "../api/auth-api"
-import { profileAPI } from "../api/profile-api"
-import { getProfileAC } from "./profile-reducer"
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
@@ -11,17 +9,10 @@ export const actionCreator = {
 
 export const thunkCreator = {
     getAuthData() {
-        let userId
         return dispatch => {
             authAPI.getAuthData()
             .then((data) => {
-                userId = data.data.id
                 dispatch(actionCreator.setAuthData(data))
-                return profileAPI.getProfileData(userId)
-            })
-            .then((data) => {
-                dispatch(getProfileAC().info.setUserProfileData(data))  //set user data to render ProfileInfo
-                dispatch(getProfileAC().common.setUserId(userId))       //set current user id, which rendered in ProfileInfo
             })
         }
     }

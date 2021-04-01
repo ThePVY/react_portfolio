@@ -7,6 +7,7 @@ const UPDATE_POST = 'UPDATE-POST'
 const SET_USER_DATA = 'SET_USER_DATA'
 const UPDATE_PROFILE_STATUS = 'UPDATE_PROFILE_STATUS'
 const ADD_PROFILE_STATUS = 'ADD_PROFILE_STATUS'
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 const SET_USER_ID = 'SET_USER_ID'
 
 //for construct action in components
@@ -18,7 +19,8 @@ export const actionCreator = {
     info: {
         setUserProfileData: data => ({ type: SET_USER_DATA, data }),
         updateProfileStatus: status => ({ type: UPDATE_PROFILE_STATUS, status }),
-        addProfileStatus: status => ({ type: ADD_PROFILE_STATUS, status }),
+        addProfileStatus: () => ({ type: ADD_PROFILE_STATUS }),
+        setProfileStatus: status => ({ type: SET_PROFILE_STATUS, status })
     },
     common: {
         setUserId: (userId) => ({ type: SET_USER_ID, userId })
@@ -31,10 +33,28 @@ export const getProfileAC = () => actionCreator
 export const thunkCreator = {
     getProfileData(userId) {
         return dispatch => {
-            if(userId) profileAPI.getProfileData(userId)
+            if (userId) profileAPI.getProfileData(userId)
                 .then((data) => {
                     dispatch(actionCreator.info.setUserProfileData(data))
                     dispatch(actionCreator.common.setUserId(userId))
+                })
+        }
+    },
+    getProfileStatus(userId) {
+        return dispatch => {
+            if (userId) profileAPI.getProfileStatus(userId)
+                .then((status) => {
+                    dispatch(actionCreator.info.setProfileStatus(status ? status : undefined))
+                })
+        }
+    },
+    putProfileStatus(statusObj) {
+        return dispatch => {
+            if ('status' in statusObj) profileAPI.putProfileStatus(statusObj)
+                .then((data) => {
+                    if (!data.resultCode) {
+                        dispatch(actionCreator.info.addProfileStatus())
+                    }
                 })
         }
     }
@@ -74,6 +94,9 @@ export const profileReducer = (state = initialState, action) => {
             return { ...state, info: { ...state.info, newStatus: action.status } }
 
         case ADD_PROFILE_STATUS:
+            return { ...state, info: { ...state.info, status: state.info.newStatus } }
+
+        case SET_PROFILE_STATUS:
             return { ...state, info: { ...state.info, status: action.status } }
 
         default:
