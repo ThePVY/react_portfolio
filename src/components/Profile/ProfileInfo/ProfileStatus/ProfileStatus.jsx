@@ -7,20 +7,17 @@ const ProfileStatus = (props) => {
     const { newStatus, status = 'No status...', updateProfileStatus, publishStatus } = props
     const { authId, userId } = props
 
-    const [hideTA, setideTA] = useState(false)
-    const [hideButton, setHideButton] = useState(false)
+    const [editMode, setEditMode] = useState(false)
 
     const toggleMode = e => {
         if (authId === userId) {
-            setHideTA(true)
-            setHideButton(false)
+            setEditMode(!editMode)
         }
     }
 
     const publish = () => {
         publishStatus(newStatus)
-        setHideButton(true)
-        setHideTA(true)
+        setEditMode(false)
     }
 
     const updateStatus = e => updateProfileStatus(e.target.value)
@@ -28,8 +25,8 @@ const ProfileStatus = (props) => {
     return (
         <div className={styles.profileStatus}>
             {
-                !hideTA || !hideButton ?
-                    <div onBlur={toggleMode} className={styles.textareaContainer}>
+                editMode ?
+                    <div className={styles.textareaContainer} onMouseLeave={toggleMode} >
                         <textarea autoFocus={true} onChange={updateStatus} value={newStatus} />
                         <button disabled={!validate(newStatus)} onClick={publish}>Publish</button>
                     </div>

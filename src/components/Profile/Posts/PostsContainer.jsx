@@ -6,7 +6,7 @@ import Posts from "./Posts"
 const PostsContainer = ( { userId, authId, ...props }) => {
 
 
-    return <Posts {...props} iam={ userId === authId } />
+    return <Posts {...props} iam={ !!authId && userId === authId } />
 }
 
 const mapStateToProps = (state) => {

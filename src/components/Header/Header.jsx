@@ -9,7 +9,13 @@ const Header = props => {
             <img src={logo} alt="Logo" />
             <div className={styles.authBlock}>
                 {
-                    isAuthorized ? <button>Exit</button> : <button><NavLink to='/login'>Sign in</NavLink></button>
+                    isAuthorized ?
+                        <> 
+                            <span>{props.login}</span>
+                            <button onClick={props.handleSignOut}>Sign Out</button> 
+                        </>
+                        :
+                        <button><NavLink to='/login'>Sign in</NavLink></button>
                 }
             </div>
         </header>

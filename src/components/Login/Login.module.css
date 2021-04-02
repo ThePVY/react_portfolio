@@ -1,9 +1,19 @@
-.content {
+.login {
     background-color: rgb(94, 123, 170);
     grid-area       : content;
     min-width: 900px;
 
     padding: 1em;
     color     : rgb(72, 78, 78);
+}
 
+.loginForm {
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0px);
+}
+
+.loginForm div {
+    padding-bottom: 10px;
 }

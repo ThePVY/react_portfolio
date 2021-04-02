@@ -15,8 +15,9 @@
 }
 
 .authBlock {
-    width: 150px;
+    width: 250px;
     justify-self: flex-end;
+    text-align: center;
 }
 
 .authBlock button {

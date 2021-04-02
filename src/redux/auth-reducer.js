@@ -11,8 +11,38 @@ export const thunkCreator = {
     getAuthData() {
         return dispatch => {
             authAPI.getAuthData()
+                .then((data) => {
+                    if (data.resultCode === 0)
+                        dispatch(actionCreator.setAuthData(data))
+                })
+        }
+    },
+    signIn(jsonObj) {
+        return dispatch => {
+            authAPI.signIn(jsonObj).then((data) => {
+                if (data.resultCode === 0)
+                    return authAPI.getAuthData()
+            })
             .then((data) => {
-                dispatch(actionCreator.setAuthData(data))
+                if (data.resultCode === 0)
+                    dispatch(actionCreator.setAuthData(data))
+            })
+        }
+    },
+    signOut() {
+        return dispatch => {
+            authAPI.signOut().then((data) => {
+                if (data.resultCode === 0) {
+                    const authData = {
+                        resultCode: 1,
+                        data: {
+                            id: undefined,
+                            email: undefined,
+                            login: undefined
+                        }
+                    }
+                    dispatch(actionCreator.setAuthData(authData))
+                }
             })
         }
     }
@@ -44,5 +74,5 @@ export const authReducer = (state = initialState, action) => {
 const setAuthData = (state, data) => ({
     ...state,
     data: data.data,
-    isAuthorized: data.resultCode ? false : true
+    isAuthorized: data.resultCode === 0
 })

@@ -6,7 +6,7 @@ import { compose } from 'redux';
 
 class HeaderAPI extends React.Component {
     render = () => (
-        <Header isAuthorized={this.props.isAuthorized} />
+        <Header isAuthorized={this.props.isAuthorized} login={this.props.login} handleSignOut={this.props.signOut} />
     )
 
     componentDidMount = () => {
@@ -15,7 +15,8 @@ class HeaderAPI extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isAuthorized: state.auth.isAuthorized
+    isAuthorized: state.auth.isAuthorized,
+    login: state.auth.data.login
 })
 
 export default compose(

@@ -4,12 +4,15 @@ import AboutMe from './AboutMe/AboutMe'
 import Contacts from './Contacts/Contacts'
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 
-const ProfileInfo = ({ data, ...other  }) => {
+const ProfileInfo = ({ data, newStatus, status, authId, userId, updateProfileStatus, publishStatus  }) => {
+
+    const psProps = { newStatus, status, updateProfileStatus, publishStatus, authId, userId }
+    
     return (
         <div className={styles.ProfileInfo}>
             <div>
                 <Ava photos={data.photos} />
-                <ProfileStatus {...other} />
+                <ProfileStatus {...psProps} />
                 <AboutMe aboutMe={data.aboutMe} name={data.fullName}/>
                 <Contacts contacts={data.contacts} />
                 <div>
