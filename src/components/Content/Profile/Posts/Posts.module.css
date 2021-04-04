@@ -1,0 +1,22 @@
+.posts {
+    padding-left: 3em;
+    text-align: left;
+    color     : rgb(72, 78, 78);
+}
+.posts textarea {
+    height: 70px;
+}
+
+.buttonContainer {
+    padding: 10px 0px;
+}
+
+.buttonContainer button {
+    width: 100px;
+}
+
+.headerContainer {
+    text-align: center;
+}
+
+

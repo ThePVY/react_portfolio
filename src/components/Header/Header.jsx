@@ -11,11 +11,17 @@ const Header = props => {
                 {
                     isAuthorized ?
                         <> 
-                            <span>{props.login}</span>
-                            <button onClick={props.handleSignOut}>Sign Out</button> 
+                            <div className={styles.loginContainer}>
+                                <span>{props.login}</span>
+                            </div>
+                            <div className={styles.buttonContainer} >
+                                <button onClick={props.handleSignOut}>Sign Out</button> 
+                            </div>
                         </>
                         :
-                        <button><NavLink to='/login'>Sign in</NavLink></button>
+                        <div className={styles.buttonContainer} >
+                            <button><NavLink to='/login'>Sign in</NavLink></button>
+                        </div>
                 }
             </div>
         </header>

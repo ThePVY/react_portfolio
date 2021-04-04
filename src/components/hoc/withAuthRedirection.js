@@ -8,12 +8,12 @@ export const WithAuthRedirection = Component => {
         isAuthorized: state.auth.isAuthorized
     })
 
-    const withRedirect = ({isAuthorized, ...props}) => {
+    const withRedirection = ({isAuthorized, ...props}) => {
         return isAuthorized ? 
             <Component {...props} isAuthorized={isAuthorized} />
             :
             <Redirect to='/login' />   
     }
 
-    return connect(mapStateToProps, {})(withRedirect)
+    return connect(mapStateToProps, {})(withRedirection)
 }

@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form"
 import { authAPI } from "../api/auth-api"
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
@@ -10,7 +11,7 @@ export const actionCreator = {
 export const thunkCreator = {
     getAuthData() {
         return dispatch => {
-            authAPI.getAuthData()
+            return authAPI.getAuthData()
                 .then((data) => {
                     if (data.resultCode === 0)
                         dispatch(actionCreator.setAuthData(data))
@@ -21,11 +22,11 @@ export const thunkCreator = {
         return dispatch => {
             authAPI.signIn(jsonObj).then((data) => {
                 if (data.resultCode === 0)
-                    return authAPI.getAuthData()
-            })
-            .then((data) => {
-                if (data.resultCode === 0)
-                    dispatch(actionCreator.setAuthData(data))
+                    dispatch(thunkCreator.getAuthData())
+                else {
+                    const errorMessage = data.messages ? data.messages[0] : 'Some Error'
+                    dispatch(stopSubmit('login', { _error: errorMessage }))
+                }
             })
         }
     },

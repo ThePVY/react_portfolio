@@ -15,17 +15,26 @@
 }
 
 .authBlock {
-    width: 250px;
+    width: 170px;
     justify-self: flex-end;
-    text-align: center;
+
+
+    display: flex;
+    justify-content: space-between;
 }
 
-.authBlock button {
+.loginContainer {
+    align-self: center;
+    margin-right: 10px;
+}
+
+.buttonContainer {
     width: 100px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    align-self: center;
+}
+
+.buttonContainer button {
+    width: 100%;
 }
 
 .spin {

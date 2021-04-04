@@ -1,0 +1,14 @@
+.loginForm {
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0px);
+}
+
+.loginForm div {
+    padding-bottom: 10px;
+}
+
+.error {
+    color: rgb(95, 29, 29);
+}

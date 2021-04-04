@@ -1,13 +1,18 @@
-import { spinLogo, validate } from '../scripts/scripts';
+import { reset } from 'redux-form';
+import { spinLogo } from '../scripts/scripts';
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_MESSAGE = 'UPDATE-MESSAGE'
 
 //for construct action in components
 export const actionCreator = {
-    addMessage: () => ({ type: ADD_MESSAGE }),
-    updateMessage: text => ({ type: UPDATE_MESSAGE, message: text })
+    addMessage: message => ({ type: ADD_MESSAGE, message })
 }
+
+export const thunkCreator = ({
+    resetForm(form) {
+        return dispatch => dispatch(reset(form))
+    }
+})
 
 const avaSrc = 'https://www.kinonews.ru/insimgs/2019/newsimg/newsimg87089.jpg'
 //initial value of state
@@ -21,17 +26,14 @@ const initialState = {
         { id: 6, name: 'Ksysha',        src: avaSrc,    preview: 'Hi' },
         { id: 7, name: 'Kotleta',       src: avaSrc,    preview: 'Hi' },
     ],
-    messages: [],
-    newMessage: ''
+    messages: []
 }
 
 //for changing state in store
 export const dialogsReducer = (state = initialState, action) => { 
     switch (action.type) {
         case ADD_MESSAGE:
-            return addMessage(state)
-        case UPDATE_MESSAGE:
-            return updateMessage(state, action.message);
+            return addMessage(state, action.message)
         default:
             return state
     }
@@ -41,27 +43,17 @@ export const dialogsReducer = (state = initialState, action) => {
 
 let messageId = 1
 
-const addMessage = (state) => {
-    if (!validate(state.newMessage)) return state
-
+const addMessage = (state, message) => {
     spinLogo();
 
     const newMessage = {
         id: messageId++,
-        message: state.newMessage,
+        message,
         my: true
     }
 
     return {
         ...state,
-        messages: [...state.messages, newMessage ],
-        newMessage: ''
-    }
-}
-
-const updateMessage = (state, message) => {
-    return {
-        ...state,
-        newMessage: message
+        messages: [...state.messages, newMessage ]
     }
 }

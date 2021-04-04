@@ -8,7 +8,7 @@ export const spinLogo = () => {
     }, 1500);
 };
 
-export const validate = text => {
+export const validate = (text = '') => {
     return ~text.search(/\S/)
 }
 
