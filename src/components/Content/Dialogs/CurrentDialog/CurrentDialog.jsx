@@ -31,7 +31,7 @@ export default CurrentDialog;
 let MessageForm = props => {
 
     const [messageIsValid, setMessageIsValid] = useState(false)
-    const getMessageIsValid = (meta = {}) => setMessageIsValid(meta.valid)
+    const getMessageIsValid = (valid = false) => setMessageIsValid(valid)
 
     return (
         <form onSubmit={props.handleSubmit} className={styles.messageForm} >

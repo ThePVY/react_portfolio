@@ -36,8 +36,8 @@ export default Posts;
 let PostForm = props => {
 
     const [postIsValid, setPostIsValid] = useState(false)
-    const getPostIsValid = (meta = {}) => setPostIsValid(meta.valid)
-    
+    const getPostIsValid = (valid = false) => setPostIsValid(valid)
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

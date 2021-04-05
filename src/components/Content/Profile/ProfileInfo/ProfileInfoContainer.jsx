@@ -44,9 +44,6 @@ const mapStateToProps = (state) => {
     return {
         data: state.profile.info.data,
         authId: state.auth.data.id,
-        userId: state.profile.userId,
-        newStatus: state.profile.info.newStatus,
-        status: state.profile.info.status
     }
 }
 

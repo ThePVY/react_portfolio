@@ -25,8 +25,8 @@ let LoginForm = (props) => {
     const [emailIsValid, setEmailIsValid] = useState(false)
     const [passwordIsValid, setPasswordIsValid] = useState(false)
 
-    const getEmailValid = (meta = {}) => setEmailIsValid(meta.valid)
-    const getpasswordValid = (meta = {}) => setPasswordIsValid(meta.valid)
+    const getEmailValid = (valid = false) => setEmailIsValid(valid)
+    const getpasswordValid = (valid = false) => setPasswordIsValid(valid)
 
     return (
         <form onSubmit={props.handleSubmit} className={styles.loginForm}>

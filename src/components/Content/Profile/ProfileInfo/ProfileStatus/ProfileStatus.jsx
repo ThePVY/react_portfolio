@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { withRouter } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired, validate50 } from '../../../../../scripts/validates';
 import { Textarea } from '../../../../common/CustomFields/CustomFields';
@@ -6,8 +7,8 @@ import styles from './ProfileStatus.module.css'
 
 const ProfileStatus = (props) => {
 
-    const { status = 'No status...', publishStatus } = props
-    const { authId, userId } = props
+    const { status = 'No status...', publishStatus, authId } = props
+    const { userId = authId } = props.match.params
 
     const [editMode, setEditMode] = useState(false)
 
@@ -36,14 +37,14 @@ const ProfileStatus = (props) => {
     );
 };
 
-export default ProfileStatus;
+export default withRouter(ProfileStatus);
 
 /*---------------------------------------------------------------------------------*/
 
 let StatusForm = props => {
 
     const [statusIsValid, setStatusIsValid] = useState(false)
-    const getStatusIsValid = (meta = {}) => setStatusIsValid(meta.valid)
+    const getStatusIsValid = (valid = false) => setStatusIsValid(valid)
 
     return (
         <form className={styles.statusForm} onSubmit={props.handleSubmit}>

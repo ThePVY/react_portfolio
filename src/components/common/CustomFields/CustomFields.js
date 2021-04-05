@@ -12,8 +12,10 @@ export const FieldTemplate = ({ meta, notified, children, isValid }) => {
     }
 
     useEffect(() => {
-        if(isValid) isValid(meta);
-    })
+        const valid = meta ? meta.valid : undefined
+        if(isValid) isValid(valid);
+        console.log(`isValid: ${meta.valid}`)
+    }, [meta.valid])
     
     return (
         <>
