@@ -3,22 +3,17 @@ import Header from './Header';
 import { connect } from 'react-redux';
 import { actionCreator, thunkCreator } from '../../redux/auth-reducer';
 import { compose } from 'redux';
+import selecror from '../../redux/selectors';
 
-class HeaderAPI extends React.Component {
-    render = () => (
-        <Header isAuthorized={this.props.isAuthorized} login={this.props.login} handleSignOut={this.props.signOut} />
-    )
-
-    componentDidMount = () => {
-        this.props.getAuthData()
-    }
-}
+const HeaderContainer = (props) => (
+    <Header isAuthorized={props.isAuthorized} login={props.login} handleSignOut={props.signOut} />
+)
 
 const mapStateToProps = state => ({
-    isAuthorized: state.auth.isAuthorized,
-    login: state.auth.data.login
+    isAuthorized: selecror.auth.getIsAuthorized(state),
+    login: selecror.auth.getLogin(state)
 })
 
 export default compose(
     connect(mapStateToProps, {...actionCreator, ...thunkCreator})
-)(HeaderAPI)
+)(HeaderContainer)

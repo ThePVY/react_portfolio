@@ -1,46 +1,36 @@
 import { connect } from "react-redux"
 import { actionCreator, thunkCreator } from "../../../../redux/users-reducer"
-import React from 'react';
+import React, { useEffect } from 'react';
 import UsersList from './UsersList';
 import { compose } from "redux";
+import selecror from "../../../../redux/selectors";
 
 
-class UsersListAPI extends React.Component {
-    render = () => {
-        return (
-            <UsersList {...this.props} onPageClick={this.onPageClick} onFollowClick={this.onFollowClick} />
-        )
-    }
+const UsersListContainer = ({ getUsers, selectedPage, setSelectedPage, setFollow, ...rest }) => {
 
-    componentDidMount = () => {
-        const { selectedPage, getUsers } = this.props
+    useEffect(() => {
         getUsers(selectedPage)
-    }
+    }, [selectedPage, getUsers])
 
-    onPageClick = p => {
-        const { setSelectedPage, getUsers } = this.props
-        setSelectedPage(p)
-        getUsers(p)
-    }
+    const onPageClick = p => setSelectedPage(p)
 
-    onFollowClick = (userId, followed) => {
-        this.props.setFollow(userId, followed)
-    }
-
+    return (
+        <UsersList {...rest} onPageClick={onPageClick} onFollowClick={setFollow} selectedPage={selectedPage} />
+    )
 }
 
 /*-------------------------------------------------------------------------------------------------------*/
 
 const mapStateToProps = (state) => {
     return {
-        usersList: state.users.usersList,
-        pagesCount: state.users.pagesTotalCount,
-        selectedPage: state.users.selectedPage,
-        isFetching: state.users.isFetching,
-        loadings: state.users.loadings
+        usersList: selecror.users.getUsersList(state),
+        pagesCount: selecror.users.getPagesCount(state),
+        selectedPage: selecror.users.getSelectedPage(state),
+        isFetching: selecror.users.getIsFetching(state),
+        loadings: selecror.users.getLoadings(state)
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {...thunkCreator, ...actionCreator.usersList}),
-)(UsersListAPI)
+    connect(mapStateToProps, { ...thunkCreator, ...actionCreator.usersList }),
+)(UsersListContainer)

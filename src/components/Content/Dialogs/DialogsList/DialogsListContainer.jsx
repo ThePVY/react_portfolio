@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
+import selecror from '../../../../redux/selectors';
 import DialogsList from './DialogsList'
 
 const mapStateToProps = (state) => {
     return {
-        dialogsList: state.dialogs.dialogsList
+        dialogsList: selecror.dialogs.getDialogsList(state)
     }
 }
 
-const DialogsListContainer = connect(mapStateToProps, {})(DialogsList)
+const DialogsListContainer = connect(mapStateToProps, null)(DialogsList)
 
 
 export default DialogsListContainer;

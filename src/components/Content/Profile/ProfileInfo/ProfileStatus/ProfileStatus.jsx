@@ -27,7 +27,7 @@ const ProfileStatus = (props) => {
         <div className={styles.profileStatus}>
             {
                 editMode ?
-                    <StatusForm onSubmit={publish} cancel={toggleMode} />
+                    <StatusForm onSubmit={publish} cancel={toggleMode} value={status} />
                     :
                     <div className={styles.statusContainer}>
                         <span onClick={toggleMode} >{status}</span>

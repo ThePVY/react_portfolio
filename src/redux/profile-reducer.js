@@ -66,7 +66,16 @@ const initialState = {
         posts: [],
     },
     info: {
-        data: {},
+        data: {
+            userId: undefined,
+            lookingForAJob: undefined,
+            fullname: undefined,
+            contacts: {},
+            photos: {
+                small: undefined,
+                large: undefined
+            }
+        },
         status: undefined
     },
     userId: undefined

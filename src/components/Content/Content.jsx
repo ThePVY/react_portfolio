@@ -8,12 +8,13 @@ import Dialogs from './Dialogs/Dialogs';
 import Users from './Users/Users';
 import LoginContainer from './Login/LoginContainer';
 import Preloader from '../common/Preloader';
+import selecror from '../../redux/selectors';
 
 
 const Content = ({ initialized, initializeApp }) => {
     useEffect(() => {
         initializeApp()
-    }, [])
+    }, [initializeApp])
 
     return (
         <div className={s.content}>
@@ -36,7 +37,7 @@ const Content = ({ initialized, initializeApp }) => {
 }
 
 const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
+    initialized: selecror.app.getInitialized(state)
 })
 
 export default connect(mapStateToProps, { initializeApp })(Content);

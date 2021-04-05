@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { actionCreator, thunkCreator } from "../../../../redux/profile-reducer";
+import selecror from "../../../../redux/selectors";
 import Posts from "./Posts"
 
 
@@ -10,10 +11,10 @@ const PostsContainer = ( { userId, authId, ...props }) => {
 
 const mapStateToProps = (state) => {
     return {
-        photos: state.profile.info.data.photos,
-        posts: state.profile.posts,
-        authId: state.auth.data.id,
-        userId: state.profile.userId
+        photos: selecror.profile.getPhotos(state),
+        posts: selecror.profile.getPosts(state),
+        authId: selecror.auth.getAuthId(state),
+        userId: selecror.profile.getUserId(state)
     }
 }
 

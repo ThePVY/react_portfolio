@@ -1,49 +1,38 @@
 import { connect } from "react-redux";
 import { actionCreator, thunkCreator } from "../../../../redux/profile-reducer";
 import ProfileInfo from "./ProfileInfo";
-import React from 'react'
+import React, { useEffect } from 'react'
 import { withRouter } from "react-router";
 import { compose } from "redux";
 import withUsersRedirection from "../../../hoc/withUsersRedirection";
+import selecror from "../../../../redux/selectors";
 
-class ProfileInfoAPI extends React.Component {
-    render = () => {
-        console.log('ProfileInfo render')
-        return (
-            <ProfileInfo {...this.props} publishStatus={this.publishStatus} />
-        )
-    }
+const ProfileInfoContainer = props => {
 
-    componentDidMount = () => {
-        const { authId, getProfileData, getProfileStatus } = this.props
-        const { userId = authId } = this.props.match.params
+    const { authId, getProfileData, getProfileStatus } = props
+    const { userId = authId } = props.match.params
+
+    useEffect(() => {
         getProfileStatus(userId)
         getProfileData(userId)
-    }
+    }, [authId, userId])
 
-    componentDidUpdate = (prevProps, prevState) => {
-        const { authId, getProfileData, getProfileStatus } = this.props
-        const { userId = authId } = this.props.match.params
-
-        if (prevProps.authId !== authId ||
-            prevProps.match.url !== this.props.match.url) {
-            getProfileStatus(userId)
-            getProfileData(userId)
-            console.log('Get Profile Status and Data')
-        }
-    }
-
-    publishStatus = status => {
-        const { putProfileStatus, resetForm } = this.props
+    const publishStatus = status => {
+        const { putProfileStatus, resetForm } = props
         putProfileStatus({status})
         resetForm('status')
     }
+
+    return (
+        <ProfileInfo {...props} publishStatus={publishStatus} />
+    )
 }
 
 const mapStateToProps = (state) => {
     return {
-        data: state.profile.info.data,
-        authId: state.auth.data.id,
+        data: selecror.profile.getData(state),
+        authId: selecror.auth.getAuthId(state),
+        status: selecror.profile.getStatus(state)
     }
 }
 
@@ -51,4 +40,4 @@ export default compose(
     connect(mapStateToProps, { ...actionCreator.info, ...thunkCreator }),
     withUsersRedirection,
     withRouter
-)(ProfileInfoAPI)
+)(ProfileInfoContainer)
