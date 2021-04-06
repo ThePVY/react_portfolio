@@ -11,6 +11,7 @@ const selecror = {
     },
     dialogs: {
         getDialogs: state => state.dialogs,
+        getMessages: state => state.dialogs.messages,
         getDialogsList: state => state.dialogs.dialogsList
     },
     profile: {

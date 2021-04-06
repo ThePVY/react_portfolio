@@ -1,11 +1,11 @@
 import styles from './DialogsList.module.css'
 import Dialog from './Dialog/Dialog'
 
-const DialogsList = (props) => {
+const DialogsList = ({ dialogsList }) => {
     return (
         <div className={styles.dialogList}>
             {
-                props.dialogsList.map((obj, i) => <Dialog key={i} state={obj} />)
+                dialogsList.map((obj, i) => <Dialog key={i} state={obj} />)
             }
         </div>
     )

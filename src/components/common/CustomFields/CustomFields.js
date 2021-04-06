@@ -11,7 +11,11 @@ export const FieldTemplate = ({ meta, notified, children, isValid }) => {
         notification = ''
     }
 
-    useEffect(() => isValid(meta.valid), [meta.valid])
+    const { valid } = meta
+    useEffect(() => {
+        console.log('Custom Field')
+        isValid(valid)
+    },[valid, isValid])
     
     return (
         <>

@@ -1,11 +1,12 @@
 .header {
-    background-color: rgb(60, 76, 102);
+    background-color: rgb(245, 245, 245);
     grid-area       : header;
 
     display              : grid;
     grid-template-columns: 1fr 150px minmax(200px, 5fr) 1fr;
 
     transition: all 0.4s ease 0s;
+
 }
 
 .header img {

@@ -9,8 +9,8 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
     const psProps = { status, publishStatus, authId, userId }
     
     return (
-        <div className={styles.ProfileInfo}>
-            <div>
+        <div className={styles.profileInfo}>
+            <div className={styles.content}>
                 <Ava photos={data.photos} />
                 <ProfileStatus {...psProps} />
                 <AboutMe aboutMe={data.aboutMe} name={data.fullName}/>

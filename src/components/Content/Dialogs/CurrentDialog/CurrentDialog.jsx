@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired, validate100 } from '../../../../scripts/validates';
 import { Textarea } from '../../../common/CustomFields/CustomFields';
 import styles from './CurrentDialog.module.css'
 import Message from './Message/Message';
 
-const CurrentDialog = ({ dialog, addMessage, resetForm }) => {
+const CurrentDialog = ({ messages, addMessage, resetForm }) => {
 
     const sendMessage = ({ message }) => {
         addMessage(message)
@@ -16,7 +16,7 @@ const CurrentDialog = ({ dialog, addMessage, resetForm }) => {
         <div className={styles.dialog}>
             <div className={styles.messages}>
                 {
-                    dialog.messages.map((obj) => <Message message={obj.message} my={obj.my} />)
+                    messages.map((obj) => <Message message={obj.message} my={obj.my} />)
                 }
             </div>
             <MessageForm onSubmit={sendMessage} />
@@ -31,7 +31,7 @@ export default CurrentDialog;
 let MessageForm = props => {
 
     const [messageIsValid, setMessageIsValid] = useState(false)
-    const getMessageIsValid = (valid = false) => setMessageIsValid(valid)
+    const getMessageIsValid = useCallback((valid = false) => setMessageIsValid(valid), [])
 
     return (
         <form onSubmit={props.handleSubmit} className={styles.messageForm} >

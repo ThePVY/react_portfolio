@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 import { Field, reduxForm } from 'redux-form'
+import { thunkCreator } from '../../../redux/auth-reducer'
 import { required } from '../../../scripts/validates'
 import { Input } from '../../common/CustomFields/CustomFields'
 import withProfileRedirection from '../../hoc/withProfileRedirection'
@@ -18,7 +21,14 @@ const Login = props => {
     )
 }
 
-export default withProfileRedirection(Login)
+export default compose(
+    connect(null, {...thunkCreator}),
+    withProfileRedirection
+)(Login)
+
+
+
+/*---------------------------------------------------------------------------------------------------*/
 
 let LoginForm = (props) => {
 

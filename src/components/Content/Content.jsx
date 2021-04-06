@@ -6,7 +6,7 @@ import { initializeApp } from '../../redux/app-reducer'
 import Profile from './Profile/Profile';
 import Dialogs from './Dialogs/Dialogs';
 import Users from './Users/Users';
-import LoginContainer from './Login/LoginContainer';
+import Login from './Login/Login';
 import Preloader from '../common/Preloader';
 import selecror from '../../redux/selectors';
 
@@ -24,7 +24,7 @@ const Content = ({ initialized, initializeApp }) => {
                         <Route path='/profile/:userId?' render={() => <Profile />} />
                         <Route path='/dialogs' render={() => <Dialogs />} />
                         <Route path='/users' render={() => <Users />} />
-                        <Route path='/login' render={() => <LoginContainer />} />
+                        <Route path='/login' render={() => <Login />} />
                     </>
                     :
                     <div className={s.preloaderContainer}>

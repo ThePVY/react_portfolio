@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useState } from 'react';
 import { withRouter } from 'react-router';
 import { change, Field, reduxForm } from 'redux-form';
@@ -44,22 +44,24 @@ export default withRouter(ProfileStatus);
 
 let StatusForm = props => {
 
+    const { dispatch, status, handleSubmit, cancel } = props
+
     const [statusIsValid, setStatusIsValid] = useState(false)
-    const getStatusIsValid = (valid = false) => setStatusIsValid(valid)
+    const getStatusIsValid = useCallback((valid = false) => setStatusIsValid(valid), [])
 
     useEffect(() => {
-        props.dispatch(change('status', 'status', props.status))
-    }, [props.status])
+        dispatch(change('status', 'status', status))
+    }, [status, dispatch])
 
     return (
-        <form className={styles.statusForm} onSubmit={props.handleSubmit}>
+        <form className={styles.statusForm} onSubmit={handleSubmit}>
             <div>
                 <Field component={Textarea} name='status' type='text' autoFocus={true} placeholder='Enter your Status'
                     validate={[noErrorRequired, validate50]} isValid={getStatusIsValid} />
             </div>
             <div className={styles.buttonsContainer}>
                 <button type='submit' disabled={!statusIsValid} >Publish</button>
-                <button type='button' onClick={props.cancel} >Cancel</button>
+                <button type='button' onClick={cancel} >Cancel</button>
             </div>
         </form>
     )
