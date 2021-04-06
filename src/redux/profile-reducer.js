@@ -27,7 +27,7 @@ export const getProfileAC = () => actionCreator
 export const thunkCreator = {
     getProfileData(userId) {
         return dispatch => {
-            if (userId) profileAPI.getProfileData(userId)
+            if (userId) return profileAPI.getProfileData(userId)
                 .then((data) => {
                     dispatch(actionCreator.info.setUserProfileData(data))
                     dispatch(actionCreator.common.setUserId(userId))

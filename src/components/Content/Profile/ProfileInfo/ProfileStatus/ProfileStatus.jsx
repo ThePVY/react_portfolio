@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { withRouter } from 'react-router';
-import { Field, reduxForm } from 'redux-form';
+import { change, Field, reduxForm } from 'redux-form';
 import { noErrorRequired, validate50 } from '../../../../../scripts/validates';
 import { Textarea } from '../../../../common/CustomFields/CustomFields';
 import styles from './ProfileStatus.module.css'
@@ -27,7 +28,7 @@ const ProfileStatus = (props) => {
         <div className={styles.profileStatus}>
             {
                 editMode ?
-                    <StatusForm onSubmit={publish} cancel={toggleMode} value={status} />
+                    <StatusForm onSubmit={publish} cancel={toggleMode} status={status} />
                     :
                     <div className={styles.statusContainer}>
                         <span onClick={toggleMode} >{status}</span>
@@ -45,6 +46,10 @@ let StatusForm = props => {
 
     const [statusIsValid, setStatusIsValid] = useState(false)
     const getStatusIsValid = (valid = false) => setStatusIsValid(valid)
+
+    useEffect(() => {
+        props.dispatch(change('status', 'status', props.status))
+    }, [props.status])
 
     return (
         <form className={styles.statusForm} onSubmit={props.handleSubmit}>

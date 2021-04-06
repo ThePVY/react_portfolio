@@ -10,7 +10,7 @@ const UsersListContainer = ({ getUsers, selectedPage, setSelectedPage, setFollow
 
     useEffect(() => {
         getUsers(selectedPage)
-    }, [selectedPage, getUsers])
+    }, [selectedPage])
 
     const onPageClick = p => setSelectedPage(p)
 

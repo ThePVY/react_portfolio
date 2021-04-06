@@ -15,6 +15,7 @@ export const thunkCreator = {
                 .then((data) => {
                     if (data.resultCode === 0)
                         dispatch(actionCreator.setAuthData(data))
+                    return data.data.id
                 })
         }
     },

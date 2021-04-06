@@ -27,7 +27,7 @@ export const thunkCreator = {
     getUsers(p) {
         return dispatch => {
             dispatch(actionCreator.usersList.toggleIsFetching(true))
-            usersAPI.getUsers(p)
+            return usersAPI.getUsers(p)
                 .then((data) => {
                     dispatch(actionCreator.usersList.setUsers(data.items))
                     dispatch(actionCreator.usersList.setUsersCount(data.totalCount))

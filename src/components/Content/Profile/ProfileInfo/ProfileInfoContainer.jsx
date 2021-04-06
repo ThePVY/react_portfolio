@@ -19,7 +19,7 @@ const ProfileInfoContainer = props => {
 
     const publishStatus = status => {
         const { putProfileStatus, resetForm } = props
-        putProfileStatus({status})
+        putProfileStatus({ status })
         resetForm('status')
     }
 

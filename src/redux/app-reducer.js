@@ -1,4 +1,5 @@
-import { thunkCreator } from "./auth-reducer"
+import { thunkCreator as authTC } from "./auth-reducer"
+import { thunkCreator as profileTC } from "./profile-reducer"
 
 const SET_INITIALIZED = 'SET_INITIALIZED'
 
@@ -8,9 +9,11 @@ export const actionCreator = {
 }
 
 export const initializeApp = () => dispatch => {
-    const authPromise = dispatch(thunkCreator.getAuthData())
+    const authPromise = dispatch(authTC.getAuthData())
+    const profileDataPromise = authPromise.then( (userId) => dispatch(profileTC.getProfileData(userId)) )
+    const profileStatusPromise = authPromise.then( (userId) => dispatch(profileTC.getProfileStatus(userId)) )
 
-    Promise.all([authPromise])
+    Promise.all([profileDataPromise, profileStatusPromise])
         .then(() => {
             dispatch(actionCreator.setInitialized())
         })
