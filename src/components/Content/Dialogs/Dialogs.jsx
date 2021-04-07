@@ -6,14 +6,21 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import selecror from '../../../redux/selectors';
 import { actionCreator, thunkCreator } from '../../../redux/dialogs-reducer';
+import SplitContent from '../../common/SplitContent/SplitContent';
+import FixedHeight from '../../common/FixedHeight/FixedHeight';
 
 
 const Dialogs = ({ dialogsList, messages, addMessage, resetForm }) => {
     return (
-        <div className={s.dialogs}>
-            <DialogsList dialogsList={dialogsList} />
-            <CurrentDialog messages={messages} addMessage={addMessage} resetForm={resetForm} />
-        </div>
+        <FixedHeight>
+            <SplitContent 
+            left={
+                <DialogsList dialogsList={dialogsList} />
+            }
+            right={
+                <CurrentDialog messages={messages} addMessage={addMessage} resetForm={resetForm} />
+            } />
+        </FixedHeight>
     );
 };
 

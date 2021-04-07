@@ -2,7 +2,28 @@
     padding: 0px 6em;
     text-align: left;
     color:rgb(186, 194, 194);
+
+    height: inherit;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
+
+.messages {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 2em;
+
+    height: inherit;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+/* .messages::-webkit-scrollbar {
+    display: none;
+} */
+
 
 .dialog div textarea {
     width: 100%;

@@ -9,6 +9,7 @@ import Users from './Users/Users';
 import Login from './Login/Login';
 import Preloader from '../common/Preloader';
 import selecror from '../../redux/selectors';
+import News from './News/News';
 
 
 const Content = ({ initialized, initializeApp }) => {
@@ -25,6 +26,7 @@ const Content = ({ initialized, initializeApp }) => {
                         <Route path='/dialogs' render={() => <Dialogs />} />
                         <Route path='/users' render={() => <Users />} />
                         <Route path='/login' render={() => <Login />} />
+                        <Route path='/news' render={() => <News />} />
                     </>
                     :
                     <div className={s.preloaderContainer}>

@@ -15,12 +15,13 @@ body,
     background-color     : rgb(236, 236, 236);
     min-height           : 100%;
     display              : grid;
-    grid-template-rows   : 60px 1fr 50px;
+    grid-template-rows   : 6vh 1fr 6vh;
     grid-template-columns: 1fr 150px minmax(200px, 5fr) 1fr;
     grid-template-areas  :
         "header header  header  header"
         ".      side    content ."
         "footer footer  footer  footer";
+
 }
 
 button {

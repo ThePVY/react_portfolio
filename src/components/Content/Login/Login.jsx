@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { thunkCreator } from '../../../redux/auth-reducer'
 import { required } from '../../../scripts/validates'
 import { Input } from '../../common/CustomFields/CustomFields'
+import SinglePane from '../../common/SinglePane/SinglePane'
 import withProfileRedirection from '../../hoc/withProfileRedirection'
 import styles from './Login.module.css'
 
@@ -15,9 +16,9 @@ const Login = props => {
     }
 
     return (
-        <div className={styles.login} >
+        <SinglePane>
             <LoginForm onSubmit={submit} />
-        </div>
+        </SinglePane>
     )
 }
 
@@ -48,8 +49,8 @@ let LoginForm = (props) => {
                 <Field component={Input} name='password' type='password' placeholder='Password'
                     validate={[required]} isValid={getpasswordValid} />
             </div>
-            <div>
-                <Field component='input' name='rememberMe' type='checkbox' /> Remember me
+            <div className={styles.checkboxContainer}>
+                <Field component={Input} name='rememberMe' type='checkbox' /> Remember me
             </div>
             {
                 props.error ? <div><span className={styles.error} >{props.error}</span></div> : ''

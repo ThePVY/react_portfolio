@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import selecror from '../../../redux/selectors'
 import { thunkCreator, actionCreator } from '../../../redux/users-reducer'
-import styles from './Users.module.css'
+import SinglePane from '../../common/SinglePane/SinglePane'
 import UsersList from './UsersList/UsersList'
 
 const Users = ({ getUsers, selectedPage, setSelectedPage, setFollow, ...rest }) => {
@@ -15,9 +15,9 @@ const Users = ({ getUsers, selectedPage, setSelectedPage, setFollow, ...rest }) 
     const onPageClick = p => setSelectedPage(p)
     
     return (
-        <div className={styles.content}>
+        <SinglePane>
             <UsersList {...rest} onPageClick={onPageClick} onFollowClick={setFollow} selectedPage={selectedPage} />
-        </div>
+        </SinglePane>
     )
 }
 

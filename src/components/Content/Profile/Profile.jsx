@@ -7,6 +7,7 @@ import Posts from './Posts/Posts'
 import { useEffect } from 'react';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
+import SplitContent from '../../common/SplitContent/SplitContent';
 
 const Profile = (props) => {
 
@@ -25,10 +26,13 @@ const Profile = (props) => {
     }
 
     return (
-        <div className={s.profile}>
-            <ProfileInfo {...props} publishStatus={publishStatus} />
-            <Posts {...props} iam={ !!authId && userId === authId } />
-        </div>
+        <SplitContent 
+            left={
+                <ProfileInfo {...props} publishStatus={publishStatus} />
+            }
+            right={
+                <Posts {...props} iam={ !!authId && userId === authId } />
+            } />
     );
 };
 

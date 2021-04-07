@@ -1,23 +1,20 @@
-.login {
-    width: fit-content;
-    
-}
-
-.loginForm {
-    padding: 1vh 1vw;
-
+.news {
     width: fit-content;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0px);
 }
 
-.loginForm div {
+.form {
+    padding: 1vh 1vw;
+}
+
+.form div {
     padding-bottom: 20px;
 }
 
-.loginForm input {
-    width: 20vw;
+.form input, select {
+    width: 15vw;
 }
 
 .checkboxContainer input {

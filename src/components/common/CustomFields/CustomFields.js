@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import s from './CustomFields.module.css'
 
-export const FieldTemplate = ({ meta, notified, children, isValid }) => {
+export const FieldTemplate = ({ meta, notified, children, isValid = a => a }) => {
     
     let notification
     if(meta.touched && notified) {
@@ -19,9 +19,7 @@ export const FieldTemplate = ({ meta, notified, children, isValid }) => {
     
     return (
         <>
-            <div>
-                {children}
-            </div>
+            {children}
             <span className={meta.valid ? '' : s.error}>{notification}</span>
         </>
     )

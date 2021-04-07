@@ -1,10 +1,10 @@
 .content {
     grid-area       : content;
-    min-width: 900px;
-
+    
     color     : rgb(72, 78, 78);
 
-    margin: 10px;
+    margin: 1vh 0px;
+    margin-left: 2vh;
 }
 
 .preloaderContainer {
