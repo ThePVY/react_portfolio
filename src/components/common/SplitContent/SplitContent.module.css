@@ -8,3 +8,15 @@
 .leftPane, .rightPane {
     height: inherit;
 }
+
+.leftPane{
+    margin-right: 10px;
+}
+
+.rightPane{
+    margin-left: 10px;
+}
+
+.colored {
+    background-color: white;
+}

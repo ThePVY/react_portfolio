@@ -4,6 +4,8 @@ const validateLengthCreator = maxLength => (value = '') => {
     return value.length < maxLength ? undefined : `Maximum length is ${maxLength} symbols`;
 }
 
+export const validate500 = validateLengthCreator(500)
+
 export const validate100 = validateLengthCreator(100)
 
 export const validate50 = validateLengthCreator(50)

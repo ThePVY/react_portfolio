@@ -1,7 +1,7 @@
-import styles from './Posts.module.css'
+import s from './Posts.module.css'
 import Post from './Post/Post'
 import { Field, reduxForm } from 'redux-form';
-import { noErrorRequired, validate100 } from '../../../../scripts/validates';
+import { noErrorRequired, validate500 } from '../../../../scripts/validates';
 import { useState } from 'react';
 import { Textarea } from '../../../common/CustomFields/CustomFields';
 
@@ -13,16 +13,16 @@ const Posts = ({ photos, iam, addPost, resetForm, posts: { posts } }) => {
     }
 
     return (
-        <div className={styles.posts}>
-            <div className={styles.content}>
+        <div className={s.posts}>
+            <div className={s.centered}>
                 {
                     iam ?
                         <PostForm onSubmit={handleSubmit} />
                         :
-                        <div className={styles.headerContainer}>
-                            <span className={styles.header}>Posts of ...</span>
-                        </div>
+                        <span >Posts of ...</span>
                 }
+            </div>
+            <div className={`${s.postsContainer} ${s.centered}`}>
                 {
                     posts.map((obj, i) => <Post key={i} state={obj} photos={photos} />)
                 }
@@ -44,7 +44,7 @@ let PostForm = props => {
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field component={Textarea} name='post' type='text' placeholder='Enter your Post'
-                    validate={[noErrorRequired, validate100]} isValid={getPostIsValid} />
+                    validate={[noErrorRequired, validate500]} isValid={getPostIsValid} />
             </div>
             <div>
                 <button type='submit' disabled={!postIsValid} >Add Post</button>

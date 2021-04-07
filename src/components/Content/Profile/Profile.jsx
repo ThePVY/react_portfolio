@@ -26,7 +26,7 @@ const Profile = (props) => {
     }
 
     return (
-        <SplitContent 
+        <SplitContent colorLeft={true} colorRight={true}
             left={
                 <ProfileInfo {...props} publishStatus={publishStatus} />
             }

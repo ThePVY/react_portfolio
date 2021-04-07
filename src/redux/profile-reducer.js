@@ -63,7 +63,13 @@ export const thunkCreator = {
 //initial value of state
 const initialState = {
     posts: {
-        posts: [],
+        posts: [
+            {id: 0, message: 'Hello',likesCount: 0 },
+            {id: 1, message: 'Hello Hello Hello Hello Hello Hello Hello Hello Hello',likesCount: 0 },
+            {id: 1, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 }
+        ],
     },
     info: {
         data: {
@@ -104,7 +110,7 @@ export const profileReducer = (state = initialState, action) => {
 
 /*---------------------------------------------------------------------------------*/
 
-let postId = 1
+let postId = initialState.posts.posts.length
 
 const addPost = (state, post) => {
     spinLogo()

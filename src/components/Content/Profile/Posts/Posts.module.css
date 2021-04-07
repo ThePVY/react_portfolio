@@ -1,32 +1,23 @@
 .posts {
-    padding-left: 3em;
     text-align: left;
     color     : rgb(72, 78, 78);
+    height: inherit;
 
-    height: 100%;
-    background-color: white;
-
-    margin-left: 10px;
-}
-.posts textarea {
-    height: 70px;
-}
-
-.content {
     padding-top: 10px;
 }
 
+.centered {
+    position: relative;
+    width: fit-content;
+    transform: translate(-50%, 0px);
+    left: 50%;
 
-.buttonContainer {
-    padding: 10px 0px;
+    padding-bottom: 10px;
 }
 
-.buttonContainer button {
-    width: 100px;
+.postsContainer {
+    width: 30vw;
 }
 
-.headerContainer {
-    text-align: center;
-}
 
 

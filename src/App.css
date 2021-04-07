@@ -35,7 +35,7 @@ button {
 
 textarea {
     min-width: fit-content;
-    width: 70%;
+    width: 30vw;
     background-color: rgb(252, 252, 252);
     color: rgb(39, 41, 41);
     border: 1px solid rgb(125, 125, 128);
