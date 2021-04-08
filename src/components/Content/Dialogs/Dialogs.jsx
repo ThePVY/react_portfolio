@@ -13,7 +13,7 @@ import FixedHeight from '../../common/FixedHeight/FixedHeight';
 const Dialogs = ({ dialogsList, messages, addMessage, resetForm }) => {
     return (
         <FixedHeight>
-            <SplitContent 
+            <SplitContent colorLeft={true} colorRight={false}
             left={
                 <DialogsList dialogsList={dialogsList} />
             }

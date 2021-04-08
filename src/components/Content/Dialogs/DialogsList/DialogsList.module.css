@@ -1,6 +1,5 @@
 .dialogsList {
-    background-color: white;
-    height: 86vh;
+    height: inherit;
     overflow-y: hidden;
 }
 

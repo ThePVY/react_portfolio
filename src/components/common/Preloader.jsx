@@ -1,7 +1,7 @@
 import preloader from '../../images/preloader.gif'
 
-
 const Preloader = props => {
+
     return (
         <span>
             {

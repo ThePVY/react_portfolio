@@ -66,9 +66,45 @@ const initialState = {
         posts: [
             {id: 0, message: 'Hello',likesCount: 0 },
             {id: 1, message: 'Hello Hello Hello Hello Hello Hello Hello Hello Hello',likesCount: 0 },
-            {id: 1, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+            {id: 2, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 }
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 3, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 4, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 5, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 6, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 7, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 8, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 9, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 10, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 11, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 12, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 13, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+            {id: 14, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello'
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
         ],
     },
     info: {

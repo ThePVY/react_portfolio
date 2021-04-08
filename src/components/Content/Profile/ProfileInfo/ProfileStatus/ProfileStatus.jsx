@@ -1,7 +1,8 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { withRouter } from 'react-router';
 import { change, Field, reduxForm } from 'redux-form';
+import { useValidation } from '../../../../../hooks/useValidation';
 import { noErrorRequired, validate50 } from '../../../../../scripts/validates';
 import { Textarea } from '../../../../common/CustomFields/CustomFields';
 import styles from './ProfileStatus.module.css'
@@ -46,8 +47,7 @@ let StatusForm = props => {
 
     const { dispatch, status, handleSubmit, cancel } = props
 
-    const [statusIsValid, setStatusIsValid] = useState(false)
-    const getStatusIsValid = useCallback((valid = false) => setStatusIsValid(valid), [])
+    const [ statusVO,  ] = useValidation(false)
 
     useEffect(() => {
         dispatch(change('status', 'status', status))
@@ -57,10 +57,10 @@ let StatusForm = props => {
         <form className={styles.statusForm} onSubmit={handleSubmit}>
             <div>
                 <Field component={Textarea} name='status' type='text' autoFocus={true} placeholder='Enter your Status'
-                    validate={[noErrorRequired, validate50]} isValid={getStatusIsValid} />
+                    validate={[noErrorRequired, validate50]} isValid={statusVO.setIsValid} />
             </div>
             <div className={styles.buttonsContainer}>
-                <button type='submit' disabled={!statusIsValid} >Publish</button>
+                <button type='submit' disabled={!statusVO.isValid} >Publish</button>
                 <button type='button' onClick={cancel} >Cancel</button>
             </div>
         </form>

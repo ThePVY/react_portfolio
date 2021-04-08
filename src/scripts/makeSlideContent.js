@@ -1,31 +1,32 @@
-const makeSlideContent = (leftContent, leftContainer) => {
+const makeSlideContent = (content, container) => {
 
     let isStick = false;
     let inRange = false;
     let [prevOffset, currOffset] = ['',''];
     let [prevScroll, currScroll] = ['',''];
-    const top2container = 76; //Frop page top to top of the sticky container
-    const topBoundary = 76;
-    const bottomBoundary = topBoundary + leftContainer.offsetHeight;
+
+    let top2container = container.getBoundingClientRect().top; //Frop page top to top of the sticky container
+    let topBoundary = top2container;
+    let bottomBoundary = topBoundary + container.offsetHeight;
     window.addEventListener('scroll', () => {
         inRange = checkRange(topBoundary, bottomBoundary);
-        if(inRange && leftContent.offsetHeight > window.innerHeight) {
+        if(inRange && content.offsetHeight > window.innerHeight) {
             currOffset = window.pageYOffset;
             if(currOffset > prevOffset) {
                 //scrolling down
                 currScroll = 'down';
-                if(!isStick && currOffset + window.innerHeight >= leftContent.offsetTop + leftContent.offsetHeight) {
-                    leftContent.style.position = 'sticky';
-                    leftContent.style.top = `-${leftContent.offsetHeight - window.innerHeight}px`;
+                if(!isStick && currOffset + window.innerHeight >= content.offsetTop + content.offsetHeight) {
+                    content.style.position = 'sticky';
+                    content.style.top = `-${content.offsetHeight - window.innerHeight}px`;
                     isStick = true;
                 }
                 else if(!isStick && currScroll !== prevScroll) {
-                    leftContent.style.position = 'relative';
-                    leftContent.style.top = `${leftContent.offsetTop - top2container}px`;
+                    content.style.position = 'relative';
+                    content.style.top = `${content.offsetTop - top2container}px`;
                 }
                 else if(isStick && currScroll !== prevScroll) {
-                    leftContent.style.position = 'relative';
-                    leftContent.style.top = `${currOffset  - top2container}px`;
+                    content.style.position = 'relative';
+                    content.style.top = `${currOffset  - top2container}px`;
                     isStick = false;
                 }
                 prevScroll = 'down';
@@ -33,27 +34,27 @@ const makeSlideContent = (leftContent, leftContainer) => {
             else {
                 //scrolling up
                 currScroll = 'up';
-                if(!isStick && currOffset <= leftContent.offsetTop) {
-                    leftContent.style.position = 'sticky';
-                    leftContent.style.top = `0px`;
+                if(!isStick && currOffset <= content.offsetTop) {
+                    content.style.position = 'sticky';
+                    content.style.top = `0px`;
                     isStick = true;
                 }
                 else if(!isStick && currScroll !== prevScroll) {
-                    leftContent.style.position = 'relative';
-                    leftContent.style.top = `${leftContent.offsetTop - top2container}px`;
+                    content.style.position = 'relative';
+                    content.style.top = `${content.offsetTop - top2container}px`;
                 }
                 else if(isStick && currScroll !== prevScroll) {
-                    leftContent.style.position = 'relative';
-                    leftContent.style.top = `${currOffset - leftContent.offsetHeight + window.innerHeight  - top2container}px`;
+                    content.style.position = 'relative';
+                    content.style.top = `${currOffset - content.offsetHeight + window.innerHeight  - top2container}px`;
                     isStick = false;
                 }
                 prevScroll = 'up';
             }
             prevOffset = window.pageYOffset;
         }
-        else if(leftContent.offsetHeight < window.innerHeight) {
-            leftContent.style.position = 'sticky';
-            leftContent.style.top = '0px';
+        else if(content.offsetHeight < window.innerHeight) {
+            content.style.position = 'sticky';
+            content.style.top = '0px';
         }
     });
 

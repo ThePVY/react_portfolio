@@ -3,10 +3,19 @@ import Ava from './Ava/Ava'
 import AboutMe from './AboutMe/AboutMe'
 import Contacts from './Contacts/Contacts'
 import ProfileStatus from './ProfileStatus/ProfileStatus';
+import { useEffect } from 'react';
+import makeSlideContent from '../../../../scripts/makeSlideContent';
 
 const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
 
     const psProps = { status, publishStatus, authId, userId }
+
+    useEffect(() => {
+        const container = document.querySelector(`.${styles.profileInfo}`)
+        const content = document.querySelector(`.${styles.content}`)
+
+        makeSlideContent(content, container)
+    }, [makeSlideContent, window.innerHeight])
     
     return (
         <div className={styles.profileInfo}>
@@ -24,6 +33,61 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
                 <div>
                     Video
                 </div>
+
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
+                <div>FOR TAKE PLACE</div>
             </div>
         </div>
     );
