@@ -15,7 +15,7 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
         const content = document.querySelector(`.${styles.content}`)
 
         makeSlideContent(content, container)
-    }, [makeSlideContent, window.innerHeight])
+    }, [])
     
     return (
         <div className={styles.profileInfo}>

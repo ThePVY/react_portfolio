@@ -17,6 +17,11 @@ export const initializeApp = () => dispatch => {
         .then(() => {
             dispatch(actionCreator.setInitialized())
         })
+        .catch(() => {
+            setTimeout(() => {
+                dispatch(initializeApp)
+            }, 3000)
+        })
 }
 
 //initial value of state
