@@ -2,15 +2,17 @@ import { reset } from 'redux-form';
 import { profileAPI } from '../api/profile-api';
 import { spinLogo } from '../scripts/scripts';
 
-const ADD_POST = 'ADD-POST'
-const SET_USER_DATA = 'SET_USER_DATA'
-const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
-const SET_USER_ID = 'SET_USER_ID'
+const ADD_POST = 'profile/ADD-POST'
+const DELETE_POST = 'profile/DELETE_POST'
+const SET_USER_DATA = 'profile/SET_USER_DATA'
+const SET_PROFILE_STATUS = 'profile/SET_PROFILE_STATUS'
+const SET_USER_ID = 'profile/SET_USER_ID'
 
 //for construct action in components
 export const actionCreator = {
     posts: {
         addPost: (post) => ({ type: ADD_POST, post }),
+        deletePost: (postId) => ({ type: DELETE_POST, postId }),
     },
     info: {
         setUserProfileData: data => ({ type: SET_USER_DATA, data }),
@@ -64,47 +66,73 @@ export const thunkCreator = {
 const initialState = {
     posts: {
         posts: [
-            {id: 0, message: 'Hello',likesCount: 0 },
-            {id: 1, message: 'Hello Hello Hello Hello Hello Hello Hello Hello Hello',likesCount: 0 },
-            {id: 2, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+            { id: 0, message: 'Hello', likesCount: 0 },
+            { id: 1, message: 'Hello Hello Hello Hello Hello Hello Hello Hello Hello', likesCount: 0 },
+            {
+                id: 2, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 3, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 3, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 4, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 4, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 5, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 5, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 6, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 6, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 7, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 7, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 8, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 8, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 9, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 9, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 10, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 10, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 11, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 11, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 12, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 12, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 13, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 13, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
-            {id: 14, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
+            {
+                id: 14, message: `'Hello Hello Hello Hello Hello Hello Hello Hello Hello
                 Hello Hello Hello Hello Hello Hello Hello Hello Hello'
-                Hello Hello Hello Hello Hello Hello Hello Hello Hello`,likesCount: 0 },
+                Hello Hello Hello Hello Hello Hello Hello Hello Hello`, likesCount: 0
+            },
         ],
     },
     info: {
@@ -129,6 +157,9 @@ export const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             return addPost(state, action.post)
 
+        case DELETE_POST:
+            return deletePost(state, action.postId)
+
         case SET_USER_DATA:
             return setUserData(state, action.data)
 
@@ -146,22 +177,25 @@ export const profileReducer = (state = initialState, action) => {
 
 /*---------------------------------------------------------------------------------*/
 
-let postId = initialState.posts.posts.length
-
 const addPost = (state, post) => {
     spinLogo()
 
+    const posts = state.posts.posts
     const newPost = {
-        id: postId++,
+        id: posts[posts.length - 1].id + 1,
         message: post,
         likesCount: 0
     }
 
     return {
-        ...state,
-        posts: {
-            posts: [newPost, ...state.posts.posts],
-        }
+        ...state, posts: { posts: [...posts, newPost] }
+    }
+}
+
+const deletePost = (state, postId) => {
+    spinLogo()
+    return {
+        ...state, posts: { posts: state.posts.posts.filter((post) => post.id !== postId) }
     }
 }
 

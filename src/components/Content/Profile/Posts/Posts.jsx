@@ -5,7 +5,7 @@ import { noErrorRequired, validate500 } from '../../../../scripts/validates';
 import { Textarea } from '../../../common/CustomFields/CustomFields';
 import { useValidation } from '../../../../hooks/useValidation';
 
-const Posts = ({ photos, iam, addPost, resetForm, posts: { posts } }) => {
+const Posts = ({ userName = '...', photos, iam = false, addPost, deletePost, resetForm, posts: { posts } }) => {
 
     const handleSubmit = ({ post }) => {
         addPost(post)
@@ -19,12 +19,17 @@ const Posts = ({ photos, iam, addPost, resetForm, posts: { posts } }) => {
                     iam ?
                         <PostForm onSubmit={handleSubmit} />
                         :
-                        <span >Posts of ...</span>
+                        <span >Posts of {userName} </span>
                 }
             </div>
             <div className={`${s.postsContainer} ${s.centered}`}>
                 {
-                    posts.map((obj, i) => <Post key={i} state={obj} photos={photos} />)
+                    posts.map((obj) => {
+                        const handleDelete = () => {
+                            deletePost(obj.id)
+                        }
+                        return <Post key={obj.id} iam={iam} state={obj} photos={photos} deletePost={handleDelete} />
+                    }).reverse()
                 }
             </div>
         </div>

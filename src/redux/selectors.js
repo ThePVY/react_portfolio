@@ -16,6 +16,7 @@ const selecror = {
     },
     profile: {
         getData: state => state.profile.info.data,
+        getUserName: state => state.profile.info.data.fullName,
         getStatus: state => state.profile.info.status,
         getPhotos: state => state.profile.info.data.photos,
         getPosts: state => state.profile.posts,

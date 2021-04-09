@@ -40,12 +40,13 @@ const Profile = (props) => {
 const mapStateToProps = (state) => {
     return {
         photos: selecror.profile.getPhotos(state),
+        userName: selecror.profile.getUserName(state),
         posts: selecror.profile.getPosts(state),
         authId: selecror.auth.getAuthId(state),
         userId: selecror.profile.getUserId(state),
 
         data: selecror.profile.getData(state),
-        status: selecror.profile.getStatus(state)
+        status: selecror.profile.getStatus(state),
     }
 }
 

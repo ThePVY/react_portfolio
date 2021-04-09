@@ -19,8 +19,8 @@
 }
 
 .messageContainer {
-    min-height: 60px;
-    padding: 0.5em 1em;
+    min-height: 40px;
+    padding: 1em 1em;
     margin-left: 1em;
     border: 1px solid rgb(167, 166, 166);
     border-radius: 10px;
@@ -30,3 +30,19 @@
     word-break: normal;
     display: inline-block;
 }
+
+.like, .delete {
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.delete button {
+    position: relative;
+    left: 15.5vw;
+    bottom: 1.5em;
+}
+
+.delete button {
+    width: 150px;
+}
+

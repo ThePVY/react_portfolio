@@ -1,4 +1,4 @@
-import styles from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.css'
 import Ava from './Ava/Ava'
 import AboutMe from './AboutMe/AboutMe'
 import Contacts from './Contacts/Contacts'
@@ -11,15 +11,15 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
     const psProps = { status, publishStatus, authId, userId }
 
     useEffect(() => {
-        const container = document.querySelector(`.${styles.profileInfo}`)
-        const content = document.querySelector(`.${styles.content}`)
+        const container = document.querySelector(`.${s.profileInfo}`)
+        const content = document.querySelector(`.${s.content}`)
 
         makeSlideContent(content, container)
     }, [])
     
     return (
-        <div className={styles.profileInfo}>
-            <div className={styles.content}>
+        <div className={s.profileInfo}>
+            <div className={s.content}>
                 <Ava photos={data.photos} />
                 <ProfileStatus {...psProps} />
                 <AboutMe aboutMe={data.aboutMe} name={data.fullName}/>
@@ -34,60 +34,13 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
                     Video
                 </div>
 
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
-                <div>FOR TAKE PLACE</div>
+                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                
             </div>
         </div>
     );
