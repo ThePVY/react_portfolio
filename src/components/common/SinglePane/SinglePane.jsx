@@ -1,9 +1,12 @@
 import s from './SinglePane.module.css'
 
-const SinglePane = props => {
+const SinglePane = ({ children, fixedHeight = false }) => {
+    
+    const style = `${s.content} ${fixedHeight && s.fixedHeight}`
+    
     return (
-        <div className={s.content}>
-            {props.children}
+        <div className={style}>
+            {children}
         </div>
     )
 }

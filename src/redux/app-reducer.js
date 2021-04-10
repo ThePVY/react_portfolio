@@ -2,31 +2,34 @@ import { thunkCreator as authTC } from "./auth-reducer"
 import { thunkCreator as profileTC } from "./profile-reducer"
 
 const SET_INITIALIZED = 'SET_INITIALIZED'
+const TOGGLE_RESET = 'TOGGLE_RESET'
 
 //for construct action in components
 export const actionCreator = {
-    setInitialized: () => ({ type: SET_INITIALIZED })
+    setInitialized: () => ({ type: SET_INITIALIZED }),
 }
 
-export const initializeApp = () => dispatch => {
-    const authPromise = dispatch(authTC.getAuthData())
-    const profileDataPromise = authPromise.then( (userId) => dispatch(profileTC.getProfileData(userId)) )
-    const profileStatusPromise = authPromise.then( (userId) => dispatch(profileTC.getProfileStatus(userId)) )
+export const initializeApp = () => async dispatch => {
+    try {
+        const userId = await dispatch(authTC.getAuthData())
 
-    Promise.all([profileDataPromise, profileStatusPromise])
-        .then(() => {
-            dispatch(actionCreator.setInitialized())
-        })
-        .catch(() => {
-            setTimeout(() => {
-                dispatch(initializeApp)
-            }, 3000)
-        })
+        await dispatch(profileTC.getProfileData(userId))
+        await dispatch(profileTC.getProfileStatus(userId))
+        console.log('App Reducer loaded Status and Data')
+
+        dispatch(actionCreator.setInitialized())
+    }
+    catch (err) {
+        setTimeout(() => {
+            dispatch(initializeApp)
+        }, 3000)
+    }
 }
 
 //initial value of state
 const initialState = {
-    initialized: false
+    initialized: false,
+    reset: false
 }
 
 //for changing state in store

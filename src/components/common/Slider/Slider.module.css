@@ -1,0 +1,46 @@
+.slider {
+    position: relative;
+    top: 0px;
+    width: 240px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.slider img {
+    width: 100px;
+    height: 100px;
+}
+
+.imagesContainer {
+    display: flex;
+    width: 600px;
+    height: 100px;
+
+    position: absolute;
+    right: -180px;
+}
+
+.imagesContainer div {
+    position: absolute;
+    transition: all 2s;
+}
+
+.prev2xDiv {
+    right: 0px;
+}
+
+.prevDiv {
+    right: 120px;
+}
+
+.currDiv {
+    right: 240px;
+}
+
+.nextDiv {
+    right: 360px;
+}
+
+.next2xDiv {
+    right: 480px;
+}

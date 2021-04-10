@@ -28,30 +28,42 @@ export const getProfileAC = () => actionCreator
 
 export const thunkCreator = {
     getProfileData(userId) {
-        return dispatch => {
-            if (userId) return profileAPI.getProfileData(userId)
-                .then((data) => {
-                    dispatch(actionCreator.info.setUserProfileData(data))
-                    dispatch(actionCreator.common.setUserId(userId))
-                })
+        return async dispatch => {
+            if (!userId) return
+            try {
+                const data = await profileAPI.getProfileData(userId)
+                dispatch(actionCreator.info.setUserProfileData(data))
+                dispatch(actionCreator.common.setUserId(userId))
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     },
     getProfileStatus(userId) {
-        return dispatch => {
-            if (userId) profileAPI.getProfileStatus(userId)
-                .then((status) => {
-                    dispatch(actionCreator.info.setProfileStatus(status ? status : undefined))
-                })
+        return async dispatch => {
+            if (!userId) return
+            try {
+                const status = await profileAPI.getProfileStatus(userId)
+                dispatch(actionCreator.info.setProfileStatus(status ? status : undefined))
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     },
     putProfileStatus(statusObj) {
-        return dispatch => {
-            if ('status' in statusObj) profileAPI.putProfileStatus(statusObj)
-                .then((data) => {
-                    if (data.resultCode === 0) {
-                        dispatch(actionCreator.info.setProfileStatus(statusObj.status))
-                    }
-                })
+        return async dispatch => {
+            if ('status' in statusObj === false) return
+            try {
+                const data = await profileAPI.putProfileStatus(statusObj)
+                if (data.resultCode === 0) {
+                    dispatch(actionCreator.info.setProfileStatus(statusObj.status))
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     },
     resetForm(form) {

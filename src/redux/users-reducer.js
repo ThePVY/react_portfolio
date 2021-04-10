@@ -25,33 +25,35 @@ export const getUsersAC = () => actionCreator
 
 export const thunkCreator = {
     getUsers(p) {
-        return dispatch => {
-            dispatch(actionCreator.usersList.toggleIsFetching(true))
-            return usersAPI.getUsers(p)
-                .then((data) => {
-                    dispatch(actionCreator.usersList.setUsers(data.items))
-                    dispatch(actionCreator.usersList.setUsersCount(data.totalCount))
-                    dispatch(actionCreator.usersList.toggleIsFetching(false))
-                })
-                .catch(() => {
-                    dispatch(actionCreator.usersList.toggleIsFetching(false))
-                })
+        return async dispatch => {
+            try {
+                dispatch(actionCreator.usersList.toggleIsFetching(true))
+                const data = await usersAPI.getUsers(p)
+                dispatch(actionCreator.usersList.setUsers(data.items))
+                dispatch(actionCreator.usersList.setUsersCount(data.totalCount))
+                dispatch(actionCreator.usersList.toggleIsFetching(false))
+            }
+            catch (err) {
+                dispatch(actionCreator.usersList.toggleIsFetching(false))
+                console.log(err)
+            }
         }
     },
     setFollow(userId, followed) {
-        return dispatch => {
-            dispatch(actionCreator.usersList.toggleIsFetching(true))
-            dispatch(actionCreator.usersList.setLoadings(userId, true))
-            usersAPI.followRequest(userId, followed)
-                .then((data) => {
-                    dispatch(actionCreator.usersList.toggleIsFetching(false))
-                    dispatch(actionCreator.usersList.setLoadings(userId, false))
-                    if (!data.resultCode) dispatch(actionCreator.usersList.toggleFollow(userId))
-                })
-                .catch(() => {
-                    dispatch(actionCreator.usersList.toggleIsFetching(false))
-                    dispatch(actionCreator.usersList.setLoadings(userId, false))
-                })
+        return async dispatch => {
+            try {
+                dispatch(actionCreator.usersList.toggleIsFetching(true))
+                dispatch(actionCreator.usersList.setLoadings(userId, true))
+                const data = await usersAPI.followRequest(userId, followed)
+                dispatch(actionCreator.usersList.toggleIsFetching(false))
+                dispatch(actionCreator.usersList.setLoadings(userId, false))
+                if (!data.resultCode) dispatch(actionCreator.usersList.toggleFollow(userId))
+            }
+            catch (err) {
+                dispatch(actionCreator.usersList.toggleIsFetching(false))
+                dispatch(actionCreator.usersList.setLoadings(userId, false))
+                console.log(err)
+            }
         }
     }
 }

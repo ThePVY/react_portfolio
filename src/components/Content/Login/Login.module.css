@@ -16,13 +16,6 @@
     padding-bottom: 20px;
 }
 
-.loginForm input {
-    width: 20vw;
-}
-
-.checkboxContainer input {
-    width: fit-content;
-}
 
 .error {
     color: rgb(201, 67, 67);

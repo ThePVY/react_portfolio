@@ -56,4 +56,27 @@ a.active {
     color:rgb(148, 160, 160);
 }
 
+.centered {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+.centered-vertical {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top: 50%;
+    transform: translate(0px, -50%);
+}
+
+.centered-horizontal {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0px);
+}

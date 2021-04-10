@@ -17,6 +17,7 @@ const Profile = (props) => {
     useEffect(() => {
         getProfileStatus(userId)
         getProfileData(userId)
+        console.log('Profile loaded Status and Data')
     }, [authId, userId, getProfileData, getProfileStatus])
 
     const publishStatus = status => {

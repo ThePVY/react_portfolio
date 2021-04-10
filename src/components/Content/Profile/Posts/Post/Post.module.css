@@ -13,6 +13,10 @@
     transform: translate(0px, -50%);
 }
 
+.centered div {
+    text-align: center;
+}
+
 .post img {
     width: 50px;
     border-radius: 50px;
@@ -32,17 +36,19 @@
 }
 
 .like, .delete {
-    font-size: 0.7em;
+    font-size: 0.8em;
     font-weight: 600;
 }
 
-.delete button {
+.delete {
+    display: inline-block;
+
     position: relative;
     left: 15.5vw;
     bottom: 1.5em;
+
+    cursor: pointer;
 }
 
-.delete button {
-    width: 150px;
-}
+
 

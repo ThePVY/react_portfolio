@@ -6,3 +6,7 @@
     transform: translate(-50%, 0px);
     left: 50%;
 }
+
+.fixedHeight {
+    height: 86vh;
+}

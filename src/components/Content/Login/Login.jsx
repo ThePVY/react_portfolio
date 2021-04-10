@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import { useValidation } from '../../../hooks/useValidation'
 import { thunkCreator } from '../../../redux/auth-reducer'
 import { required } from '../../../scripts/validates'
-import { Input } from '../../common/CustomFields/CustomFields'
+import { Input, createField } from '../../common/CustomFields/CustomFields'
 import SinglePane from '../../common/SinglePane/SinglePane'
 import withProfileRedirection from '../../hoc/withProfileRedirection'
 import styles from './Login.module.css'
@@ -23,7 +23,7 @@ const Login = props => {
 }
 
 export default compose(
-    connect(null, {...thunkCreator}),
+    connect(null, { ...thunkCreator }),
     withProfileRedirection
 )(Login)
 
@@ -33,22 +33,14 @@ export default compose(
 
 let LoginForm = (props) => {
 
-    const [ email,  ] = useValidation(false)
-    const [ password,  ] = useValidation(false)
+    const [email,] = useValidation(false)
+    const [password,] = useValidation(false)
 
     return (
         <form onSubmit={props.handleSubmit} className={styles.loginForm}>
-            <div>
-                <Field component={Input} name='email' type='text' placeholder='Email'
-                    validate={[required]} isValid={email.setIsValid} />
-            </div>
-            <div>
-                <Field component={Input} name='password' type='password' placeholder='Password'
-                    validate={[required]} isValid={password.setIsValid} />
-            </div>
-            <div className={styles.checkboxContainer}>
-                <Field component={Input} name='rememberMe' type='checkbox' /> Remember me
-            </div>
+            {createField(Input, 'email', 'text', 'Email', [required], email.setIsValid)}
+            {createField(Input, 'password', 'password', 'Password', [required], password.setIsValid)}
+            {createField(Input, 'rememberMe', 'checkbox', undefined, undefined, undefined, 'Remember me')}
             {
                 props.error ? <div><span className={styles.error} >{props.error}</span></div> : ''
             }

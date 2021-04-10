@@ -4,17 +4,19 @@ import AboutMe from './AboutMe/AboutMe'
 import Contacts from './Contacts/Contacts'
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { useEffect } from 'react';
-import makeSlideContent from '../../../../scripts/makeSlideContent';
+import makeSlideContent, { removeScrollListener } from '../../../../scripts/makeSlideContent';
 
-const ProfileInfo = ({ data, status, authId, userId, publishStatus  }) => {
+const ProfileInfo = ({ data, status, authId, userId, publishStatus }) => {
 
     const psProps = { status, publishStatus, authId, userId }
 
     useEffect(() => {
         const container = document.querySelector(`.${s.profileInfo}`)
         const content = document.querySelector(`.${s.content}`)
-
-        makeSlideContent(content, container)
+        const scrollListener = makeSlideContent(content, container)
+        return () => {
+            removeScrollListener(scrollListener)
+        }
     }, [])
     
     return (

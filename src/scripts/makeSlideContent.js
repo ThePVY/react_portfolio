@@ -1,73 +1,108 @@
 const makeSlideContent = (content, container) => {
 
-    let isStick = false;
-    let inRange = false;
-    let [prevOffset, currOffset] = ['', ''];
-    let [prevScroll, currScroll] = ['', ''];
+    window.addEventListener('scroll', scrollListener)
+
+    let isStick = false
+    let inRange = false
+    let [prevOffset, currOffset] = ['', '']
+    let [prevScroll, currScroll] = ['', '']
 
     let top2container
     let topBoundary
     let bottomBoundary
-    
-    window.addEventListener('scroll', () => {
 
-        top2container = container.getBoundingClientRect().top + window.pageYOffset; //Frop page top to top of the sticky container
-        topBoundary = top2container;
-        bottomBoundary = topBoundary + container.offsetHeight;
 
-        inRange = checkRange(topBoundary, bottomBoundary);
+    const resetPositioning = (isOverContainer) => {
+        isStick = false
+        content.style.position = 'relative'
+        isOverContainer ?
+            content.style.top = `0px`
+            :
+            content.style.top = `${currOffset - content.offsetHeight + window.innerHeight - top2container}px`
+    }
+
+    const setPositioning = (position, top, stick) => {
+        content.style.position = position
+        content.style.top = top
+        isStick = stick
+    }
+
+    const checkRange = (topBoundary, botBoundary) => {
+        let inRange = ((botBoundary > window.pageYOffset + window.innerHeight) && topBoundary < window.pageYOffset) ? true : false
+        return inRange
+    }
+
+    const contentTooSmall = () => content.offsetHeight < window.innerHeight
+
+    const reachedContentBottom = () => !isStick && currOffset + window.innerHeight >= content.offsetTop + content.offsetHeight
+
+    const reachedContentTop = () => !isStick && currOffset <= content.offsetTop
+
+    const changedDirectionMidway = () => !isStick && currScroll !== prevScroll
+
+    const changedDirection = () => isStick && currScroll !== prevScroll
+
+    /*-----------------------------------------------------------------------------------------------*/
+
+    function scrollListener() {
+        //need to calculate every scroll to catch window resizing
+        top2container = container.getBoundingClientRect().top + window.pageYOffset //Frop page top to top of the sticky container
+        topBoundary = top2container
+        bottomBoundary = topBoundary + container.offsetHeight
+
+        inRange = checkRange(topBoundary, bottomBoundary)
         if (inRange && content.offsetHeight > window.innerHeight) {
-            currOffset = window.pageYOffset;
+            currOffset = window.pageYOffset
             if (currOffset > prevOffset) {
                 //scrolling down
-                currScroll = 'down';
-                if (!isStick && currOffset + window.innerHeight >= content.offsetTop + content.offsetHeight) {
-                    content.style.position = 'sticky';
-                    content.style.top = `-${content.offsetHeight - window.innerHeight}px`;
-                    isStick = true;
+                currScroll = 'down'
+                if (reachedContentBottom()) {
+                    const contentOffset = `-${content.offsetHeight - window.innerHeight}px`
+                    setPositioning('sticky', contentOffset, true)
                 }
-                else if (!isStick && currScroll !== prevScroll) {
-                    content.style.position = 'relative';
-                    content.style.top = `${content.offsetTop - top2container}px`;
+                else if (changedDirectionMidway()) {
+                    const contentOffset = `${content.offsetTop - top2container}px`
+                    setPositioning('relative', contentOffset, false)
                 }
-                else if (isStick && currScroll !== prevScroll) {
-                    content.style.position = 'relative';
-                    content.style.top = `${currOffset - top2container}px`;
-                    isStick = false;
+                else if (changedDirection()) {
+                    const contentOffset = `${currOffset - top2container}px`
+                    setPositioning('relative', contentOffset, false)
                 }
-                prevScroll = 'down';
+                prevScroll = 'down'
             }
             else {
                 //scrolling up
-                currScroll = 'up';
-                if (!isStick && currOffset <= content.offsetTop) {
-                    content.style.position = 'sticky';
-                    content.style.top = `0px`;
-                    isStick = true;
+                currScroll = 'up'
+                if (reachedContentTop()) {
+                    setPositioning('sticky', `0px`, true)
                 }
-                else if (!isStick && currScroll !== prevScroll) {
-                    content.style.position = 'relative';
-                    content.style.top = `${content.offsetTop - top2container}px`;
+                else if (changedDirectionMidway()) {
+                    setPositioning('relative', `${content.offsetTop - top2container}px`, false)
                 }
-                else if (isStick && currScroll !== prevScroll) {
-                    content.style.position = 'relative';
-                    content.style.top = `${currOffset - content.offsetHeight + window.innerHeight - top2container}px`;
-                    isStick = false;
+                else if (changedDirection()) {
+                    const contentOffset = `${currOffset - content.offsetHeight + window.innerHeight - top2container}px`
+                    setPositioning('relative', contentOffset, false)
                 }
-                prevScroll = 'up';
+                prevScroll = 'up'
             }
-            prevOffset = window.pageYOffset;
+            prevOffset = currOffset
         }
-        else if (content.offsetHeight < window.innerHeight) {
-            content.style.position = 'sticky';
-            content.style.top = '0px';
+        else if (contentTooSmall()) {
+            setPositioning('sticky', `0px`, true)
         }
-    });
+        else {
+            resetPositioning(window.pageYOffset < top2container)
+        }
+    }
 
-    const checkRange = (topBoundary, botBoundary) => {
-        let inRange = (botBoundary > window.pageYOffset + window.innerHeight && topBoundary < window.pageYOffset) ? true : false;
-        return inRange;
-    };
-};
+    return scrollListener
+}
 
-export default makeSlideContent;
+export default makeSlideContent
+
+export const removeScrollListener = (listener) => {
+    window.removeEventListener('scroll', listener)
+}
+
+
+/*-----------------------------------------------------------------------------------------------*/

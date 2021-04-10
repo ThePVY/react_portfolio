@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { authAPI } from "../api/auth-api"
+import { initializeApp } from "./app-reducer"
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 
@@ -10,30 +11,42 @@ export const actionCreator = {
 
 export const thunkCreator = {
     getAuthData() {
-        return dispatch => {
-            return authAPI.getAuthData()
-                .then((data) => {
-                    if (data.resultCode === 0)
-                        dispatch(actionCreator.setAuthData(data))
+        return async dispatch => {
+            try {
+                const data = await authAPI.getAuthData()
+                if (data.resultCode === 0) {
+                    dispatch(actionCreator.setAuthData(data))
                     return data.data.id
-                })
+                }
+                else {
+                    console.log('Get auth data result code = 1')
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     },
     signIn(jsonObj) {
-        return dispatch => {
-            authAPI.signIn(jsonObj).then((data) => {
+        return async dispatch => {
+            try {
+                const data = await authAPI.signIn(jsonObj)
                 if (data.resultCode === 0)
-                    dispatch(thunkCreator.getAuthData())
+                    dispatch(initializeApp())
                 else {
                     const errorMessage = data.messages ? data.messages[0] : 'Some Error'
                     dispatch(stopSubmit('login', { _error: errorMessage }))
                 }
-            })
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     },
     signOut() {
-        return dispatch => {
-            authAPI.signOut().then((data) => {
+        return async dispatch => {
+            try {
+                const data = await authAPI.signOut()
                 if (data.resultCode === 0) {
                     const authData = {
                         resultCode: 1,
@@ -45,7 +58,10 @@ export const thunkCreator = {
                     }
                     dispatch(actionCreator.setAuthData(authData))
                 }
-            })
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
     }
 }
