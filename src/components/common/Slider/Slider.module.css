@@ -1,23 +1,85 @@
 .slider {
+    box-sizing: border-box;
     position: relative;
     top: 0px;
-    width: 240px;
-    height: 100px;
+    width: 100%;
+    height: 15vw;
+}
+
+.slider .buttons {
+    box-sizing: border-box;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+
+    top: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.buttons button {
+    border: hidden;
+    background: transparent;
+    padding: 0px;
+}
+.buttons img {
+    width: 2vw;
+}
+
+.slider .buttonLeft {
+    left: 10px;
+}
+
+.slider .buttonRight {
+    right: 10px;
+}
+
+.slider .toggleSlide {
+    top: unset;
+    bottom: -4vw;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.toggleSlide button {
+    border: 1px solid grey;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 150px;
+    height: 30px;
+}
+
+.visibleArea {
+    /* Чтобы visibleArea был позиционируемым.
+    Это нужно для того, чтобы imagesContainer
+    позиционировался относительно visibleArea */
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    /* В width должно вместиться ровно 2 периода картинок */
+    width: 40vw;
+    height: 15vw;
     overflow: hidden;
 }
 
-.slider img {
-    width: 100px;
-    height: 100px;
+.visibleArea img {
+    width: 15vw;
+    height: 15vw;
 }
 
 .imagesContainer {
     display: flex;
-    width: 600px;
-    height: 100px;
+    /* Width должна быть равна 5 периодам картинок */
+    width: 100vw;
+    height: 15vw;
 
     position: absolute;
-    right: -180px;
+    /* Половина ширины картинки + период следования картинок */
+    left: -27.5vw; 
 }
 
 .imagesContainer div {
@@ -26,21 +88,22 @@
 }
 
 .prev2xDiv {
-    right: 0px;
+    left: 0px;
 }
 
 .prevDiv {
-    right: 120px;
+    /* Период следования каринок 20vw */
+    left: 20vw;
 }
 
 .currDiv {
-    right: 240px;
+    left: 40vw;
 }
 
 .nextDiv {
-    right: 360px;
+    left: 60vw;
 }
 
 .next2xDiv {
-    right: 480px;
+    left: 80vw;
 }

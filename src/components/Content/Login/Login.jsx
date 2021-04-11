@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { Field, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { useValidation } from '../../../hooks/useValidation'
 import { thunkCreator } from '../../../redux/auth-reducer'
 import { required } from '../../../scripts/validates'

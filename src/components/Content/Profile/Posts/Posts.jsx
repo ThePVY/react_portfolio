@@ -2,7 +2,7 @@ import s from './Posts.module.css'
 import Post from './Post/Post'
 import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired, validate500 } from '../../../../scripts/validates';
-import { Textarea } from '../../../common/CustomFields/CustomFields';
+import { createField, Textarea } from '../../../common/CustomFields/CustomFields';
 import { useValidation } from '../../../../hooks/useValidation';
 
 const Posts = ({ userName = '...', photos, iam = false, addPost, deletePost, resetForm, posts: { posts } }) => {
@@ -46,10 +46,7 @@ let PostForm = props => {
 
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={Textarea} name='post' type='text' placeholder='Enter your Post'
-                    validate={[noErrorRequired, validate500]} isValid={postVO.setIsValid} />
-            </div>
+            {createField(Textarea, 'post', 'text', 'Enter your Post', [noErrorRequired, validate500], postVO.setIsValid)}
             <div>
                 <button type='submit' disabled={!postVO.isValid} >Add Post</button>
             </div>

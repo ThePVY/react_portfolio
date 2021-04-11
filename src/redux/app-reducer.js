@@ -2,7 +2,6 @@ import { thunkCreator as authTC } from "./auth-reducer"
 import { thunkCreator as profileTC } from "./profile-reducer"
 
 const SET_INITIALIZED = 'SET_INITIALIZED'
-const TOGGLE_RESET = 'TOGGLE_RESET'
 
 //for construct action in components
 export const actionCreator = {
@@ -21,6 +20,8 @@ export const initializeApp = () => async dispatch => {
     }
     catch (err) {
         setTimeout(() => {
+            console.log(err)
+            console.log('Reinitialization...')
             dispatch(initializeApp)
         }, 3000)
     }
