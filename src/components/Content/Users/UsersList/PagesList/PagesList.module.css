@@ -1,4 +1,5 @@
 .pagesList {
+    display: flex;
     width: fit-content;
     transform: translate(-50%, 0px);
     position: relative;
@@ -22,4 +23,13 @@
 
 .preloader span {
     padding: 0px;
+}
+
+.pageSearchForm {
+    display: flex;
+}
+
+.pageSearchForm input {
+    width: 4vw;
+    text-align: center;
 }

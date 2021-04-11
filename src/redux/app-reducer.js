@@ -1,3 +1,4 @@
+import { reset } from "redux-form"
 import { thunkCreator as authTC } from "./auth-reducer"
 import { thunkCreator as profileTC } from "./profile-reducer"
 
@@ -26,6 +27,8 @@ export const initializeApp = () => async dispatch => {
         }, 3000)
     }
 }
+
+export const resetForm = (form) => dispatch => dispatch(reset(form))
 
 //initial value of state
 const initialState = {

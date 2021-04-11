@@ -5,6 +5,7 @@ import selecror from '../../../redux/selectors'
 import { thunkCreator, actionCreator } from '../../../redux/users-reducer'
 import SinglePane from '../../common/SinglePane/SinglePane'
 import UsersList from './UsersList/UsersList'
+import { resetForm } from '../../../redux/app-reducer'
 
 const Users = ({ getUsers, selectedPage, setSelectedPage, setFollow, ...rest }) => {
     
@@ -32,5 +33,5 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { ...thunkCreator, ...actionCreator.usersList }),
+    connect(mapStateToProps, { ...thunkCreator, ...actionCreator.usersList, resetForm }),
 )(Users)

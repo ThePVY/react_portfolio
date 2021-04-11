@@ -16,7 +16,7 @@ const CurrentDialog = ({ messages, addMessage, resetForm }) => {
         <div className={styles.dialog}>
             <div className={styles.messages}>
                 {
-                    messages.map((obj) => <Message message={obj.message} my={obj.my} />)
+                    messages.map((obj) => <Message key={obj.id} message={obj.message} my={obj.my} />)
                 }
             </div>
             <MessageForm onSubmit={sendMessage} />

@@ -12,6 +12,10 @@ export const validate50 = validateLengthCreator(50)
 
 export const validate10 = validateLengthCreator(10)
 
+export const validateNum = (str = '') => {
+    return ~str.search(/[^0-9]/) ? 'Enter a number' : undefined
+}
+
 export const required = value => value ? undefined : 'This Field is required'
 
 //Обязательно вернуть массив, обычная пустая строка не работает

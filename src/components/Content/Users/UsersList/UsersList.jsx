@@ -5,8 +5,8 @@ import PagesList from './PagesList/PagesList';
 
 const UsersList = props => {
     const { usersList, pagesCount, selectedPage, isFetching, loadings } = props
-    const { onFollowClick, onPageClick } = props
-    const pageListProps = { onPageClick, pagesCount, selectedPage, isFetching };
+    const { onFollowClick, onPageClick, resetForm } = props
+    const pageListProps = { onPageClick, pagesCount, selectedPage, isFetching, resetForm };
     
     return (
         <div className={styles.usersList}>

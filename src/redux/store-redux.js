@@ -25,6 +25,4 @@ const store = createStore(reducers, composeEnhancers(
 window.store = store
 
 
-
-
 export default store

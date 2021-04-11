@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import SplitContent from '../../common/SplitContent/SplitContent';
+import { resetForm } from '../../../redux/app-reducer';
+
 
 const Profile = (props) => {
 
@@ -52,6 +54,6 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { ...thunkCreator, ...actionCreator.posts }),
+    connect(mapStateToProps, { ...thunkCreator, ...actionCreator.posts, resetForm }),
     withRouter
 )(Profile);

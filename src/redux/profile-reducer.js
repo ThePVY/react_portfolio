@@ -65,11 +65,6 @@ export const thunkCreator = {
                 console.log(err)
             }
         }
-    },
-    resetForm(form) {
-        return dispatch => {
-            dispatch(reset(form))
-        }
     }
 }
 

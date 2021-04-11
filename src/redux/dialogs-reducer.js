@@ -8,12 +8,6 @@ export const actionCreator = {
     addMessage: message => ({ type: ADD_MESSAGE, message })
 }
 
-export const thunkCreator = ({
-    resetForm(form) {
-        return dispatch => dispatch(reset(form))
-    }
-})
-
 const avaSrc = undefined
 //initial value of state
 const initialState = {
