@@ -1,16 +1,17 @@
 import s from './Content.module.css'
-import { Route } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { initializeApp } from '../../redux/app-reducer'
-import Profile from './Profile/Profile';
-import Dialogs from './Dialogs/Dialogs';
-import Users from './Users/Users';
-import Login from './Login/Login';
 import Preloader from '../common/Preloader';
 import selecror from '../../redux/selectors';
-import News from './News/News';
-import Images from './Images/Images';
+
+const Profile = lazy(() => import('./Profile/Profile'))
+const Dialogs = lazy(() => import('./Dialogs/Dialogs'))
+const Users = lazy(() => import('./Users/Users'))
+const Login = lazy(() => import('./Login/Login'))
+const News = lazy(() => import('./News/News'))
+const Images = lazy(() => import('./Images/Images'))
 
 
 const Content = ({ initialized, initializeApp }) => {
@@ -22,19 +23,19 @@ const Content = ({ initialized, initializeApp }) => {
         <div className={s.content}>
             {
                 initialized ?
-                    <>
-                        <Route path='/profile/:userId?' render={() => <Profile />} />
-                        <Route path='/dialogs' render={() => <Dialogs />} />
-                        <Route path='/users' render={() => <Users />} />
-                        <Route path='/login' render={() => <Login />} />
-                        <Route path='/news' render={() => <News />} />
-                        <Route path='/images' render={() => <Images />} />
-                    </>
+                    <Suspense fallback={<PageLoading />}>
+                        <Switch>
+                            <Route path='/profile/:userId?' render={() => <Profile />} />
+                            <Route path='/dialogs' render={() => <Dialogs />} />
+                            <Route path='/users' render={() => <Users />} />
+                            <Route path='/login' render={() => <Login />} />
+                            <Route path='/news' render={() => <News />} />
+                            <Route path='/images' render={() => <Images />} />
+                        </Switch>
+                    </Suspense>
                     :
-                    <div className={s.preloaderContainer}>
-                        <Preloader isFetching={true} />
-                    </div>
-                    
+                    <PageLoading />
+
             }
         </div>
     );
@@ -45,4 +46,11 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { initializeApp })(Content);
+
+
+const PageLoading = props => (
+    <div className={s.preloaderContainer}>
+        <Preloader isFetching={true} />
+    </div>
+)
 

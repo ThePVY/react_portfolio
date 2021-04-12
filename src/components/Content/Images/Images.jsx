@@ -5,6 +5,8 @@ import SinglePane from '../../common/SinglePane/SinglePane'
 import Slider from '../../common/Slider/Slider'
 import s from './Images.module.css'
 import '../../../App.css'
+import ViewPanel from '../../common/ViewPanel/ViewPanel'
+import { useState } from 'react'
 
 
 const images = [
@@ -21,11 +23,24 @@ const images = [
 
 const Images = props => {
 
+    const [showViewPanel, setShowViewPanel] = useState(false)
+    const [content, setContent] = useState('Content')
+
+    const onImageClick = (e) => {
+        setContent(e.target)
+        setShowViewPanel(true)
+    }
+
+    const onExitClick = () => {
+        setShowViewPanel(false)
+    }
+
     return (
         <SinglePane fixedHeight={true}>
             <div className={`centered ${s.images}`}>
-                <Slider images={images} />
+                <Slider images={images} onImageClick={onImageClick} />
             </div>
+            <ViewPanel content={'Content'} onExit={onExitClick}/>
         </SinglePane>
     )
 }

@@ -84,7 +84,7 @@
 
 .imagesContainer div {
     position: absolute;
-    transition: all 1.5s;
+    transition: all 1s;
 }
 
 .prev2xDiv {
