@@ -3,12 +3,16 @@ import s from './ViewPanel.module.css'
 
 const ViewPanel = ({ content, multiple = false, onNext, onPrev, onExit }) => {
 
-    const [viewMode, setViewMode] = useState(false)
+    const handleExit = (e) => {
+        if (e.target.className === s.viewPanel) {
+            onExit()
+        }
+    }
 
     return (
-        <div className={s.viewPanel}>
+        <div onClick={handleExit} className={s.viewPanel}>
             <div className={s.contentArea}>
-                {content}
+                <img src={content.src} alt=""/>
             </div>
             {
                 multiple &&

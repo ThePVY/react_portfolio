@@ -3,7 +3,7 @@ import s from './Slider.module.css'
 import arrowRight from '../../../images/arrow-icon-right.png'
 import arrowLeft from '../../../images/arrow-icon-left.png'
 
-const Slider = ({ images }) => {
+const Slider = ({ images, onImageClick }) => {
 
     const [imagesState, setImagesState] = useState({
         prev2xImage: images.length - 2,
@@ -50,7 +50,7 @@ const Slider = ({ images }) => {
                         {imgs[imagesState.prevImage]}
                     </div>
 
-                    <div key={images[imagesState.currImage].id} className={`${s.currDiv} `}>
+                    <div key={images[imagesState.currImage].id} className={`${s.currDiv}`} onClick={onImageClick} >
                         {imgs[imagesState.currImage]}
                     </div>
 

@@ -17,10 +17,11 @@ div {
 
 .app-wrapper {
     background-color     : rgb(236, 236, 236);
+    z-index: 100;
     min-height           : 100%;
     display              : grid;
     grid-template-rows   : 6vh 1fr 6vh;
-    grid-template-columns: 1fr 150px minmax(200px, 5fr) 1fr;
+    grid-template-columns: 1fr minmax(150px, 1fr) minmax(800px, 7fr) 1fr;
     grid-template-areas  :
         "header header  header  header"
         ".      side    content ."

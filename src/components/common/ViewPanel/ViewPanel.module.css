@@ -8,9 +8,9 @@
     left: 0px;
     bottom: 0px;
     right: 0px;
+    margin: auto;
 
-    background-color: grey;
-    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .contentArea {
@@ -22,4 +22,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.contentArea img {
+    width: 30vw;
+    max-height: 40vh;
 }

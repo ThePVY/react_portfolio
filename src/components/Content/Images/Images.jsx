@@ -10,14 +10,14 @@ import { useState } from 'react'
 
 
 const images = [
-    {id: 0, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/0.jpg',},
-    {id: 1, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/1-800x1131.jpg'},
-    {id: 2, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/2-800x1131.jpg'},
-    {id: 3, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/3-800x1131.jpg'},
-    {id: 4, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/4-800x1131.jpg'},
-    {id: 5, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/5.jpg'},
-    {id: 6, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/6.jpg'},
-    {id: 7, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/7.jpg'},
+    { id: 0, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/0.jpg', },
+    { id: 1, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/1-800x1131.jpg' },
+    { id: 2, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/2-800x1131.jpg' },
+    { id: 3, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/3-800x1131.jpg' },
+    { id: 4, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/4-800x1131.jpg' },
+    { id: 5, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/5.jpg' },
+    { id: 6, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/6.jpg' },
+    { id: 7, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/7.jpg' },
 ]
 
 
@@ -36,12 +36,17 @@ const Images = props => {
     }
 
     return (
-        <SinglePane fixedHeight={true}>
-            <div className={`centered ${s.images}`}>
-                <Slider images={images} onImageClick={onImageClick} />
-            </div>
-            <ViewPanel content={'Content'} onExit={onExitClick}/>
-        </SinglePane>
+        <>
+            <SinglePane fixedHeight={true}>
+                <div className={`centered ${s.images}`}>
+                    <Slider images={images} onImageClick={onImageClick} />
+                </div>
+            </SinglePane>
+            {
+                showViewPanel &&
+                <ViewPanel content={content} onExit={onExitClick} />
+            }
+        </>
     )
 }
 
