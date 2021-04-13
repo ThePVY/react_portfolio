@@ -35,10 +35,6 @@ const Images = props => {
         setCurrImageId(image.id)
     }
 
-    const onExitClick = () => {
-        setShowViewPanel(false)
-    }
-
     const nextImage = () => {
         const nextId = getNextItemId(currImageId, images)
         setCurrImageId(nextId)
@@ -52,8 +48,9 @@ const Images = props => {
     }
 
     const closePanel = (e) => {
-        if (e.target.className === 'centered-absolute screen-shadowed') {
-            onExitClick()
+        if (e.target.className === `${s.shadowContainer} screen-shadowed`) {
+            setShowViewPanel(false)
+            exitObservers.forEach(fn => fn())
         }
     }
 
@@ -65,11 +62,13 @@ const Images = props => {
                 </div>
                 {
                     showViewPanel &&
-                    <ViewPanel content={content} multiple={true} onExit={onExitClick} exitObservers={exitObservers}
+                    <ViewPanel content={content} multiple={true} exitObservers={exitObservers}
                         onNext={nextImage} onPrev={prevImage} />
                 }
+                <div>
+                    <div className={showViewPanel && `${s.shadowContainer} screen-shadowed`} onClick={closePanel} ></div>
+                </div>
             </SinglePane>
-            <div className={showViewPanel && 'centered-absolute screen-shadowed'} onClick={closePanel} ></div>
         </>
 
 

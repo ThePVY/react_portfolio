@@ -62,8 +62,6 @@ a.active {
 }
 
 .centered {
-    width: fit-content;
-    height: fit-content;
     position: relative;
     top: 50%;
     left: 50%;
@@ -71,16 +69,12 @@ a.active {
 }
 
 .centered-vertical {
-    width: fit-content;
-    height: fit-content;
     position: relative;
     top: 50%;
     transform: translate(0px, -50%);
 }
 
 .centered-horizontal {
-    width: fit-content;
-    height: fit-content;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0px);
@@ -100,4 +94,9 @@ a.active {
     width: 100vw;
     height: 100vh;
     z-index: 0;
+}
+
+.fit-content {
+    width: fit-content;
+    height: fit-content;
 }
