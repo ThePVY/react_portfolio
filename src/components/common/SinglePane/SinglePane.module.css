@@ -2,17 +2,21 @@
     background-color: white;
     width: 50vw;
     min-height: 86vh;
-    
-    /* position: relative;
-    transform: translate(-50%, 0px);
-    left: 50%; */
+}
 
+.absolute {
     position: absolute;
     top: 0px;
     left: 0px;
     bottom: 0px;
     right: 0px;
     margin: auto;
+}
+
+.relative {
+    position: relative;
+    transform: translate(-50%, 0px);
+    left: 50%;
 }
 
 .fixedHeight {

@@ -1,29 +1,31 @@
 import { useState } from 'react'
 import s from './ViewPanel.module.css'
 
-const ViewPanel = ({ content, multiple = false, onNext, onPrev, onExit }) => {
+const ViewPanel = ({ content, multiple = false, onNext, onPrev }) => {
 
-    const handleExit = (e) => {
-        if (e.target.className === s.viewPanel) {
+    const flexContainerClass = `centered-absolute ${s.flexContainer}`
+
+    /* const handleExit = (e) => {
+        if (e.target.className === flexContainerClass) {
             onExit()
+            exitObservers.forEach((fn) => fn())
         }
-    }
+    } */
 
     return (
-        <div onClick={handleExit} className={s.viewPanel}>
+        <div className={`centered-absolute ${s.flexContainer}`} >
+            {
+                multiple &&
+                <div className={s.leafContainer} onClick={onPrev}></div>
+            }
             <div className={s.contentArea}>
-                <img src={content.src} alt=""/>
+                <div className='centered'>
+                    {content}
+                </div>
             </div>
             {
                 multiple &&
-                <>
-                    <div className={s.nextContainer}>
-                        <button onClick={onNext}>Next</button>
-                    </div>
-                    <div className={s.prevContainer}>
-                        <button onClick={onPrev}>Prev</button>
-                    </div>
-                </>
+                <div className={s.leafContainer} onClick={onNext}></div>
             }
         </div>
     )

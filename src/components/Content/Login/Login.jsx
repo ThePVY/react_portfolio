@@ -16,7 +16,7 @@ const Login = props => {
     }
 
     return (
-        <SinglePane>
+        <SinglePane absolute={false} >
             <LoginForm onSubmit={submit} />
         </SinglePane>
     )

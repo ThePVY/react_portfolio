@@ -85,3 +85,19 @@ a.active {
     left: 50%;
     transform: translate(-50%, 0px);
 }
+
+.centered-absolute {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+}
+
+.screen-shadowed {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}

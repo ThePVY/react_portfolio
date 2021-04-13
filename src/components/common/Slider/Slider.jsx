@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import s from './Slider.module.css'
 import arrowRight from '../../../images/arrow-icon-right.png'
 import arrowLeft from '../../../images/arrow-icon-left.png'
 
-const Slider = ({ images, onImageClick }) => {
+const Slider = ({ images, onImageClick, exitObserver = {} }) => {
 
     const [imagesState, setImagesState] = useState({
         prev2xImage: images.length - 2,
@@ -38,6 +38,22 @@ const Slider = ({ images, onImageClick }) => {
 
     const handleToggle = () => setSlideMode(!slideMode)
 
+    const runSlider = () => setSlideMode(true)
+
+    useEffect(() => {
+        exitObserver.subscribe(runSlider)
+        console.log('slider subscribe use effect')
+        return () => {
+            exitObserver.unsubscribe(runSlider)
+            console.log('slider unsubscribe use effect')
+        }
+    }, [])
+
+    const handleImageClick = () => {
+        handleToggle()
+        onImageClick(images[imagesState.currImage])
+    }
+
     return (
         <div className={s.slider}>
             <div className={`${s.visibleArea}`}>
@@ -50,7 +66,7 @@ const Slider = ({ images, onImageClick }) => {
                         {imgs[imagesState.prevImage]}
                     </div>
 
-                    <div key={images[imagesState.currImage].id} className={`${s.currDiv}`} onClick={onImageClick} >
+                    <div key={images[imagesState.currImage].id} className={`${s.currDiv}`} onClick={handleImageClick} >
                         {imgs[imagesState.currImage]}
                     </div>
 

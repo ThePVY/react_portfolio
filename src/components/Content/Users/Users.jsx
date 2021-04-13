@@ -16,7 +16,7 @@ const Users = ({ getUsers, selectedPage, setSelectedPage, setFollow, ...rest }) 
     const onPageClick = p => setSelectedPage(p)
     
     return (
-        <SinglePane>
+        <SinglePane fixedHeight={false} absolute={false}>
             <UsersList {...rest} onPageClick={onPageClick} onFollowClick={setFollow} selectedPage={selectedPage} />
         </SinglePane>
     )
