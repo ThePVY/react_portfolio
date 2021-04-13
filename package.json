@@ -1,9 +1,9 @@
 {
+  "homepage": "https://thepvy.github.io/react_portfolio",
   "name": "react-kabzda-1",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "homepage": "https://thepvy.github.io/react_portfolio",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^13.1.2",
