@@ -1,4 +1,3 @@
-import { reset } from 'redux-form';
 import { profileAPI } from '../api/profile-api';
 import { spinLogo } from '../scripts/scripts';
 
@@ -59,6 +58,19 @@ export const thunkCreator = {
                 const data = await profileAPI.putProfileStatus(statusObj)
                 if (data.resultCode === 0) {
                     dispatch(actionCreator.info.setProfileStatus(statusObj.status))
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+    },
+    uploadProfilePhoto(photo, authId) {
+        return async dispatch => {
+            try {
+                const data = await profileAPI.putProfileImage(photo)
+                if (data.resultCode === 0) {
+                    dispatch(thunkCreator.getProfileData(authId))
                 }
             }
             catch (err) {

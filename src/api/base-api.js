@@ -30,4 +30,16 @@ BaseAPI.prototype.put = function(url, obj = {}) {
     return this.axios.put(url, obj).then(({ data }) => data)
 }
 
+BaseAPI.prototype.putFile = async function(url, file) {
+    const formData = new FormData()
+    formData.append('image', file)
+    const { data } = await this.axios.put(url, formData, {
+        headers: {
+            'API-KEY': PVY_KEY,
+            'Content-Type' : 'multipart/form-data'
+        }
+    })
+    return data
+}
+
 export default BaseAPI

@@ -47,31 +47,24 @@ const Images = props => {
         setContent(<img src={images[prevId].url} alt="Image" />)
     }
 
-    const closePanel = (e) => {
-        if (e.target.className === `${s.shadowContainer} screen-shadowed`) {
-            setShowViewPanel(false)
-            exitObservers.forEach(fn => fn())
-        }
+    const onPanelClose = () => {
+        setShowViewPanel(false)
+        exitObservers.forEach(fn => fn())
     }
 
     return (
         <>
-            <SinglePane fixedHeight={true} absolute={false}>
-                <div className={`centered ${s.images}`}>
-                    <Slider images={images} onImageClick={onImageClick} exitObserver={exitObserver} />
-                </div>
+            <SinglePane fixedHeight={true}>
                 {
                     showViewPanel &&
-                    <ViewPanel content={content} multiple={true} exitObservers={exitObservers}
-                        onNext={nextImage} onPrev={prevImage} />
+                    <ViewPanel isShown={showViewPanel} content={content} multiple={true}
+                        onNext={nextImage} onPrev={prevImage} onClose={onPanelClose} />
                 }
-                <div>
-                    <div className={showViewPanel && `${s.shadowContainer} screen-shadowed`} onClick={closePanel} ></div>
+                <div className={`${s.images}`}>
+                    <Slider images={images} onImageClick={onImageClick} exitObserver={exitObserver} />
                 </div>
             </SinglePane>
         </>
-
-
     )
 }
 

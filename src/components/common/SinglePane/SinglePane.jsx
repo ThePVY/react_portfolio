@@ -1,12 +1,14 @@
 import s from './SinglePane.module.css'
 
-const SinglePane = ({ children, fixedHeight = false, absolute = true }) => {
+const SinglePane = ({ children, fixedHeight = false }) => {
     
-    const style = `${s.content} ${fixedHeight && s.fixedHeight} ${absolute ? s.absolute : s.relative} `
+    const style = `${s.pane} ${fixedHeight && s.fixedHeight}`
     
     return (
         <div className={style}>
-            {children}
+            <div></div>
+            <div className={s.content}>{children}</div>
+            <div></div>
         </div>
     )
 }

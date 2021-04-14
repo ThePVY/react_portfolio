@@ -12,7 +12,7 @@ export const useObservers = (init = []) => {
             setObservers([...observers, subscriber])
         },
         unsubscribe: (subscriber) => {
-            setObservers(observers.filter((observer) => observer != subscriber))
+            setObservers(observers.filter((observer) => observer !== subscriber))
         }
     })
 

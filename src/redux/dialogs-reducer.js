@@ -1,4 +1,3 @@
-import { reset } from 'redux-form';
 import { spinLogo } from '../scripts/scripts';
 
 const ADD_MESSAGE = 'ADD-MESSAGE'

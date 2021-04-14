@@ -6,7 +6,7 @@ import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { useEffect } from 'react';
 import makeSlideContent, { removeScrollListener } from '../../../../scripts/makeSlideContent';
 
-const ProfileInfo = ({ data, status, authId, userId, publishStatus }) => {
+const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto }) => {
 
     const psProps = { status, publishStatus, authId, userId }
 
@@ -18,11 +18,15 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus }) => {
             removeScrollListener(scrollListener)
         }
     }, [])
+
+    const uploadPhoto = ({ photo }) => {
+        uploadProfilePhoto(photo, authId)
+    }
     
     return (
         <div className={s.profileInfo}>
             <div className={s.content}>
-                <Ava photos={data.photos} />
+                <Ava photos={data.photos} uploadPhoto={uploadPhoto} />
                 <ProfileStatus {...psProps} />
                 <AboutMe aboutMe={data.aboutMe} name={data.fullName}/>
                 <Contacts contacts={data.contacts} />

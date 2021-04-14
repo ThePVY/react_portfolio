@@ -1,4 +1,3 @@
-import s from './Profile.module.css'
 import { connect } from 'react-redux';
 import selecror from '../../../redux/selectors';
 import { actionCreator, thunkCreator } from '../../../redux/profile-reducer';

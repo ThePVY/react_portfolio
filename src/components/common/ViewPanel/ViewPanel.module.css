@@ -1,3 +1,9 @@
+.viewPanelContainer {
+    width: 0;
+    height: 0;
+    z-index: 2;
+}
+
 .flexContainer {
     display: flex;
 
@@ -5,6 +11,10 @@
     width: 45vw;
 
     z-index: 2;
+
+    position: relative;
+    left: -22.5vw;
+    top: 18vh;
 }
 
 .contentArea {
@@ -38,4 +48,15 @@
 
 .leafContainer:hover {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.shadowContainer {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+
+    z-index: 1;
 }

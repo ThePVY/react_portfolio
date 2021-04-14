@@ -55,7 +55,7 @@ const Slider = ({ images, onImageClick, exitObserver = {} }) => {
     }
 
     return (
-        <div className={s.slider}>
+        <div className={`centered ${s.slider}`}>
             <div className={`${s.visibleArea}`}>
                 <div className={`${s.imagesContainer}`}>
                     <div key={images[imagesState.prev2xImage].id} className={`${s.prev2xDiv}`}>

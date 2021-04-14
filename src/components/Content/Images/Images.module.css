@@ -1,13 +1,5 @@
 .images {
     box-sizing: border-box;
     width: 100%;
-}
-
-.shadowContainer {
-    position: absolute;
-    top: 0px;
-    left: -30.5vw;
-    bottom: 0px;
-    right: 0px;
-    margin: auto;
+    height: 100%;
 }

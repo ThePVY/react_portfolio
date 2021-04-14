@@ -18,4 +18,8 @@ ProfileAPI.prototype.putProfileStatus = function(statusObj) {
     return this.put(`profile/status`, statusObj)
 }
 
+ProfileAPI.prototype.putProfileImage = function(image) {
+    return this.putFile(`profile/photo`, image)
+}
+
 export const profileAPI = new ProfileAPI()
