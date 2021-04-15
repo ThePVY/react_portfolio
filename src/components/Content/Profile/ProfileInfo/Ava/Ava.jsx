@@ -23,7 +23,7 @@ const Ava = ({ photos = {}, uploadPhoto }) => {
                     :
                     ''
             }
-            <div className={`centered-horizontal ${s.panel} ${s.arrowUp}`} onClick={showForm} ></div>
+            <div className={`centered-horizontal ${s.panel} ${editMode? s.arrowUp : s.arrowDown}`} onClick={showForm} ></div>
         </div>
     );
 };
@@ -51,7 +51,7 @@ let AddPhotoForm = props => {
     }
 
     return (
-        <form onSubmit={props.handleSubmit} >
+        <form onSubmit={props.handleSubmit} className={`${s.avaForm} centered-horizontal`} >
             <div className={s.inputContainer}>
                 <Field component={renderInput} name='photo' type='file' validate={[required]} />
             </div>

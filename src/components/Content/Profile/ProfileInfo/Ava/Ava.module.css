@@ -1,9 +1,10 @@
 .avaBlock {
     width: 15vw;
     min-width: 250px;
-    height: 27vh;
-    min-height: 300px;
-    background-color: rgb(243, 241, 241);
+    height: fit-content;
+    
+    border: 1px solid grey;
+    border-radius: 20px;
 }
 
 .ava {
@@ -15,6 +16,10 @@
     border-radius: 100px;
 }
 
+.avaForm {
+    width: 90%;
+}
+
 .submitContainer, .inputContainer {
     width: fit-content;
     padding-top: 5px;
@@ -24,8 +29,11 @@
 .panel {
     box-sizing: border-box;
     width: 90%;
-    height: 10px;
-    background-color: rgb(192, 192, 192);
+    height: 15px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    background-color: rgb(243, 241, 241);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

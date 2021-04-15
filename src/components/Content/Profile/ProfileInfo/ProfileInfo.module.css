@@ -1,10 +1,6 @@
 .profileInfo {
+    box-sizing: border-box;
     height: 100%;
-    margin-right: 10px;
-}
-
-.content {
-    padding-top: 10px;
 }
 
 .profileInfo div {
@@ -15,6 +11,34 @@
     max-width: 150px;
 }
 
+.content {
+    padding-top: 10px;
+}
+
+.info {
+    box-sizing: border-box;
+    margin-top: 1em;
+    padding-bottom: 1em;
+    border: 1px solid grey;
+    border-radius: 20px;
+
+    width: 15vw;
+    min-width: 250px;
+}
+
+.editProfile {
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
 .takePlace {
     padding: 5em;
+}
+
+.infoForm div {
+    text-align: left;
+    padding-left: 1em;
 }

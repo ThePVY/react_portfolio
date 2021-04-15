@@ -4,7 +4,7 @@
     z-index: 2;
 }
 
-.flexContainer {
+.relativeFlexContainer {
     display: flex;
 
     height: 45vh;
@@ -15,6 +15,19 @@
     position: relative;
     left: -22.5vw;
     top: 18vh;
+}
+
+.absoluteFlexContainer {
+    display: flex;
+
+    height: 45vh;
+    width: 45vw;
+
+    z-index: 2;
+
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .contentArea {
@@ -52,11 +65,8 @@
 
 .shadowContainer {
     position: fixed;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    margin: auto;
+    top: 0;
+    left: 0;
 
     z-index: 1;
 }
