@@ -1,46 +1,48 @@
-.viewPanelContainer {
+.nullContainer {
     width: 0;
     height: 0;
-    z-index: 2;
+    z-index: 10;
 }
 
-.relativeFlexContainer {
-    display: flex;
+.viewPanel {
+    box-sizing: border-box;
+    height: 50vh;
+    width: 50vw;
+    
+    z-index: 10;
+}
 
-    height: 45vh;
-    width: 45vw;
-
-    z-index: 2;
-
+.relative {
     position: relative;
-    left: -22.5vw;
-    top: 18vh;
-}
-
-.absoluteFlexContainer {
-    display: flex;
-
-    height: 45vh;
-    width: 45vw;
-
-    z-index: 2;
-
-    position: absolute;
     left: 0;
     top: 0;
+    transform: translate(-50%, 40%);
+}
+
+.fixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
 }
 
 .contentArea {
     box-sizing: border-box;
+    background-color: white;
+
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
+    min-height: max-content;
 
-    padding: 10px;
+    position: absolute;
+    top: 0;
 
     animation: notransform 0.5s 1;
     animation-delay: .5;
-
-    background-color: white;
 }
 
 .contentArea img {
@@ -56,11 +58,11 @@
 .leafContainer {
     height: 100%;
     width: 5vw;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .leafContainer:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .shadowContainer {
@@ -68,5 +70,5 @@
     top: 0;
     left: 0;
 
-    z-index: 1;
+    z-index: 2;
 }

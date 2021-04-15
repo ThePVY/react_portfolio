@@ -22,4 +22,8 @@ ProfileAPI.prototype.putProfileImage = function(image) {
     return this.putFile(`profile/photo`, image)
 }
 
+ProfileAPI.prototype.putProfileInfo = function(info) {
+    return this.put(`profile`, info)
+}
+
 export const profileAPI = new ProfileAPI()

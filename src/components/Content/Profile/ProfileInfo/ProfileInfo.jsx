@@ -10,7 +10,7 @@ import { createField, Input, Textarea } from '../../../common/CustomFields/Custo
 import { useState } from 'react';
 import ViewPanel from '../../../common/ViewPanel/ViewPanel';
 
-const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto }) => {
+const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto, putProfileInfo }) => {
 
     const psProps = { status, publishStatus, authId, userId }
 
@@ -55,7 +55,8 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
                     <div onClick={showPanel} className={s.editProfile}>edit profile</div>
                     {
                         editMode ?
-                            <ViewPanel isShown={editMode} content={<AddProfileInfoForm />} onClose={closePanel} />
+                            <ViewPanel isShown={editMode} content={<AddProfileInfoForm onSubmit={putProfileInfo} />}
+                                fixed={true} onClose={closePanel} />
                             :
                             <>
                                 <AboutMe aboutMe={data.aboutMe} name={data.fullName} />
@@ -88,10 +89,11 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
 export default ProfileInfo;
 
 let AddProfileInfoForm = ({ handleSubmit }) => {
+    const formStyle = `${s.infoForm} centered-horizontal`
     return (
-        <form onSubmit={handleSubmit} className={s.infoForm}>
+        <form onSubmit={handleSubmit} className={formStyle}>
             {createField(Input, 'fullName', 'text', 'Enter your fullname')}
-            {createField(Input, 'lookingForAJob', 'checkbox')}
+            {createField(Input, 'lookingForAJob', 'checkbox', undefined, undefined, undefined, 'Looking for a Job')}
             {createField(Textarea, 'lookingForAJobDescription', 'text', 'Some words about desired job')}
             {createField(Input, 'contacts.github', 'text', 'github')}
             {createField(Input, 'contacts.vk', 'text', 'vk')}
@@ -101,7 +103,9 @@ let AddProfileInfoForm = ({ handleSubmit }) => {
             {createField(Input, 'contacts.website', 'text', 'website')}
             {createField(Input, 'contacts.youtube', 'text', 'youtube')}
             {createField(Input, 'contacts.mainLink', 'text', 'mainLink')}
-            <button type='submit'>Update profile information</button>
+            <div>
+                <button type='submit'>Update profile information</button>
+            </div>
         </form>
     )
 }

@@ -13,6 +13,7 @@
 
 .content {
     padding-top: 10px;
+    z-index: 1;
 }
 
 .info {
@@ -38,7 +39,15 @@
     padding: 5em;
 }
 
+.infoForm {
+    box-sizing: border-box;
+    width: 70%;
+    height: 100%;
+
+    overflow-y: scroll;
+}
+
 .infoForm div {
     text-align: left;
-    padding-left: 1em;
+    padding: .4em 0;
 }

@@ -77,6 +77,22 @@ export const thunkCreator = {
                 console.log(err)
             }
         }
+    },
+    putProfileInfo(info) {
+        return async (dispatch, getState) => {
+            try {
+                const userId = getState().auth.data.id
+                const obj = { ...info, userId }
+                const data = await profileAPI.putProfileInfo(obj)
+                if (data.resultCode === 0) {
+                    const profileData = await profileAPI.getProfileData(userId)
+                    dispatch(actionCreator.info.setUserProfileData(profileData))
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
     }
 }
 
