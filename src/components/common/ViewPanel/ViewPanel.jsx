@@ -15,7 +15,7 @@ const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose
 
     /* 
         viewPanelContainer нужен для того, чтобы ...FlexContainer можно было позиционировать relative
-        при этом не влияя на на элементы, окружающие ViewPanel
+        при этом не влияя на элементы, окружающие ViewPanel
      */
     return (
         <>

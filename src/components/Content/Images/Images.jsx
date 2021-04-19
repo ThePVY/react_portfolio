@@ -29,8 +29,10 @@ const Images = props => {
     const [[exitObservers, exitObserver],] = useObservers([])
     const [currImageId, setCurrImageId] = useState(0)
 
+    const viewPanelContent = (src) => <img src={src} alt='' className='disp-inl-block centered'/>
+
     const onImageClick = (image) => {
-        setContent(<img src={image.url} alt="Image" />)
+        setContent(viewPanelContent(image.url))
         setShowViewPanel(true)
         setCurrImageId(image.id)
     }
@@ -38,13 +40,13 @@ const Images = props => {
     const nextImage = () => {
         const nextId = getNextItemId(currImageId, images)
         setCurrImageId(nextId)
-        setContent(<img src={images[nextId].url} alt="Image" />)
+        setContent(viewPanelContent(images[nextId].url))
     }
 
     const prevImage = () => {
         const prevId = getPrevItemId(currImageId, images)
         setCurrImageId(prevId)
-        setContent(<img src={images[prevId].url} alt="Image" />)
+        setContent(viewPanelContent(images[prevId].url))
     }
 
     const onPanelClose = () => {
