@@ -9,6 +9,8 @@ import { reduxForm } from 'redux-form';
 import { createField, Input, Textarea } from '../../../common/CustomFields/CustomFields';
 import { useState } from 'react';
 import ViewPanel from '../../../common/ViewPanel/ViewPanel';
+import { required } from '../../../../scripts/validates';
+import ProfileData from './ProfileData/ProfileData';
 
 const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto, putProfileInfo }) => {
 
@@ -26,25 +28,15 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
         }
     }, [])
 
-    const setEdit = () => {
-        setShowEdit(true)
-    }
+    const setEdit = () => setShowEdit(true)
 
-    const resetEdit = () => {
-        setShowEdit(false)
-    }
+    const resetEdit = () => setShowEdit(false)
 
-    const uploadPhoto = ({ photo }) => {
-        uploadProfilePhoto(photo, authId)
-    }
+    const uploadPhoto = ({ photo }) => uploadProfilePhoto(photo, authId)
 
-    const closePanel = () => {
-        setEditMode(false)
-    }
+    const closePanel = () => setEditMode(false)
 
-    const showPanel = () => {
-        setEditMode(true)
-    }
+    const showPanel = () => setEditMode(true)
 
     return (
         <div className={s.profileInfo}>
@@ -59,8 +51,7 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
                                 fixed={true} onClose={closePanel} />
                             :
                             <>
-                                <AboutMe aboutMe={data.aboutMe} name={data.fullName} />
-                                <Contacts contacts={data.contacts} />
+                                <ProfileData data={data} />
                             </>
                     }
                 </div>
@@ -94,7 +85,8 @@ let AddProfileInfoForm = ({ handleSubmit }) => {
         <form onSubmit={handleSubmit} className={formStyle}>
             {createField(Input, 'fullName', 'text', 'Enter your fullname')}
             {createField(Input, 'lookingForAJob', 'checkbox', undefined, undefined, undefined, 'Looking for a Job')}
-            {createField(Textarea, 'lookingForAJobDescription', 'text', 'Some words about desired job')}
+            {createField(Textarea, 'lookingForAJobDescription', 'text', 'Your professional skills')}
+            {createField(Textarea, 'aboutMe', 'text', 'Some information about you')}
             {createField(Input, 'contacts.github', 'text', 'github')}
             {createField(Input, 'contacts.vk', 'text', 'vk')}
             {createField(Input, 'contacts.facebook', 'text', 'facebook')}

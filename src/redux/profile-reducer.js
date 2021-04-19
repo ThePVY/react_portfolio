@@ -88,6 +88,9 @@ export const thunkCreator = {
                     const profileData = await profileAPI.getProfileData(userId)
                     dispatch(actionCreator.info.setUserProfileData(profileData))
                 }
+                else {
+                    console.log(data)
+                }
             }
             catch (err) {
                 console.log(err)
