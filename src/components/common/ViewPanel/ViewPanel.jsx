@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import s from './ViewPanel.module.css'
 
 const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose, fixed = false }) => {
@@ -14,7 +13,7 @@ const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose
     const nullContainerStyle = !fixed && `centered-horizontal ${s.nullContainer}`
 
     /* 
-        viewPanelContainer нужен для того, чтобы ...FlexContainer можно было позиционировать relative
+        nullContainerStyle нужен для того, чтобы ...FlexContainer можно было позиционировать relative
         при этом не влияя на элементы, окружающие ViewPanel
      */
     return (
@@ -24,7 +23,6 @@ const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose
             </div>
             <div className={nullContainerStyle}>
                 <div className={viewPanelStyle} >
-
                     <div className={s.contentArea}>
                         {
                             multiple &&
@@ -38,7 +36,6 @@ const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose
                             <div className={s.leafContainer} onClick={onNext}></div>
                         }
                     </div>
-
                 </div>
             </div>
         </>

@@ -17,7 +17,12 @@
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "styled-components": "^5.2.3",
     "web-vitals": "^1.1.1"
+  },
+  "alias": {
+    "#components": "./src/components",
+    "#images": "./src/images"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,5 @@
 import s from './ProfileInfo.module.css'
 import Ava from './Ava/Ava'
-import AboutMe from './AboutMe/AboutMe'
-import Contacts from './Contacts/Contacts'
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { useEffect } from 'react';
 import makeSlideContent, { removeScrollListener } from '../../../../scripts/makeSlideContent';
@@ -9,8 +7,8 @@ import { reduxForm } from 'redux-form';
 import { createField, Input, Textarea } from '../../../common/CustomFields/CustomFields';
 import { useState } from 'react';
 import ViewPanel from '../../../common/ViewPanel/ViewPanel';
-import { required } from '../../../../scripts/validates';
 import ProfileData from './ProfileData/ProfileData';
+import { Button } from '../../../common/Buttons';
 
 const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto, putProfileInfo }) => {
 
@@ -96,7 +94,7 @@ let AddProfileInfoForm = ({ handleSubmit }) => {
             {createField(Input, 'contacts.youtube', 'text', 'youtube')}
             {createField(Input, 'contacts.mainLink', 'text', 'mainLink')}
             <div>
-                <button type='submit'>Update profile information</button>
+                <Button type='submit'>Update profile information</Button>
             </div>
         </form>
     )

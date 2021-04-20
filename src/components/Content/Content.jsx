@@ -14,7 +14,7 @@ const News = lazy(() => import('./News/News'))
 const Images = lazy(() => import('./Images/Images'))
 
 
-const Content = ({ initialized, initializeApp }) => {
+const Content = ({ initialized = false, initializeApp }) => {
     useEffect(() => {
         initializeApp()
     }, [initializeApp])

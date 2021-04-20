@@ -1,8 +1,9 @@
 import s from './Ava.module.css'
 import defaultUserImage from '../../../../../images/user-image.png'
 import { Field, reduxForm } from 'redux-form';
-import { noErrorRequired, required } from '../../../../../scripts/validates';
+import { noErrorRequired } from '../../../../../scripts/validates';
 import { useState } from 'react';
+import { Button, FileLabel } from '../../../../common/Buttons';
 
 const Ava = ({ photos = {}, uploadPhoto }) => {
 
@@ -30,18 +31,19 @@ const Ava = ({ photos = {}, uploadPhoto }) => {
 
 export default Ava;
 
+
 let AddPhotoForm = props => {
 
     const [isValid, setIsValid] = useState(false)
 
     const renderInput = ({ input, type, meta }) => {
         const { mime } = props
-        console.log(meta.valid)
         setIsValid(meta.valid)
         return (
-            <div>
+            <FileLabel>
+                Choose photo
                 <input name={input.name} type={type} accept={mime} onChange={e => handleChange(e, input)} />
-            </div>
+            </FileLabel>
         )
     }
 
@@ -53,11 +55,11 @@ let AddPhotoForm = props => {
     return (
         <form onSubmit={props.handleSubmit} className={`${s.avaForm} centered-horizontal`} >
             <div className={s.inputContainer}>
-                <Field component={renderInput} name='photo' type='file' validate={[required]} />
+                <Field component={renderInput} name='photo' type='file' validate={[noErrorRequired]} />
             </div>
 
             <div className={s.submitContainer} >
-                <button type='submit' disabled={!isValid} >Upload File</button>
+                <Button type='submit' disabled={!isValid} >Upload File</Button>
             </div>
         </form>
     )

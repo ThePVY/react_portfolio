@@ -29,14 +29,6 @@ div {
 
 }
 
-button {
-    background-color: rgb(255, 255, 255);
-    color: rgb(39, 41, 41);
-    padding: 5px 10px;
-    
-    border: 1px solid rgb(148, 148, 150);
-    border-radius: 5px;
-}
 
 textarea {
     min-width: fit-content;
@@ -115,4 +107,26 @@ a.active {
 
 .disp-inl-block {
     display: inline-block;
+}
+
+
+.spin {
+    display: inline-block;
+    position: relative;
+    animation-name: spinning-logo;
+    animation-duration: 1500ms;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+}
+
+@keyframes spinning-logo {
+    0% {
+        transform: scale(1, 1) rotate(0deg);
+    }
+    50% {
+        transform: scale(-1, 1) rotate(180deg);
+    }
+    100% {
+        transform: scale(1, 1) rotate(360deg);
+    }
 }

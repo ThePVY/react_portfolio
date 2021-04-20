@@ -1,8 +1,8 @@
 import headerStyles from '../components/Header/Header.module.css'
 
 export const spinLogo = () => {
-    const logo = document.querySelector(`.${headerStyles.header} img`);
-    logo.classList.add(headerStyles.spin);
+    const logo = document.querySelector(`.spinning-logo`);
+    logo.classList.add('spin');
     setTimeout(() => {
         logo.classList.remove(headerStyles.spin);
     }, 1500);

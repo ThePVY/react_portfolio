@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { change, Field, reduxForm } from 'redux-form';
 import { useValidation } from '../../../../../hooks/useValidation';
 import { noErrorRequired, validate50 } from '../../../../../scripts/validates';
+import { Button } from '../../../../common/Buttons';
 import { Textarea } from '../../../../common/CustomFields/CustomFields';
 import styles from './ProfileStatus.module.css'
 
@@ -60,8 +61,8 @@ let StatusForm = props => {
                     validate={[noErrorRequired, validate50]} isValid={statusVO.setIsValid} />
             </div>
             <div className={styles.buttonsContainer}>
-                <button type='submit' disabled={!statusVO.isValid} >Publish</button>
-                <button type='button' onClick={cancel} >Cancel</button>
+                <Button type='submit' disabled={!statusVO.isValid} >Publish</Button>
+                <Button type='button' onClick={cancel} >Cancel</Button>
             </div>
         </form>
     )
