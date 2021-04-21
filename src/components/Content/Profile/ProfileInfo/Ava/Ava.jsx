@@ -3,7 +3,40 @@ import defaultUserImage from '../../../../../images/user-image.png'
 import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired } from '../../../../../scripts/validates';
 import { useState } from 'react';
-import { Button, FileLabel } from '../../../../common/Buttons';
+import { Button, FileLabel, Container } from '../../../../common/Buttons';
+import styled from 'styled-components'
+import arrowUp from '../../../../../images/arrow-icon-up.png'
+import arrowDown from '../../../../../images/arrow-icon-down.png'
+
+const AvaContainer = styled(Container)`
+    width: 15vw;
+    margin: 0 auto;
+    min-width: 250px;
+    height: fit-content;
+    
+    border: 1px solid grey;
+    border-radius: 1em;
+
+    img {
+        max-width: 200px;
+        border-radius: 100px;
+    }
+`
+
+const Panel = styled(Container)`
+    box-sizing: border-box;
+    width: 90%;
+    height: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    background-color: rgb(243, 241, 241);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    background-image: ${props => props.editMode ? `url(${arrowUp})` : `url(${arrowDown})`};
+`
 
 const Ava = ({ photos = {}, uploadPhoto }) => {
 
@@ -12,20 +45,20 @@ const Ava = ({ photos = {}, uploadPhoto }) => {
     const showForm = () => setEditMode(!editMode)
 
     return (
-        <div className={`${s.avaBlock} centered-horizontal`} >
-            <div className={s.ava}>
+        <AvaContainer >
+            <Container padding='1em 0'>
                 {
                     photos.large ? <img src={photos.large} alt='' /> : <img src={defaultUserImage} alt='' />
                 }
-            </div>
+            </Container>
             {
                 editMode ?
                     <AddPhotoForm onSubmit={uploadPhoto} mime='.jpg, .png' />
                     :
                     ''
             }
-            <div className={`centered-horizontal ${s.panel} ${editMode? s.arrowUp : s.arrowDown}`} onClick={showForm} ></div>
-        </div>
+            <Panel editMode={editMode} onClick={showForm} ></Panel>
+        </AvaContainer>
     );
 };
 
@@ -53,15 +86,15 @@ let AddPhotoForm = props => {
     }
 
     return (
-        <form onSubmit={props.handleSubmit} className={`${s.avaForm} centered-horizontal`} >
-            <div className={s.inputContainer}>
+        <Container as='form' onSubmit={props.handleSubmit} width='90%' >
+            <Container margin='0 0 0.5em 0'>
                 <Field component={renderInput} name='photo' type='file' validate={[noErrorRequired]} />
-            </div>
+            </Container>
 
-            <div className={s.submitContainer} >
+            <Container>
                 <Button type='submit' disabled={!isValid} >Upload File</Button>
-            </div>
-        </form>
+            </Container>
+        </Container>
     )
 }
 

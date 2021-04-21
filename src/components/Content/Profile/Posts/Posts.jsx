@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired, validate500 } from '../../../../scripts/validates';
 import { createField, Textarea } from '../../../common/CustomFields/CustomFields';
 import { useValidation } from '../../../../hooks/useValidation';
+import { Button, Container } from '../../../common/Buttons';
 
 const Posts = ({ userName = '...', photos, iam = false, addPost, deletePost, resetForm, posts: { posts } }) => {
 
@@ -47,9 +48,9 @@ let PostForm = props => {
     return (
         <form onSubmit={props.handleSubmit}>
             {createField(Textarea, 'post', 'text', 'Enter your Post', [noErrorRequired, validate500], postVO.setIsValid)}
-            <div>
-                <button type='submit' disabled={!postVO.isValid} >Add Post</button>
-            </div>
+            <Container width='25%' margin='0'>
+                <Button type='submit' disabled={!postVO.isValid} >Add Post</Button>
+            </Container>
         </form>
     )
 }

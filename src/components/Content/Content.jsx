@@ -25,6 +25,7 @@ const Content = ({ initialized = false, initializeApp }) => {
                 initialized ?
                     <Suspense fallback={<PageLoading />}>
                         <Switch>
+                            <Route exact path='/' render={() => <Profile />} />
                             <Route path='/profile/:userId?' render={() => <Profile />} />
                             <Route path='/dialogs' render={() => <Dialogs />} />
                             <Route path='/users' render={() => <Users />} />
