@@ -1,14 +1,15 @@
-import s from './Ava.module.css'
 import defaultUserImage from '../../../../../images/user-image.png'
 import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired } from '../../../../../scripts/validates';
 import { useState } from 'react';
-import { Button, FileLabel, Container } from '../../../../common/Buttons';
+import { Button } from '../../../../common/Button';
 import styled from 'styled-components'
 import arrowUp from '../../../../../images/arrow-icon-up.png'
 import arrowDown from '../../../../../images/arrow-icon-down.png'
+import Div from '../../../../common/Div';
+import FileLabel from '../../../../common/FileLabel';
 
-const AvaContainer = styled(Container)`
+const AvaContainer = styled(Div)`
     width: 15vw;
     margin: 0 auto;
     min-width: 250px;
@@ -23,7 +24,7 @@ const AvaContainer = styled(Container)`
     }
 `
 
-const Panel = styled(Container)`
+const Panel = styled(Div)`
     box-sizing: border-box;
     width: 90%;
     height: 1.2em;
@@ -46,11 +47,11 @@ const Ava = ({ photos = {}, uploadPhoto }) => {
 
     return (
         <AvaContainer >
-            <Container padding='1em 0'>
+            <Div padding='1em 0'>
                 {
                     photos.large ? <img src={photos.large} alt='' /> : <img src={defaultUserImage} alt='' />
                 }
-            </Container>
+            </Div>
             {
                 editMode ?
                     <AddPhotoForm onSubmit={uploadPhoto} mime='.jpg, .png' />
@@ -86,15 +87,15 @@ let AddPhotoForm = props => {
     }
 
     return (
-        <Container as='form' onSubmit={props.handleSubmit} width='90%' >
-            <Container margin='0 0 0.5em 0'>
+        <Div as='form' onSubmit={props.handleSubmit} width='90%' >
+            <Div margin='0 0 0.5em 0'>
                 <Field component={renderInput} name='photo' type='file' validate={[noErrorRequired]} />
-            </Container>
+            </Div>
 
-            <Container>
+            <Div>
                 <Button type='submit' disabled={!isValid} >Upload File</Button>
-            </Container>
-        </Container>
+            </Div>
+        </Div>
     )
 }
 

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { change, Field, reduxForm } from 'redux-form';
 import { useValidation } from '../../../../../hooks/useValidation';
 import { noErrorRequired, validate50 } from '../../../../../scripts/validates';
-import { Button } from '../../../../common/Buttons';
+import { Button } from '../../../../common/Button';
 import { Textarea } from '../../../../common/CustomFields/CustomFields';
 import styles from './ProfileStatus.module.css'
 

@@ -4,7 +4,7 @@ export const spinLogo = () => {
     const logo = document.querySelector(`.spinning-logo`);
     logo.classList.add('spin');
     setTimeout(() => {
-        logo.classList.remove(headerStyles.spin);
+        logo.classList.remove('spin');
     }, 1500);
 };
 

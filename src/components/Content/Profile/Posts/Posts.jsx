@@ -1,10 +1,11 @@
 import s from './Posts.module.css'
 import Post from './Post/Post'
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { noErrorRequired, validate500 } from '../../../../scripts/validates';
 import { createField, Textarea } from '../../../common/CustomFields/CustomFields';
 import { useValidation } from '../../../../hooks/useValidation';
-import { Button, Container } from '../../../common/Buttons';
+import { Button } from '../../../common/Button';
+import Div from '../../../common/Div';
 
 const Posts = ({ userName = '...', photos, iam = false, addPost, deletePost, resetForm, posts: { posts } }) => {
 
@@ -48,9 +49,9 @@ let PostForm = props => {
     return (
         <form onSubmit={props.handleSubmit}>
             {createField(Textarea, 'post', 'text', 'Enter your Post', [noErrorRequired, validate500], postVO.setIsValid)}
-            <Container width='25%' margin='0'>
+            <Div width='25%' margin='0'>
                 <Button type='submit' disabled={!postVO.isValid} >Add Post</Button>
-            </Container>
+            </Div>
         </form>
     )
 }

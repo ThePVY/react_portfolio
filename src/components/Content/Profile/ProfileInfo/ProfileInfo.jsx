@@ -8,7 +8,7 @@ import { createField, Input, Textarea } from '../../../common/CustomFields/Custo
 import { useState } from 'react';
 import ViewPanel from '../../../common/ViewPanel/ViewPanel';
 import ProfileData from './ProfileData/ProfileData';
-import { Button } from '../../../common/Buttons';
+import { Button } from '../../../common/Button';
 
 const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto, putProfileInfo }) => {
 
