@@ -9,6 +9,7 @@ const StyledDiv = styled.div`
   padding     : ${({ padding }) => padding || "0px"};
   text-align  : ${({ textAlign }) => textAlign || "left"};
   color       : ${({ color }) => color || "rgb(72, 78, 78)"};
+  z-index     : ${({ zIndex }) => zIndex || "unset"};
 `;
 
 const Div = (props) => <StyledDiv {...props} />;

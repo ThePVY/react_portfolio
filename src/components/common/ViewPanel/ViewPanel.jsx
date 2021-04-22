@@ -1,7 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
 import Div from '../Div'
 import FlexContainer from '../FlexContainer'
-import s from './ViewPanel.module.css'
 
 const ShadowDiv = styled(Div)`
     ${props =>
@@ -13,7 +12,7 @@ const ShadowDiv = styled(Div)`
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 2;
+        z-index: 1;
     `}
 `
 
@@ -33,12 +32,12 @@ const NullContainer = styled.div`
 `
 
 const ViewArea = styled(Div)`
-height: 50vh;
-width: 50vw;
-z-index: 10;
-${props => {
-    props.fixed ?
-        css`
+    height: 50vh;
+    width: 50vw;
+    z-index: 10;
+    ${props =>
+        props.fixed ?
+            css`
         position: fixed;
         left: 0;
         top: 0;
@@ -46,51 +45,61 @@ ${props => {
         right: 0;
         margin: auto;
         `
-        :
-        css`
+            :
+            css`
         position: relative;
         left: 0;
         top: 0;
         transform: translate(-50%, 40%);
         `
-}}
+    }
 `
 const hoistAnimation = keyframes`
-0% { transform: scale3d(.5, .5, .5); }
-100% { transform: scale3d(1,1,1); }
-` 
+    0% { transform: scale3d(.5, .5, .5); }
+    100% { transform: scale3d(1,1,1); }
+`
 const ContentArea = styled(FlexContainer)`
-background-color: white;
+    background-color: white;
 
-min-height: max-content;
-position: absolute;
-top: 0;
+    min-height: max-content;
+    position: absolute;
+    top: 0;
 
-animation: ${hoistAnimation} 0.5s 1;
-animation-delay: .5;
+    z-index: 10;
+
+    img {
+        max-width: 40vw;
+        max-height: 40vh;
+    }
+
+    animation: ${hoistAnimation} 0.5s 1;
+    animation-delay: .5;
+`
+const LeafContainer = styled(Div)`
+    width: 5vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 `
 
-
 const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose, fixed = false }) => {
-
-    const viewPanelStyle = `${s.viewPanel} ${fixed ? s.fixed : s.relative}`
-
     return (
         <>
-            <ShadowDiv onClick={onClose} isShown={isShown} ></ShadowDiv>
+            <ShadowDiv onClick={onClose} isShown={isShown} />
             <NullContainer hide={!fixed}>
                 <ViewArea fixed={fixed} >
-                    <ContentArea jstfCnt='space-between'>
+                    <ContentArea jstfCnt='space-between' algnItems='center'>
                         {
                             multiple &&
-                            <div className={s.leafContainer} onClick={onPrev}></div>
+                            <LeafContainer onClick={onPrev} />
                         }
-                        <Div>
+                        <Div width='fit-content' height='fit-content' margin='auto' >
                             {content}
                         </Div>
                         {
                             multiple &&
-                            <div className={s.leafContainer} onClick={onNext}></div>
+                            <LeafContainer onClick={onNext} />
                         }
                     </ContentArea>
                 </ViewArea>

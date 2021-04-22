@@ -3,14 +3,16 @@ import { Field, reduxForm } from 'redux-form';
 import { noErrorRequired } from '../../../../../scripts/validates';
 import { useState } from 'react';
 import { Button } from '../../../../common/Button';
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import arrowUp from '../../../../../images/arrow-icon-up.png'
 import arrowDown from '../../../../../images/arrow-icon-down.png'
 import Div from '../../../../common/Div';
 import FileLabel from '../../../../common/FileLabel';
+import Image from '../../../../common/Image';
+
 
 const AvaContainer = styled(Div)`
-    width: 15vw;
+    width: 90%;
     margin: 0 auto;
     min-width: 250px;
     height: fit-content;
@@ -25,18 +27,29 @@ const AvaContainer = styled(Div)`
 `
 
 const Panel = styled(Div)`
-    box-sizing: border-box;
     width: 90%;
     height: 1.2em;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em auto;
     border-radius: 10px;
     background-color: rgb(243, 241, 241);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-
+    cursor: pointer;
+    text-align: center;
     background-image: ${props => props.editMode ? `url(${arrowUp})` : `url(${arrowDown})`};
+`
+
+const dropDownAnimation = keyframes`
+    0% { transform: scaleY(0); }
+    80% { transform: scaleY(1.1); }
+    100% { transform: scaleY(1); }
+`
+
+const DropDownContainer = styled(Div)`
+    display: ${props => props.editMode ? 'block' : 'none'};
+    animation: ${dropDownAnimation} 300ms ease-in-out forwards;
+    transform-origin: top center;
 `
 
 const Ava = ({ photos = {}, uploadPhoto }) => {
@@ -47,18 +60,18 @@ const Ava = ({ photos = {}, uploadPhoto }) => {
 
     return (
         <AvaContainer >
-            <Div padding='1em 0'>
+            <Div padding='1em 0' textAlign='center'>
                 {
-                    photos.large ? <img src={photos.large} alt='' /> : <img src={defaultUserImage} alt='' />
+                    photos.large ? 
+                        <Image src={photos.large} maxWidth='150px' /> 
+                        : 
+                        <Image src={defaultUserImage} maxWidth='150px' />
                 }
             </Div>
-            {
-                editMode ?
-                    <AddPhotoForm onSubmit={uploadPhoto} mime='.jpg, .png' />
-                    :
-                    ''
-            }
-            <Panel editMode={editMode} onClick={showForm} ></Panel>
+            <Panel editMode={editMode} onClick={showForm} />
+            <DropDownContainer editMode={editMode} margin='0 0 0.5rem 0' >
+                <AddPhotoForm onSubmit={uploadPhoto} mime='.jpg, .png' />
+            </DropDownContainer>
         </AvaContainer>
     );
 };
@@ -87,8 +100,8 @@ let AddPhotoForm = props => {
     }
 
     return (
-        <Div as='form' onSubmit={props.handleSubmit} width='90%' >
-            <Div margin='0 0 0.5em 0'>
+        <Div as='form' onSubmit={props.handleSubmit} width='90%' margin='0 auto' >
+            <Div margin='0 0 0.5em 0' textAlign='center'>
                 <Field component={renderInput} name='photo' type='file' validate={[noErrorRequired]} />
             </Div>
 

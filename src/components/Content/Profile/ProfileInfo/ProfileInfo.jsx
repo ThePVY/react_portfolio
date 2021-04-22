@@ -9,6 +9,19 @@ import { useState } from 'react';
 import ViewPanel from '../../../common/ViewPanel/ViewPanel';
 import ProfileData from './ProfileData/ProfileData';
 import { Button } from '../../../common/Button';
+import Div from '../../../common/Div';
+import styled, { css } from 'styled-components';
+
+const StyledInfo = styled(Div)`
+    border: 1px solid grey;
+    border-radius: 20px;
+    width: 90%;
+    min-width: 250px;
+    height: fit-content;
+    margin: 1em auto;
+    padding: 1em;
+    text-align: center;
+`
 
 const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfilePhoto, putProfileInfo }) => {
 
@@ -18,8 +31,8 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
     const [showEdit, setShowEdit] = useState(false)
 
     useEffect(() => {
-        const container = document.querySelector(`.${s.profileInfo}`)
-        const content = document.querySelector(`.${s.content}`)
+        const container = document.getElementById('slide-container')
+        const content = document.getElementById('slide-content')
         const scrollListener = makeSlideContent(content, container)
         return () => {
             removeScrollListener(scrollListener)
@@ -37,10 +50,10 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
     const showPanel = () => setEditMode(true)
 
     return (
-        <div className={s.profileInfo}>
-            <div className={s.content}>
+        <Div id='slide-container'>
+            <Div id='slide-content' zIndex='1' padding='10px 0px' height='fit-content'>
                 <Ava photos={data.photos} uploadPhoto={uploadPhoto} />
-                <div className={`${s.info} centered-horizontal`} onMouseOver={setEdit} onMouseOut={resetEdit}>
+                <StyledInfo onMouseOver={setEdit} onMouseOut={resetEdit}>
                     <ProfileStatus {...psProps} />
                     <div onClick={showPanel} className={s.editProfile}>edit profile</div>
                     {
@@ -52,26 +65,23 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
                                 <ProfileData data={data} />
                             </>
                     }
-                </div>
-                <div>
-                    Images
-                </div>
-                <div>
-                    Music
-                </div>
-                <div>
-                    Video
-                </div>
+                </StyledInfo>
 
-                <div className={s.takePlace}>FOR TAKE PLACE</div>
-                <div className={s.takePlace}>FOR TAKE PLACE</div>
-                <div className={s.takePlace}>FOR TAKE PLACE</div>
-                <div className={s.takePlace}>FOR TAKE PLACE</div>
-                <div className={s.takePlace}>FOR TAKE PLACE</div>
-                <div className={s.takePlace}>FOR TAKE PLACE</div>
+                <StyledInfo>
+                    <div>Images</div>
+                    <div>Music</div>
+                    <div>Video</div>
 
-            </div>
-        </div>
+                    <div className={s.takePlace}>FOR TAKE PLACE</div>
+                    <div className={s.takePlace}>FOR TAKE PLACE</div>
+                    <div className={s.takePlace}>FOR TAKE PLACE</div>
+                    <div className={s.takePlace}>FOR TAKE PLACE</div>
+                    <div className={s.takePlace}>FOR TAKE PLACE</div>
+                    <div className={s.takePlace}>FOR TAKE PLACE</div>
+                </StyledInfo>
+
+            </Div>
+        </Div>
     );
 };
 

@@ -1,16 +1,3 @@
-.profileInfo {
-    box-sizing: border-box;
-    height: 100%;
-}
-
-.profileInfo div {
-    text-align: center;
-}
-
-.profileInfo img {
-    max-width: 150px;
-}
-
 .content {
     padding-top: 10px;
     z-index: 1;
