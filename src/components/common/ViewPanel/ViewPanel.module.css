@@ -1,9 +1,3 @@
-.nullContainer {
-    width: 0;
-    height: 0;
-    z-index: 10;
-}
-
 .viewPanel {
     box-sizing: border-box;
     height: 50vh;
@@ -63,12 +57,4 @@
 
 .leafContainer:hover {
     background-color: rgba(0, 0, 0, 0.4);
-}
-
-.shadowContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    z-index: 2;
 }

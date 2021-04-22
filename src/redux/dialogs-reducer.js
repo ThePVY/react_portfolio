@@ -1,8 +1,5 @@
-import { spinLogo } from '../scripts/scripts';
-
 const ADD_MESSAGE = 'ADD-MESSAGE'
 
-//for construct action in components
 export const actionCreator = {
     addMessage: message => ({ type: ADD_MESSAGE, message })
 }
@@ -77,8 +74,6 @@ export const dialogsReducer = (state = initialState, action) => {
 let messageId = 1
 
 const addMessage = (state, message) => {
-    spinLogo();
-
     const newMessage = {
         id: messageId++,
         message,

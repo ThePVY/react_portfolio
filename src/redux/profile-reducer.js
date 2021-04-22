@@ -1,5 +1,4 @@
 import { profileAPI } from '../api/profile-api';
-import { spinLogo } from '../scripts/scripts';
 
 const ADD_POST = 'profile/ADD-POST'
 const DELETE_POST = 'profile/DELETE_POST'
@@ -216,8 +215,6 @@ export const profileReducer = (state = initialState, action) => {
 /*---------------------------------------------------------------------------------*/
 
 const addPost = (state, post) => {
-    spinLogo()
-
     const posts = state.posts.posts
     const newPost = {
         id: posts[posts.length - 1].id + 1,
@@ -231,7 +228,6 @@ const addPost = (state, post) => {
 }
 
 const deletePost = (state, postId) => {
-    spinLogo()
     return {
         ...state, posts: { posts: state.posts.posts.filter((post) => post.id !== postId) }
     }

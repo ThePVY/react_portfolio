@@ -1,14 +1,14 @@
 import { Field, reduxForm } from 'redux-form';
 import { useValidation } from '../../../../hooks/useValidation';
 import { noErrorRequired, validate100 } from '../../../../scripts/validates';
-import { Textarea } from '../../../common/CustomFields/CustomFields';
+import { TextareaTemplate } from '../../../common/CustomFields/CustomFields';
 import styles from './CurrentDialog.module.css'
 import Message from './Message/Message';
 
-const CurrentDialog = ({ messages, addMessage, resetForm }) => {
+const CurrentDialog = ({ messages, spinLogoOn, addMessage, resetForm }) => {
 
     const sendMessage = ({ message }) => {
-        addMessage(message)
+        spinLogoOn(() => addMessage(message))
         resetForm('message')
     }
 
@@ -35,7 +35,7 @@ let MessageForm = props => {
     return (
         <form onSubmit={props.handleSubmit} className={styles.messageForm} >
             <div>
-                <Field component={Textarea} name='message' type='text' placeholder='Enter your message'
+                <Field component={TextareaTemplate} name='message' type='text' placeholder='Enter your message'
                     validate={[noErrorRequired, validate100]} isValid={messageVO.setIsValid} />
             </div>
             <div className={styles.buttonContainer}>

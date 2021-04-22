@@ -1,5 +1,4 @@
 import { usersAPI } from "../api/users-api"
-import { spinLogo } from "../scripts/scripts"
 
 const FOLLOW_CLICK = 'FOLLOW_CLICK'
 const SHOW_MORE_CLICK = 'SHOW_MORE_CLICK'
@@ -73,7 +72,6 @@ const initialState = {
 export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW_CLICK:
-            spinLogo()
             return toggleFollow(state, action.userId)
 
         case SET_USERS:
@@ -86,11 +84,9 @@ export const usersReducer = (state = initialState, action) => {
             return setUsersTotalCount(state, action.count)
 
         case SET_SELECTED_PAGE:
-            spinLogo()
             return setSelectedPage(state, action.number)
 
         case TOGGLE_IS_FETCHING:
-            spinLogo()
             return toggleIsFetching(state, action.isFetching)
 
         case SET_LOADINGS:

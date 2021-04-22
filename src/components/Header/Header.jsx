@@ -3,18 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "../common/Button";
 import styled, { css, keyframes } from "styled-components";
 import Div from "../common/Div";
-
-const spinAnimation = keyframes`
-  0% {
-    transform: scale(1, 1) rotate(0deg);
-  }
-  50% {
-    transform: scale(-1, 1) rotate(180deg);
-  }
-  100% {
-    transform: scale(1, 1) rotate(360deg);
-  }
-`;
+import FlexContainer from "../common/FlexContainer";
 
 const Wrapper = styled.div`
   background-color: rgb(245, 245, 245);
@@ -29,16 +18,10 @@ const Wrapper = styled.div`
     align-self: center;
   }
 `;
-const AuthBlock = styled.div`
-  width: 170px;
-  display: flex;
-  justify-self: flex-end;
-  justify-content: space-between;
-`;
 
 const StyledLogo = styled.img`
   ${(props) =>
-    props.spin &&
+    props.spinLogo &&
     css`
       display: inline-block;
       position: relative;
@@ -49,40 +32,53 @@ const StyledLogo = styled.img`
     `}
 `;
 
-const Header = (props) => {
-  const { isAuthorized = false } = props;
+const spinAnimation = keyframes`
+  0% {
+    transform: scale(1, 1) rotate(0deg);
+  }
+  50% {
+    transform: scale(-1, 1) rotate(180deg);
+  }
+  100% {
+    transform: scale(1, 1) rotate(360deg);
+  }
+`;
+
+const Header = ({ isAuthorized = false, spinLogo, login, handleSignOut }) => {
   return (
     <Wrapper>
-      <StyledLogo src={logo} alt="Logo" className="spinning-logo" spin={props.spin} />
-      <AuthBlock>
+      <StyledLogo
+        src={logo}
+        alt="Logo"
+        className="spinning-logo"
+        spinLogo={spinLogo}
+      />
+      <FlexContainer
+        width="10em"
+        jstfSelf="flex-end"
+        jstfCnt="space-between"
+        algnItems="center"
+      >
         {isAuthorized ? (
           <>
-            <Div margin="0 1em 0 0">
-              <span>{props.login}</span>
+            <Div height='fit-content'>
+              <span>{login}</span>
             </Div>
 
-            <Div width="100px" alignSelf="center">
-              <Button onClick={props.handleSignOut}>Sign Out</Button>
+            <Div height='fit-content'>
+              <Button onClick={handleSignOut}>Sign Out</Button>
             </Div>
           </>
         ) : (
-          <Div>
+          <Div height='fit-content'>
             <Button>
               <NavLink to="/login">Sign in</NavLink>
             </Button>
           </Div>
         )}
-      </AuthBlock>
+      </FlexContainer>
     </Wrapper>
   );
 };
 
 export default Header;
-
-/* export const spinLogo = () => {
-  const logo = document.querySelector(`.spinning-logo`);
-  logo.classList.add('spin');
-  setTimeout(() => {
-      logo.classList.remove('spin');
-  }, 1500);
-}; */

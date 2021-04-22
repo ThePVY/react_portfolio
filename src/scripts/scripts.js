@@ -1,12 +1,12 @@
 import headerStyles from '../components/Header/Header.module.css'
 
-export const spinLogo = () => {
+/* export const spinLogo = () => {
     const logo = document.querySelector(`.spinning-logo`);
     logo.classList.add('spin');
     setTimeout(() => {
         logo.classList.remove('spin');
     }, 1500);
-};
+}; */
 
 export const validate = (text = '') => {
     return ~text.search(/\S/)

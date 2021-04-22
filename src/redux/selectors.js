@@ -1,8 +1,8 @@
 
-
-const selecror = {
+const selector = {
     app: {
-        getInitialized: state => state.app.initialized
+        getInitialized: state => state.app.initialized,
+        getSpinLogo: state => state.app.spinLogo
     },
     auth: {
         getAuthId: state => state.auth.data.id,
@@ -31,4 +31,4 @@ const selecror = {
     }
 }
 
-export default selecror
+export default selector

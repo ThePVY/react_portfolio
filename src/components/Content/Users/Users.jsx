@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import selecror from '../../../redux/selectors'
+import selector from '../../../redux/selectors'
 import { thunkCreator, actionCreator } from '../../../redux/users-reducer'
 import SinglePane from '../../common/SinglePane/SinglePane'
 import UsersList from './UsersList/UsersList'
@@ -24,11 +24,11 @@ const Users = ({ getUsers, selectedPage, setSelectedPage, setFollow, ...rest }) 
 
 const mapStateToProps = (state) => {
     return {
-        usersList: selecror.users.getUsersList(state),
-        pagesCount: selecror.users.getPagesCount(state),
-        selectedPage: selecror.users.getSelectedPage(state),
-        isFetching: selecror.users.getIsFetching(state),
-        loadings: selecror.users.getLoadings(state)
+        usersList: selector.users.getUsersList(state),
+        pagesCount: selector.users.getPagesCount(state),
+        selectedPage: selector.users.getSelectedPage(state),
+        isFetching: selector.users.getIsFetching(state),
+        loadings: selector.users.getLoadings(state)
     }
 }
 

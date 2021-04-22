@@ -4,7 +4,7 @@ import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { useEffect } from 'react';
 import makeSlideContent, { removeScrollListener } from '../../../../scripts/makeSlideContent';
 import { reduxForm } from 'redux-form';
-import { createField, Input, Textarea } from '../../../common/CustomFields/CustomFields';
+import { createField, Input, TextareaTemplate } from '../../../common/CustomFields/CustomFields';
 import { useState } from 'react';
 import ViewPanel from '../../../common/ViewPanel/ViewPanel';
 import ProfileData from './ProfileData/ProfileData';
@@ -83,8 +83,8 @@ let AddProfileInfoForm = ({ handleSubmit }) => {
         <form onSubmit={handleSubmit} className={formStyle}>
             {createField(Input, 'fullName', 'text', 'Enter your fullname')}
             {createField(Input, 'lookingForAJob', 'checkbox', undefined, undefined, undefined, 'Looking for a Job')}
-            {createField(Textarea, 'lookingForAJobDescription', 'text', 'Your professional skills')}
-            {createField(Textarea, 'aboutMe', 'text', 'Some information about you')}
+            {createField(TextareaTemplate, 'lookingForAJobDescription', 'text', 'Your professional skills')}
+            {createField(TextareaTemplate, 'aboutMe', 'text', 'Some information about you')}
             {createField(Input, 'contacts.github', 'text', 'github')}
             {createField(Input, 'contacts.vk', 'text', 'vk')}
             {createField(Input, 'contacts.facebook', 'text', 'facebook')}

@@ -4,7 +4,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { initializeApp } from '../../redux/app-reducer'
 import Preloader from '../common/Preloader';
-import selecror from '../../redux/selectors';
+import selector from '../../redux/selectors';
 
 const Profile = lazy(() => import('./Profile/Profile'))
 const Dialogs = lazy(() => import('./Dialogs/Dialogs'))
@@ -43,7 +43,7 @@ const Content = ({ initialized = false, initializeApp }) => {
 }
 
 const mapStateToProps = (state) => ({
-    initialized: selecror.app.getInitialized(state)
+    initialized: selector.app.getInitialized(state)
 })
 
 export default connect(mapStateToProps, { initializeApp })(Content);

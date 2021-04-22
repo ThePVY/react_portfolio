@@ -1,27 +1,4 @@
-textarea {
-  min-width: fit-content;
-  width: 30vw;
-  background-color: rgb(252, 252, 252);
-  color: rgb(39, 41, 41);
-  border: 1px solid rgb(125, 125, 128);
-  border-radius: 5px;
-
-  font-size: 14px;
-  padding: 0.5em 0.5em;
-  line-height: 1.5em;
-  outline: none;
-}
-
-a {
-  color: rgb(122, 134, 134);
-  text-decoration: none;
-}
-
-a.active {
-  color: rgb(148, 160, 160);
-}
-
-.centered {
+/* .centered {
   position: relative;
   top: 50%;
   left: 50%;
@@ -75,25 +52,4 @@ a.active {
 
 .disp-inl-block {
   display: inline-block;
-}
-
-/* .spin {
-  display: inline-block;
-  position: relative;
-  animation-name: spinning-logo;
-  animation-duration: 1500ms;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-}
-
-@keyframes spinning-logo {
-  0% {
-    transform: scale(1, 1) rotate(0deg);
-  }
-  50% {
-    transform: scale(-1, 1) rotate(180deg);
-  }
-  100% {
-    transform: scale(1, 1) rotate(360deg);
-  }
 } */

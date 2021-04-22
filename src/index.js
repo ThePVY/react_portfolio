@@ -22,6 +22,14 @@ const GlobalStyles = createGlobalStyle`
     #root {
         height: 100vh;
     }
+    a {
+      color: rgb(122, 134, 134);
+      text-decoration: none;
+    }
+
+    a.active {
+      color: rgb(148, 160, 160);
+    }
 `;
 
 ReactDOM.render(
