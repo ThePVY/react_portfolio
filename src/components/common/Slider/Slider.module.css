@@ -5,7 +5,7 @@
     z-index: 0;
 }
 
-.slider .buttons {
+.buttons {
     box-sizing: border-box;
     position: absolute;
     width: fit-content;
@@ -25,15 +25,15 @@
     width: 2vw;
 }
 
-.slider .buttonLeft {
+.buttonLeft {
     left: 10px;
 }
 
-.slider .buttonRight {
+.buttonRight {
     right: 10px;
 }
 
-.slider .toggleSlide {
+.toggleSlide {
     top: unset;
     bottom: -6vw;
     left: 0;

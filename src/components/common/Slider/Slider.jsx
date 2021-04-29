@@ -2,6 +2,36 @@ import { useCallback, useEffect, useState } from 'react'
 import s from './Slider.module.css'
 import arrowRight from '../../../images/arrow-icon-right.png'
 import arrowLeft from '../../../images/arrow-icon-left.png'
+import styled from 'styled-components'
+import Div from '../Div'
+
+
+const StyledSlider = styled(Div)`
+    width: 100%;
+    height: 20vw;
+    z-index: 0;
+`
+
+const ButtonContainer = styled(Div)`
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+
+    top: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+    button {
+        border: hidden;
+        background: transparent;
+        padding: 0px;
+    }
+
+    img {
+        width: 2vw;
+    }
+`
 
 const Slider = ({ images, onImageClick, exitObserver = {} }) => {
 
@@ -19,7 +49,7 @@ const Slider = ({ images, onImageClick, exitObserver = {} }) => {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            if(slideMode) {
+            if (slideMode) {
                 setImagesState(slide({ direction: 'right', images, imagesState }))
             }
         }, 3000)
@@ -80,10 +110,10 @@ const Slider = ({ images, onImageClick, exitObserver = {} }) => {
                 </div>
             </div>
             <div className={`${s.buttons} ${s.buttonRight}`} >
-                <button onClick={handleRight}><img src={arrowRight} alt="right"/></button>
+                <button onClick={handleRight}><img src={arrowRight} alt="right" /></button>
             </div>
             <div className={`${s.buttons} ${s.buttonLeft}`} >
-                <button onClick={handleLeft}><img src={arrowLeft} alt="left"/></button>
+                <button onClick={handleLeft}><img src={arrowLeft} alt="left" /></button>
             </div>
             <div className={`${s.buttons} ${s.toggleSlide}`} >
                 <button onClick={handleToggle}>{slideMode ? 'Stop Slider' : 'Run Slider'}</button>
@@ -96,7 +126,7 @@ export default Slider
 
 
 
-const slide = ({direction = 'right', images, imagesState}) => {
+const slide = ({ direction = 'right', images, imagesState }) => {
     switch (direction) {
         case 'right':
             return {

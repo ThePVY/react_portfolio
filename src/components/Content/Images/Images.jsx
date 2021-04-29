@@ -3,11 +3,10 @@ import { compose } from 'redux'
 import { thunkCreator } from '../../../redux/auth-reducer'
 import SinglePane from '../../common/SinglePane/SinglePane'
 import Slider from '../../common/Slider/Slider'
-import s from './Images.module.css'
-import '../../../App.css'
 import ViewPanel from '../../common/ViewPanel/ViewPanel'
 import { useState } from 'react'
 import { useObservers } from '../../../hooks/useObservers'
+import Div from '../../common/Div'
 
 
 const images = [
@@ -62,9 +61,9 @@ const Images = props => {
                     <ViewPanel isShown={showViewPanel} content={content} multiple={true}
                         onNext={nextImage} onPrev={prevImage} onClose={onPanelClose} />
                 }
-                <div className={`${s.images}`}>
+                <Div width='100%' height='100%'>
                     <Slider images={images} onImageClick={onImageClick} exitObserver={exitObserver} />
-                </div>
+                </Div>
             </SinglePane>
         </>
     )
