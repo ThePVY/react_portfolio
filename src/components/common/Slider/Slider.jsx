@@ -1,15 +1,59 @@
-import { useCallback, useEffect, useState } from 'react'
-import s from './Slider.module.css'
+import { useEffect, useState } from 'react'
 import arrowRight from '../../../images/arrow-icon-right.png'
 import arrowLeft from '../../../images/arrow-icon-left.png'
 import styled from 'styled-components'
 import Div from '../Div'
+import { Button } from '../Button'
+import FlexContainer from '../FlexContainer'
 
 
-const StyledSlider = styled(Div)`
+const SliderWrapper = styled(Div)`
     width: 100%;
     height: 20vw;
     z-index: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`
+
+const VisibleArea = styled(Div)`
+    /* VisibleArea должен быть позиционируемым.
+    Это нужно для того, чтобы ImagesContainer
+    позиционировался относительно VisibleArea */
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    /* В width должно вместиться ровно 2 периода картинок */
+    width: 40vw;
+    height: 20vw;
+    overflow: hidden;
+    img {
+        max-width: 20vw;
+        max-height: 20vw;
+    }
+
+`
+
+const ImagesContainer = styled(FlexContainer)`
+    /* Width должна быть равна 5 периодам картинок */
+    width: 100vw;
+    height: 20vw;
+
+    position: absolute;
+    /* Половина ширины картинки + период следования картинок */
+    left: -27.5vw;
+
+    div {
+        position: absolute;
+        transition: all 1s;
+    }
+`
+
+const ImageContainer = styled(Div)`
+    left: ${props => props.left || '0px'};
 `
 
 const ButtonContainer = styled(Div)`
@@ -17,11 +61,14 @@ const ButtonContainer = styled(Div)`
     width: fit-content;
     height: fit-content;
 
-    top: 0px;
-    bottom: 0px;
+    top: ${props => props.top || '0'};
+    bottom: ${props => props.bottom || '0'};
+    left: ${props => props.left || 'auto'};
+    right: ${props => props.right || 'auto'};
     margin-top: auto;
     margin-bottom: auto;
-    
+`
+const ArrowContainer = styled(ButtonContainer)`
     button {
         border: hidden;
         background: transparent;
@@ -32,6 +79,18 @@ const ButtonContainer = styled(Div)`
         width: 2vw;
     }
 `
+const ToggleSliderContainer = styled(ButtonContainer)`
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+
+    width: 150px;
+    height: 30px;
+    font-size: 1rem;
+`
+
+
 
 const Slider = ({ images, onImageClick, exitObserver = {} }) => {
 
@@ -85,40 +144,40 @@ const Slider = ({ images, onImageClick, exitObserver = {} }) => {
     }
 
     return (
-        <div className={`centered ${s.slider}`}>
-            <div className={`${s.visibleArea}`}>
-                <div className={`${s.imagesContainer}`}>
-                    <div key={images[imagesState.prev2xImage].id} className={`${s.prev2xDiv}`}>
+        <SliderWrapper>
+            <VisibleArea>
+                <ImagesContainer jstfCnt='space-between' >
+                    <ImageContainer key={images[imagesState.prev2xImage].id} left='0px' >
                         {imgs[imagesState.prev2xImage]}
-                    </div>
+                    </ImageContainer>
 
-                    <div key={images[imagesState.prevImage].id} className={`${s.prevDiv}`}>
+                    <ImageContainer key={images[imagesState.prevImage].id} left='20vw' >
                         {imgs[imagesState.prevImage]}
-                    </div>
+                    </ImageContainer>
 
-                    <div key={images[imagesState.currImage].id} className={`${s.currDiv}`} onClick={handleImageClick} >
+                    <ImageContainer key={images[imagesState.currImage].id} onClick={handleImageClick} left='40vw' >
                         {imgs[imagesState.currImage]}
-                    </div>
+                    </ImageContainer>
 
-                    <div key={images[imagesState.nextImage].id} className={`${s.nextDiv}`}>
+                    <ImageContainer key={images[imagesState.nextImage].id} left='60vw' >
                         {imgs[imagesState.nextImage]}
-                    </div>
+                    </ImageContainer>
 
-                    <div key={images[imagesState.next2xImage].id} className={`${s.next2xDiv}`}>
+                    <ImageContainer key={images[imagesState.next2xImage].id} left='80vw' >
                         {imgs[imagesState.next2xImage]}
-                    </div>
-                </div>
-            </div>
-            <div className={`${s.buttons} ${s.buttonRight}`} >
-                <button onClick={handleRight}><img src={arrowRight} alt="right" /></button>
-            </div>
-            <div className={`${s.buttons} ${s.buttonLeft}`} >
-                <button onClick={handleLeft}><img src={arrowLeft} alt="left" /></button>
-            </div>
-            <div className={`${s.buttons} ${s.toggleSlide}`} >
-                <button onClick={handleToggle}>{slideMode ? 'Stop Slider' : 'Run Slider'}</button>
-            </div>
-        </div>
+                    </ImageContainer>
+                </ImagesContainer>
+            </VisibleArea>
+            <ArrowContainer right='10px' >
+                <Button onClick={handleRight}><img src={arrowRight} alt="right" /></Button>
+            </ArrowContainer>
+            <ArrowContainer left='10px' >
+                <Button onClick={handleLeft}><img src={arrowLeft} alt="left" /></Button>
+            </ArrowContainer>
+            <ToggleSliderContainer top='unset' bottom='-6vw' >
+                <Button onClick={handleToggle}>{slideMode ? 'Stop Slider' : 'Run Slider'}</Button>
+            </ToggleSliderContainer>
+        </SliderWrapper>
     )
 }
 
