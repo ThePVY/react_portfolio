@@ -7,6 +7,8 @@ import ViewPanel from '../../common/ViewPanel/ViewPanel'
 import { useState } from 'react'
 import { useObservers } from '../../../hooks/useObservers'
 import Div from '../../common/Div'
+import styled from 'styled-components'
+import Image from '../../common/Image'
 
 
 const images = [
@@ -20,6 +22,12 @@ const images = [
     { id: 7, url: 'https://printfiles.ru/files/uploads/raspechatat/tsyfry-formata-a4/7.jpg' },
 ]
 
+const StyledImage = styled(Image)`
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`
 
 const Images = props => {
 
@@ -28,7 +36,7 @@ const Images = props => {
     const [[exitObservers, exitObserver],] = useObservers([])
     const [currImageId, setCurrImageId] = useState(0)
 
-    const viewPanelContent = (src) => <img src={src} alt='' className='disp-inl-block centered'/>
+    const viewPanelContent = (src) => <StyledImage src={src} alt='' display='inline-block' />
 
     const onImageClick = (image) => {
         setContent(viewPanelContent(image.url))

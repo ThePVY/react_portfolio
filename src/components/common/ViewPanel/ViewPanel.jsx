@@ -94,7 +94,7 @@ const ViewPanel = ({ isShown, content, multiple = false, onNext, onPrev, onClose
                             multiple &&
                             <LeafContainer onClick={onPrev} />
                         }
-                        <Div width='fit-content' height='fit-content' margin='auto' >
+                        <Div>
                             {content}
                         </Div>
                         {

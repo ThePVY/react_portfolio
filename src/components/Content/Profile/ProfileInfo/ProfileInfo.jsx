@@ -10,7 +10,7 @@ import ViewPanel from '../../../common/ViewPanel/ViewPanel';
 import ProfileData from './ProfileData/ProfileData';
 import { Button } from '../../../common/Button';
 import Div from '../../../common/Div';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const StyledInfo = styled(Div)`
     border: 1px solid grey;
@@ -88,12 +88,18 @@ const ProfileInfo = ({ data, status, authId, userId, publishStatus, uploadProfil
 export default ProfileInfo;
 
 let AddProfileInfoForm = ({ handleSubmit }) => {
-    const formStyle = `${s.infoForm} centered-horizontal`
+
+    const [lfjIsChecked, setLFJIsChecked] = useState(false)
+    const checkObserver = (setStateFn) => (state) => setStateFn(state)
+
+    const formStyle = `${s.infoForm}`
     return (
         <form onSubmit={handleSubmit} className={formStyle}>
             {createField(Input, 'fullName', 'text', 'Enter your fullname')}
-            {createField(Input, 'lookingForAJob', 'checkbox', undefined, undefined, undefined, 'Looking for a Job')}
-            {createField(TextareaTemplate, 'lookingForAJobDescription', 'text', 'Your professional skills')}
+            {createField(Input, 'lookingForAJob', 'checkbox', undefined, undefined, undefined,
+                         'Looking for a Job', checkObserver(setLFJIsChecked))}
+            {createField(TextareaTemplate, 'lookingForAJobDescription', 'text', 'Your professional skills', 
+                        undefined, undefined, undefined, undefined, !lfjIsChecked)}
             {createField(TextareaTemplate, 'aboutMe', 'text', 'Some information about you')}
             {createField(Input, 'contacts.github', 'text', 'github')}
             {createField(Input, 'contacts.vk', 'text', 'vk')}
